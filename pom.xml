@@ -15,15 +15,36 @@
     </modules>
 
     <properties>
+        <testng.version>7.4.0</testng.version>
         <jwd.version>1.0-SNAPSHOT</jwd.version>
+        <log4j.version>2.4.1</log4j.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>org.testng</groupId>
+                <artifactId>testng</artifactId>
+                <version>${testng.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
                 <groupId>by.lashkevich.jwd</groupId>
                 <artifactId>jwd-resource</artifactId>
                 <version>${jwd.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-core</artifactId>
+                <version>${log4j.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
