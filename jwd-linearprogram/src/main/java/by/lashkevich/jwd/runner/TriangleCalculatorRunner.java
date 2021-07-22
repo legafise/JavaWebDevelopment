@@ -34,8 +34,7 @@ public final class TriangleCalculatorRunner {
             pointList.get(i).setY(scanner.nextDouble());
         }
 
-        Triangle triangle = new Triangle(pointList.get(0),
-                pointList.get(1), pointList.get(2));
+        Triangle triangle = new Triangle(pointList.get(0), pointList.get(1), pointList.get(2));
 
         reportTrianglePerimeterAndArea(triangle);
     }

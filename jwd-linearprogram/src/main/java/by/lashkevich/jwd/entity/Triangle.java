@@ -7,13 +7,13 @@ public class Triangle {
     private Point secondPoint;
     private Point thirdPoint;
 
+    public Triangle() {
+    }
+
     public Triangle(Point firstPoint, Point secondPoint, Point thirdPoint) {
         this.firstPoint = firstPoint;
         this.secondPoint = secondPoint;
         this.thirdPoint = thirdPoint;
-    }
-
-    public Triangle() {
     }
 
     public Point getFirstPoint() {
