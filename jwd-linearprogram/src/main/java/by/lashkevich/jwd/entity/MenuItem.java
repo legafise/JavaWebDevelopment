@@ -1,5 +1,6 @@
 package by.lashkevich.jwd.entity;
 
+import by.lashkevich.jwd.runner.FindNumberOfSymbolRunner;
 import by.lashkevich.jwd.runner.PointCheckRunner;
 import by.lashkevich.jwd.runner.TriangleCalculatorRunner;
 
@@ -23,6 +24,13 @@ public enum MenuItem {
         @Override
         public boolean execute() {
             PointCheckRunner.runPointChecker();
+            return true;
+        }
+    },
+    NUMBER_OF_SYMBOL_FINDER_ITEM {
+        @Override
+        public boolean execute() {
+            FindNumberOfSymbolRunner.runNumberOfSymbolFinder();
             return true;
         }
     },

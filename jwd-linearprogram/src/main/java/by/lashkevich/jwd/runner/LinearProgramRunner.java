@@ -11,6 +11,8 @@ public class LinearProgramRunner {
             " triangle knowing the coordinates of its vertices";
     private static final String THE_SECOND_TASK_INFORMATION = "2. Determine if a " +
             "point belongs to a shaded area";
+    private static final String THE_THIRD_TASK_INFORMATION = "3. Enter any symbol and determine" +
+            "its ordinal number, as well as indicate the previous and subsequent symbol";
 
     public static void main(String[] args) {
         boolean isInfinityCycle = true;
@@ -20,7 +22,8 @@ public class LinearProgramRunner {
             System.out.println(ENTER_ZERO_TO_END_PROGRAM_MESSAGE + "\n"
                     + SELECT_TASK_MESSAGE + "\n"
                     + THE_FIRST_TASK_INFORMATION + "\n"
-                    + THE_SECOND_TASK_INFORMATION);
+                    + THE_SECOND_TASK_INFORMATION + "\n"
+                    + THE_THIRD_TASK_INFORMATION);
 
             isInfinityCycle = MenuItem.findMenuItem(scanner.nextInt()).execute();
         }
