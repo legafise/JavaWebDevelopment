@@ -2,7 +2,7 @@ package by.lashkevich.jwd.util.calculator.impl;
 
 import by.lashkevich.jwd.entity.Point;
 import by.lashkevich.jwd.entity.Triangle;
-import by.lashkevich.jwd.exception.TriangleCalculatorException;
+import by.lashkevich.jwd.exception.TriangleValidatorException;
 import by.lashkevich.jwd.util.calculator.Calculator;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -31,40 +31,34 @@ public class TriangleCalculatorTest {
     }
 
     @Test
-    public void calculateAreaPositiveTest() throws TriangleCalculatorException {
-        Assert.assertEquals(calculator
-                .calculateArea(positiveTestTriangle), expectedArea);
+    public void calculateAreaPositiveTest() throws TriangleValidatorException {
+        Assert.assertEquals(calculator.calculateArea(positiveTestTriangle), expectedArea);
     }
 
     @Test
-    public void calculateAreaNegativeTest() throws TriangleCalculatorException {
+    public void calculateAreaNegativeTest() throws TriangleValidatorException {
         expectedArea = 4;
-        Assert.assertNotEquals(calculator
-                .calculateArea(positiveTestTriangle), expectedArea);
+        Assert.assertNotEquals(calculator.calculateArea(positiveTestTriangle), expectedArea);
     }
 
-    @Test (expectedExceptions = TriangleCalculatorException.class)
-    public void calculateAreaWithInvalidTriangleTest() throws TriangleCalculatorException {
-        Assert.assertNotEquals(calculator
-                .calculateArea(negativeTestTriangle), expectedArea);
-    }
-
-    @Test
-    public void calculatePerimeterPositiveTest() throws TriangleCalculatorException {
-        Assert.assertEquals(calculator
-                .calculatePerimeter(positiveTestTriangle), expectedPerimeter);
+    @Test (expectedExceptions = TriangleValidatorException.class)
+    public void calculateAreaWithInvalidTriangleTest() throws TriangleValidatorException {
+        Assert.assertNotEquals(calculator.calculateArea(negativeTestTriangle), expectedArea);
     }
 
     @Test
-    public void calculatePerimeterNegativeTest() throws TriangleCalculatorException {
+    public void calculatePerimeterPositiveTest() throws TriangleValidatorException {
+        Assert.assertEquals(calculator.calculatePerimeter(positiveTestTriangle), expectedPerimeter);
+    }
+
+    @Test
+    public void calculatePerimeterNegativeTest() throws TriangleValidatorException {
         expectedPerimeter = 4;
-        Assert.assertNotEquals(calculator
-                .calculatePerimeter(positiveTestTriangle), expectedPerimeter);
+        Assert.assertNotEquals(calculator.calculatePerimeter(positiveTestTriangle), expectedPerimeter);
     }
 
-    @Test (expectedExceptions = TriangleCalculatorException.class)
-    public void calculatePerimeterWithInvalidTriangleTest() throws TriangleCalculatorException {
-        Assert.assertEquals(calculator
-                .calculatePerimeter(negativeTestTriangle), expectedPerimeter);
+    @Test (expectedExceptions = TriangleValidatorException.class)
+    public void calculatePerimeterWithInvalidTriangleTest() throws TriangleValidatorException {
+        Assert.assertEquals(calculator.calculatePerimeter(negativeTestTriangle), expectedPerimeter);
     }
 }

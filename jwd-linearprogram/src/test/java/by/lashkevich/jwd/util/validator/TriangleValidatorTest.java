@@ -2,11 +2,11 @@ package by.lashkevich.jwd.util.validator;
 
 import by.lashkevich.jwd.entity.Point;
 import by.lashkevich.jwd.entity.Triangle;
-import org.testng.Assert;
+import by.lashkevich.jwd.exception.TriangleValidatorException;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static by.lashkevich.jwd.util.validator.TriangleValidator.*;
+import static by.lashkevich.jwd.util.validator.TriangleValidator.isValidTriangle;
 
 public class TriangleValidatorTest {
     private Point firstTestPoint;
@@ -25,12 +25,12 @@ public class TriangleValidatorTest {
     }
 
     @Test
-    public void isValidTrianglePositiveTest() {
-        Assert.assertTrue(isValidTriangle(positiveTestTriangle));
+    public void isValidTrianglePositiveTest() throws TriangleValidatorException {
+        isValidTriangle(positiveTestTriangle);
     }
 
-    @Test
-    public void isValidTriangleNegativeTest() {
-        Assert.assertFalse(isValidTriangle(negativeTestTriangle));
+    @Test (expectedExceptions = TriangleValidatorException.class)
+    public void isValidTriangleNegativeTest() throws TriangleValidatorException {
+        isValidTriangle(negativeTestTriangle);
     }
 }
