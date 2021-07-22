@@ -18,6 +18,7 @@
         <testng.version>7.4.0</testng.version>
         <jwd.version>1.0-SNAPSHOT</jwd.version>
         <log4j.version>2.4.1</log4j.version>
+        <maven.compiler.plugin.version>3.6.1</maven.compiler.plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -48,4 +49,18 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.plugin.version}</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
