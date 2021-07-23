@@ -15,6 +15,7 @@ public class LinearProgramRunner {
             "its ordinal number, as well as indicate the previous and subsequent symbol";
     private static final String THE_FOURTH_TASK_INFORMATION = "4. Calculate the value of an " +
             "expression using a square root formula";
+    private static final String THE_FIFTH_TASK_INFORMATION = "5. Find the area of a ring";
 
     public static void main(String[] args) {
         boolean isInfinityCycle = true;
@@ -26,7 +27,8 @@ public class LinearProgramRunner {
                     + THE_FIRST_TASK_INFORMATION + "\n"
                     + THE_SECOND_TASK_INFORMATION + "\n"
                     + THE_THIRD_TASK_INFORMATION + "\n"
-                    + THE_FOURTH_TASK_INFORMATION);
+                    + THE_FOURTH_TASK_INFORMATION + "\n"
+                    + THE_FIFTH_TASK_INFORMATION);
 
             isInfinityCycle = MenuItem.findMenuItem(scanner.nextInt()).execute();
         }
