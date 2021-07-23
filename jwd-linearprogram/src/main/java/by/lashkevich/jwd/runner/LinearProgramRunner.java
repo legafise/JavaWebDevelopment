@@ -13,6 +13,8 @@ public class LinearProgramRunner {
             "point belongs to a shaded area";
     private static final String THE_THIRD_TASK_INFORMATION = "3. Enter any symbol and determine" +
             "its ordinal number, as well as indicate the previous and subsequent symbol";
+    private static final String THE_FOURTH_TASK_INFORMATION = "4. Calculate the value of an " +
+            "expression using a square root formula";
 
     public static void main(String[] args) {
         boolean isInfinityCycle = true;
@@ -23,7 +25,8 @@ public class LinearProgramRunner {
                     + SELECT_TASK_MESSAGE + "\n"
                     + THE_FIRST_TASK_INFORMATION + "\n"
                     + THE_SECOND_TASK_INFORMATION + "\n"
-                    + THE_THIRD_TASK_INFORMATION);
+                    + THE_THIRD_TASK_INFORMATION + "\n"
+                    + THE_FOURTH_TASK_INFORMATION);
 
             isInfinityCycle = MenuItem.findMenuItem(scanner.nextInt()).execute();
         }

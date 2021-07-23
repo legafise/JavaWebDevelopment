@@ -2,6 +2,7 @@ package by.lashkevich.jwd.entity;
 
 import by.lashkevich.jwd.runner.FindNumberOfSymbolRunner;
 import by.lashkevich.jwd.runner.PointCheckRunner;
+import by.lashkevich.jwd.runner.SquareRootFormulaRunner;
 import by.lashkevich.jwd.runner.TriangleCalculatorRunner;
 
 import java.util.Arrays;
@@ -31,6 +32,13 @@ public enum MenuItem {
         @Override
         public boolean execute() {
             FindNumberOfSymbolRunner.runNumberOfSymbolFinder();
+            return true;
+        }
+    },
+    SQUARE_ROOT_FORMULA_CALCULATOR_ITEM {
+        @Override
+        public boolean execute() {
+            SquareRootFormulaRunner.RunSquareRootFormulaCalculation();
             return true;
         }
     },
