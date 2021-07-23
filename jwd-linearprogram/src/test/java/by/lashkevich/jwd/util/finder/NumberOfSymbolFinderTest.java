@@ -7,25 +7,19 @@ import org.testng.annotations.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.testng.Assert.*;
-
 public class NumberOfSymbolFinderTest {
     private char introducedSymbol;
     private char previousSymbol;
-    private char nextSymbol;
-    private int introducedSymbolNumber;
-    private int previousSymbolNumber;
-    private int nextSymbolNumber;
     private Map<Character, Integer> expectedSymbolsAndNumbers;
 
     @BeforeMethod
     public void setUp() {
         introducedSymbol = 'y';
         previousSymbol = 'x';
-        nextSymbol = 'z';
-        introducedSymbolNumber = 121;
-        previousSymbolNumber = 120;
-        nextSymbolNumber = 122;
+        char nextSymbol = 'z';
+        int introducedSymbolNumber = 121;
+        int previousSymbolNumber = 120;
+        int nextSymbolNumber = 122;
 
         expectedSymbolsAndNumbers = new HashMap<>();
         expectedSymbolsAndNumbers.put(previousSymbol, previousSymbolNumber);

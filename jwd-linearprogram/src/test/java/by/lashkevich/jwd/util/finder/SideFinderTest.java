@@ -12,24 +12,19 @@ import java.util.List;
 import static by.lashkevich.jwd.util.finder.SideFinder.findTriangleSide;
 
 public class SideFinderTest {
-    private double firstExpectedSide;
-    private double secondExpectedSide;
-    private double thirdExpectedSide;
     private List<Double> expectedSides;
-    private Point firstTestPoint;
-    private Point secondTestPoint;
     private Point thirdTestPoint;
     private Triangle testTriangle;
 
     @BeforeMethod
     public void setUp() {
-        firstExpectedSide = 4;
-        secondExpectedSide = 5;
-        thirdExpectedSide = 3;
+        double firstExpectedSide = 4;
+        double secondExpectedSide = 5;
+        double thirdExpectedSide = 3;
         expectedSides = Arrays.asList(firstExpectedSide, secondExpectedSide, thirdExpectedSide);
 
-        firstTestPoint = new Point(0, 0);
-        secondTestPoint = new Point(0,4);
+        Point firstTestPoint = new Point(0, 0);
+        Point secondTestPoint = new Point(0,4);
         thirdTestPoint = new Point(3, 0);
         testTriangle = new Triangle(firstTestPoint, secondTestPoint, thirdTestPoint);
     }
@@ -37,6 +32,7 @@ public class SideFinderTest {
     @Test
     public void FindTriangleSidePositiveTest() {
         Assert.assertEquals(findTriangleSide(testTriangle), expectedSides);
+        Assert.fail();
     }
 
     @Test

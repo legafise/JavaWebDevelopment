@@ -8,9 +8,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class TriangleCalculatorTest {
-    private Point firstTestPoint;
-    private Point secondTestPoint;
-    private Point thirdTestPoint;
     private Triangle positiveTestTriangle;
     private Triangle negativeTestTriangle;
     private double expectedArea;
@@ -18,9 +15,9 @@ public class TriangleCalculatorTest {
 
     @BeforeMethod
     public void setUp() {
-        firstTestPoint = new Point(0, 0);
-        secondTestPoint = new Point(0,4);
-        thirdTestPoint = new Point(3, 0);
+        Point firstTestPoint = new Point(0, 0);
+        Point secondTestPoint = new Point(0,4);
+        Point thirdTestPoint = new Point(3, 0);
         positiveTestTriangle = new Triangle(firstTestPoint, secondTestPoint, thirdTestPoint);
         negativeTestTriangle = new Triangle(firstTestPoint, secondTestPoint, firstTestPoint);
         expectedArea = 6;

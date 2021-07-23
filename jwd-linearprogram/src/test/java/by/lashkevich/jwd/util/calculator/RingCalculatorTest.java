@@ -11,16 +11,13 @@ import static org.testng.Assert.*;
 public class RingCalculatorTest {
     private Ring positiveTestRing;
     private Ring negativeTestRing;
-    private double testInnerRadius;
-    private double positiveTestOuterRadius;
-    private double negativeTestOuterRadius;
     private double expectedArea;
 
     @BeforeMethod
     public void setUp() {
-        testInnerRadius = 8;
-        positiveTestOuterRadius = 10;
-        negativeTestOuterRadius = 5;
+        double testInnerRadius = 8;
+        double positiveTestOuterRadius = 10;
+        double negativeTestOuterRadius = 5;
         positiveTestRing = new Ring(testInnerRadius, positiveTestOuterRadius);
         negativeTestRing = new Ring(testInnerRadius, negativeTestOuterRadius);
         expectedArea = 113;
