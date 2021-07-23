@@ -2,7 +2,7 @@ package by.lashkevich.jwd.util.validator;
 
 import by.lashkevich.jwd.entity.Point;
 import by.lashkevich.jwd.entity.Triangle;
-import by.lashkevich.jwd.exception.TriangleValidatorException;
+import by.lashkevich.jwd.exception.LinearProgramValidatorException;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -25,12 +25,12 @@ public class TriangleValidatorTest {
     }
 
     @Test
-    public void isValidTrianglePositiveTest() throws TriangleValidatorException {
+    public void isValidTrianglePositiveTest() throws LinearProgramValidatorException {
         isValidTriangle(positiveTestTriangle);
     }
 
-    @Test (expectedExceptions = TriangleValidatorException.class)
-    public void isValidTriangleNegativeTest() throws TriangleValidatorException {
+    @Test (expectedExceptions = LinearProgramValidatorException.class)
+    public void isValidTriangleNegativeTest() throws LinearProgramValidatorException {
         isValidTriangle(negativeTestTriangle);
     }
 }
