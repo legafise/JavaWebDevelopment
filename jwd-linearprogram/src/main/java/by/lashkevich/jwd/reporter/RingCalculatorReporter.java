@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 
 import static java.lang.String.format;
 
-public class RingCalculatorReporter {
+public final class RingCalculatorReporter {
     private static final Logger LOGGER = LogManager.getRootLogger();
     private static final String RING_INFORMATION_MESSAGE = "Ring = ";
     private static final String SEMICOLON_SIGN = "; ";

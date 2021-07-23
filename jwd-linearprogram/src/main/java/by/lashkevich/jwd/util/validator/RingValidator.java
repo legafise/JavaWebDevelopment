@@ -3,7 +3,7 @@ package by.lashkevich.jwd.util.validator;
 import by.lashkevich.jwd.entity.Ring;
 import by.lashkevich.jwd.exception.LinearProgramValidatorException;
 
-public class RingValidator {
+public final class RingValidator {
     private static final String IMPOSSIBLE_RING_ERROR_MESSAGE = "Impossible ring introduced";
 
     private RingValidator() {

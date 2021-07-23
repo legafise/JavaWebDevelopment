@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 
 import static by.lashkevich.jwd.util.calculator.FormulaCalculator.calculateSquareRootFormula;
 
-public class SquareRootFormulaReporter {
+public final class SquareRootFormulaReporter {
     private static final Logger LOGGER = LogManager.getRootLogger();
     private static final String RESULT_EQUALS  = "result = ";
 
