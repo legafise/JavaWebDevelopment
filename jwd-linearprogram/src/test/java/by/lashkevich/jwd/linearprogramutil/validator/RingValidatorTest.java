@@ -1,7 +1,6 @@
-package by.lashkevich.jwd.util.validator;
+package by.lashkevich.jwd.linearprogramutil.validator;
 
 import by.lashkevich.jwd.entity.Ring;
-import by.lashkevich.jwd.exception.LinearProgramValidatorException;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -21,15 +20,11 @@ public class RingValidatorTest {
 
     @Test
     public void isValidRingPositiveTest() {
-        try {
-            RingValidator.isValidRing(positiveTestRing);
-        } catch (LinearProgramValidatorException e) {
-            Assert.fail(e.getMessage());
-        }
+        Assert.assertTrue(RingValidator.isValidRing(positiveTestRing));
     }
 
-    @Test (expectedExceptions = LinearProgramValidatorException.class)
-    public void isValidRingNegativeTest() throws LinearProgramValidatorException {
-        RingValidator.isValidRing(negativeTestRing);
+    @Test
+    public void isValidRingNegativeTest() {
+        Assert.assertFalse(RingValidator.isValidRing(negativeTestRing));
     }
 }

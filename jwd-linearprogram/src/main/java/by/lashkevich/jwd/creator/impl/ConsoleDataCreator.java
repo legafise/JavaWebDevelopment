@@ -1,6 +1,7 @@
 package by.lashkevich.jwd.creator.impl;
 
 import by.lashkevich.jwd.entity.Point;
+import by.lashkevich.jwd.entity.Ring;
 import by.lashkevich.jwd.entity.Triangle;
 import by.lashkevich.jwd.creator.DataCreator;
 
@@ -12,6 +13,8 @@ public class ConsoleDataCreator implements DataCreator {
     private static final String ENTER_POINT_COORDINATES_MESSAGE = "Enter the coordinates of the point №";
     private static final String ENTER_X_COORDINATE_MESSAGE = "Enter the x coordinate";
     private static final String ENTER_Y_COORDINATE_MESSAGE = "Enter the y coordinate";
+    private static final String ENTER_INNER_RADIUS_MESSAGE = "Enter the inner radius";
+    private static final String ENTER_OUTER_RADIUS_MESSAGE = "Enter the outer radius";
     private final Scanner SCANNER;
 
     public ConsoleDataCreator() {
@@ -36,5 +39,18 @@ public class ConsoleDataCreator implements DataCreator {
         }
 
         return new Triangle(pointList.get(0), pointList.get(1), pointList.get(2));
+    }
+
+    @Override
+    public Ring createRing() {
+        Ring ring = new Ring();
+
+        System.out.println(ENTER_INNER_RADIUS_MESSAGE);
+        ring.setInnerRadius(SCANNER.nextDouble());
+
+        System.out.println(ENTER_OUTER_RADIUS_MESSAGE);
+        ring.setOuterRadius(SCANNER.nextDouble());
+
+        return ring;
     }
 }
