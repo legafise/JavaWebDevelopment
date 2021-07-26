@@ -1,8 +1,8 @@
-package by.lashkevich.jwd.util.calculator;
+package by.lashkevich.jwd.linearprogramutil.calculator;
 
 import by.lashkevich.jwd.entity.Point;
 import by.lashkevich.jwd.entity.Triangle;
-import by.lashkevich.jwd.exception.LinearProgramValidatorException;
+import by.lashkevich.jwd.exception.LinearProgramServiceException;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -25,34 +25,24 @@ public class TriangleCalculatorTest {
     }
 
     @Test
-    public void calculateAreaPositiveTest() throws LinearProgramValidatorException {
+    public void calculateAreaPositiveTest() {
         Assert.assertEquals(TriangleCalculator.calculateArea(positiveTestTriangle), expectedArea);
     }
 
     @Test
-    public void calculateAreaNegativeTest() throws LinearProgramValidatorException {
+    public void calculateAreaNegativeTest() {
         expectedArea = 4;
         Assert.assertNotEquals(TriangleCalculator.calculateArea(positiveTestTriangle), expectedArea);
     }
 
-    @Test (expectedExceptions = LinearProgramValidatorException.class)
-    public void calculateAreaWithInvalidTriangleTest() throws LinearProgramValidatorException {
-        Assert.assertNotEquals(TriangleCalculator.calculateArea(negativeTestTriangle), expectedArea);
-    }
-
     @Test
-    public void calculatePerimeterPositiveTest() throws LinearProgramValidatorException {
+    public void calculatePerimeterPositiveTest() {
         Assert.assertEquals(TriangleCalculator.calculatePerimeter(positiveTestTriangle), expectedPerimeter);
     }
 
     @Test
-    public void calculatePerimeterNegativeTest() throws LinearProgramValidatorException {
+    public void calculatePerimeterNegativeTest() {
         expectedPerimeter = 4;
         Assert.assertNotEquals(TriangleCalculator.calculatePerimeter(positiveTestTriangle), expectedPerimeter);
-    }
-
-    @Test (expectedExceptions = LinearProgramValidatorException.class)
-    public void calculatePerimeterWithInvalidTriangleTest() throws LinearProgramValidatorException {
-        Assert.assertEquals(TriangleCalculator.calculatePerimeter(negativeTestTriangle), expectedPerimeter);
     }
 }

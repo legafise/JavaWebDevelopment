@@ -1,4 +1,4 @@
-package by.lashkevich.jwd.util.finder;
+package by.lashkevich.jwd.linearprogramutil.finder;
 
 import by.lashkevich.jwd.entity.Triangle;
 

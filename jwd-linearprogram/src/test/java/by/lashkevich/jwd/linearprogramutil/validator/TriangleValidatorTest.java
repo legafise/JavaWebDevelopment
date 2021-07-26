@@ -1,13 +1,12 @@
-package by.lashkevich.jwd.util.validator;
+package by.lashkevich.jwd.linearprogramutil.validator;
 
 import by.lashkevich.jwd.entity.Point;
 import by.lashkevich.jwd.entity.Triangle;
-import by.lashkevich.jwd.exception.LinearProgramValidatorException;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static by.lashkevich.jwd.util.validator.TriangleValidator.isValidTriangle;
+import static by.lashkevich.jwd.linearprogramutil.validator.TriangleValidator.isValidTriangle;
 
 public class TriangleValidatorTest {
     private Triangle positiveTestTriangle;
@@ -24,15 +23,11 @@ public class TriangleValidatorTest {
 
     @Test
     public void isValidTrianglePositiveTest() {
-        try {
-            isValidTriangle(positiveTestTriangle);
-        } catch (LinearProgramValidatorException e) {
-            Assert.fail(e.getMessage());
-        }
+        Assert.assertTrue(isValidTriangle(positiveTestTriangle));
     }
 
-    @Test (expectedExceptions = LinearProgramValidatorException.class)
-    public void isValidTriangleNegativeTest() throws LinearProgramValidatorException {
-        isValidTriangle(negativeTestTriangle);
+    @Test
+    public void isValidTriangleNegativeTest() {
+        Assert.assertFalse(isValidTriangle(negativeTestTriangle));
     }
 }

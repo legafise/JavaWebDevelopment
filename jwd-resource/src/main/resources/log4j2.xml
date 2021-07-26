@@ -6,13 +6,13 @@
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT" follow="true">
             <PatternLayout>
-                    <pattern>[%-4level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] - %msg%n</pattern>
+                    <pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] - %msg%n</pattern>
             </PatternLayout>
         </Console>
         <RollingFile name="File" fileName="${basePath}/log4j2.log"
                      filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
             <PatternLayout>
-                <pattern>[%-4level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] - %msg%n</pattern>
+                <pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] - %msg%n</pattern>
             </PatternLayout>
             <Policies>
                 <SizeBasedTriggeringPolicy size="10 MB"/>

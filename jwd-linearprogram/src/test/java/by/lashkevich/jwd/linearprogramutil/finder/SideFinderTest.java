@@ -1,4 +1,4 @@
-package by.lashkevich.jwd.util.finder;
+package by.lashkevich.jwd.linearprogramutil.finder;
 
 import by.lashkevich.jwd.entity.Point;
 import by.lashkevich.jwd.entity.Triangle;
@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 import java.util.Arrays;
 import java.util.List;
 
-import static by.lashkevich.jwd.util.finder.SideFinder.findTriangleSide;
+import static by.lashkevich.jwd.linearprogramutil.finder.SideFinder.findTriangleSide;
 
 public class SideFinderTest {
     private List<Double> expectedSides;
