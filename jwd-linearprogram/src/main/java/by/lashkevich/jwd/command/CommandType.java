@@ -7,7 +7,8 @@ import java.util.Arrays;
 public enum CommandType {
     MENU_EXIT(new MenuExitCommand()),
     TRIANGLE_CALCULATOR(new TriangleCalculatorCommand()),
-    RING_CALCULATOR(new RingCalculatorCommand());
+    RING_CALCULATOR(new RingCalculatorCommand()),
+    SYMBOL_NUMBER_FINDER(new SymbolNumberFinderCommand());
 
     private static final String INVALID_COMMAND_WAS_CHOSEN_ERROR_MESSAGE = "Invalid command was chosen";
     private Command command;

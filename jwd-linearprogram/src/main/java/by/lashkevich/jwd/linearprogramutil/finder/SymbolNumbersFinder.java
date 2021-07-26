@@ -1,13 +1,13 @@
-package by.lashkevich.jwd.util.finder;
+package by.lashkevich.jwd.linearprogramutil.finder;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public final class NumberOfSymbolFinder {
-    private NumberOfSymbolFinder() {
+public final class SymbolNumbersFinder {
+    private SymbolNumbersFinder() {
     }
 
-    public static Map<Character, Integer> findNumberOfSymbol(char symbol) {
+    public static Map<Character, Integer> findSymbolNumbers(char symbol) {
         Map<Character, Integer> symbolsAndNumbers = new HashMap<>();
         symbolsAndNumbers.put((char) ((int) symbol - 1), (int) symbol - 1);
         symbolsAndNumbers.put(symbol, (int) symbol);

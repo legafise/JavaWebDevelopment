@@ -1,4 +1,4 @@
-package by.lashkevich.jwd.util.finder;
+package by.lashkevich.jwd.linearprogramutil.finder;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-public class NumberOfSymbolFinderTest {
+public class SymbolNumbersFinderTest {
     private char introducedSymbol;
     private char previousSymbol;
     private Map<Character, Integer> expectedSymbolsAndNumbers;
@@ -29,13 +29,13 @@ public class NumberOfSymbolFinderTest {
 
     @Test
     public void findNumberOfSymbolPositiveTest() {
-        Assert.assertEquals(NumberOfSymbolFinder.findNumberOfSymbol(introducedSymbol),
+        Assert.assertEquals(SymbolNumbersFinder.findSymbolNumbers(introducedSymbol),
                 expectedSymbolsAndNumbers);
     }
 
     @Test
     public void findNumberOfSymbolNegativeTest() {
-        Assert.assertNotEquals(NumberOfSymbolFinder.findNumberOfSymbol(previousSymbol),
+        Assert.assertNotEquals(SymbolNumbersFinder.findSymbolNumbers(previousSymbol),
                 expectedSymbolsAndNumbers);
     }
 }

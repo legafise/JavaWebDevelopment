@@ -4,9 +4,11 @@ import by.lashkevich.jwd.entity.Point;
 import by.lashkevich.jwd.entity.Ring;
 import by.lashkevich.jwd.entity.Triangle;
 import by.lashkevich.jwd.creator.DataCreator;
+import by.lashkevich.jwd.linearprogramutil.finder.SymbolNumbersFinder;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class ConsoleDataCreator implements DataCreator {
@@ -15,6 +17,7 @@ public class ConsoleDataCreator implements DataCreator {
     private static final String ENTER_Y_COORDINATE_MESSAGE = "Enter the y coordinate";
     private static final String ENTER_INNER_RADIUS_MESSAGE = "Enter the inner radius";
     private static final String ENTER_OUTER_RADIUS_MESSAGE = "Enter the outer radius";
+    private static final String ENTER_SYMBOL_COORDINATE_MESSAGE = "Enter any symbol";
     private final Scanner SCANNER;
 
     public ConsoleDataCreator() {
@@ -52,5 +55,11 @@ public class ConsoleDataCreator implements DataCreator {
         ring.setOuterRadius(SCANNER.nextDouble());
 
         return ring;
+    }
+
+    @Override
+    public char createSymbol() {
+        System.out.println(ENTER_SYMBOL_COORDINATE_MESSAGE);
+        return SCANNER.next().charAt(0);
     }
 }
