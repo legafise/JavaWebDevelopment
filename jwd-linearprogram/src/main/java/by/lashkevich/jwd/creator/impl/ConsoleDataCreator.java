@@ -1,14 +1,13 @@
 package by.lashkevich.jwd.creator.impl;
 
+import by.lashkevich.jwd.creator.DataCreator;
 import by.lashkevich.jwd.entity.Point;
 import by.lashkevich.jwd.entity.Ring;
 import by.lashkevich.jwd.entity.Triangle;
-import by.lashkevich.jwd.creator.DataCreator;
-import by.lashkevich.jwd.linearprogramutil.finder.SymbolNumbersFinder;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 public class ConsoleDataCreator implements DataCreator {
@@ -18,6 +17,9 @@ public class ConsoleDataCreator implements DataCreator {
     private static final String ENTER_INNER_RADIUS_MESSAGE = "Enter the inner radius";
     private static final String ENTER_OUTER_RADIUS_MESSAGE = "Enter the outer radius";
     private static final String ENTER_SYMBOL_COORDINATE_MESSAGE = "Enter any symbol";
+    private static final String ENTER_VARIABLE_A_MESSAGE = "Enter variable a";
+    private static final String ENTER_VARIABLE_B_MESSAGE = "Enter variable b";
+    private static final String ENTER_VARIABLE_C_MESSAGE = "Enter variable c";
     private final Scanner SCANNER;
 
     public ConsoleDataCreator() {
@@ -61,5 +63,21 @@ public class ConsoleDataCreator implements DataCreator {
     public char createSymbol() {
         System.out.println(ENTER_SYMBOL_COORDINATE_MESSAGE);
         return SCANNER.next().charAt(0);
+    }
+
+    @Override
+    public List<Double> createFormulaVariables() {
+        List<Double> variablesList = new ArrayList<>();
+
+        System.out.println(ENTER_VARIABLE_A_MESSAGE);
+        variablesList.add(SCANNER.nextDouble());
+
+        System.out.println(ENTER_VARIABLE_B_MESSAGE);
+        variablesList.add(SCANNER.nextDouble());
+
+        System.out.println(ENTER_VARIABLE_C_MESSAGE);
+        variablesList.add(SCANNER.nextDouble());
+
+        return variablesList;
     }
 }

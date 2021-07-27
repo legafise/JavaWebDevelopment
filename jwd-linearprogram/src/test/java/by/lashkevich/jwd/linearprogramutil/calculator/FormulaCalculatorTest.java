@@ -1,11 +1,10 @@
-package by.lashkevich.jwd.util.calculator;
+package by.lashkevich.jwd.linearprogramutil.calculator;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static by.lashkevich.jwd.util.calculator.FormulaCalculator.calculateSquareRootFormula;
-import static org.testng.Assert.*;
+import static by.lashkevich.jwd.linearprogramutil.calculator.FormulaCalculator.calculateSquareRootFormula;
 
 public class FormulaCalculatorTest {
     private double firstValue;

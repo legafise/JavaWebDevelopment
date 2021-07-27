@@ -1,4 +1,4 @@
-package by.lashkevich.jwd.util.calculator;
+package by.lashkevich.jwd.linearprogramutil.calculator;
 
 public final class FormulaCalculator {
     private FormulaCalculator() {
