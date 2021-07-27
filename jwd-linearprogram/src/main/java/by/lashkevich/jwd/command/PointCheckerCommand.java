@@ -5,22 +5,23 @@ import by.lashkevich.jwd.entity.Point;
 import by.lashkevich.jwd.exception.LinearProgramCommandException;
 import by.lashkevich.jwd.exception.LinearProgramDataCreatorException;
 import by.lashkevich.jwd.reporter.PointCheckerReporter;
-import by.lashkevich.jwd.service.LinearProgramPointService;
+import by.lashkevich.jwd.service.PointService;
+import by.lashkevich.jwd.service.impl.LinearProgramPointService;
 
 public class PointCheckerCommand implements Command {
-    private LinearProgramPointService linearProgramPointService;
+    private PointService pointService;
 
     public PointCheckerCommand() {
-        linearProgramPointService = new LinearProgramPointService();
+        pointService = new LinearProgramPointService();
     }
 
     @Override
     public void execute() throws LinearProgramCommandException {
         try {
             Point point = DataCreatorFactory.getInstance().createDataCreator().pointCreator();
-            boolean aPointCheckResult = linearProgramPointService.checkAPoint(point);
-            boolean bPointCheckResult = linearProgramPointService.checkBPoint(point);
-            boolean cPointCheckResult = linearProgramPointService.checkCPoint(point);
+            boolean aPointCheckResult = pointService.checkAPoint(point);
+            boolean bPointCheckResult = pointService.checkBPoint(point);
+            boolean cPointCheckResult = pointService.checkCPoint(point);
             PointCheckerReporter.reportPointInfo(point);
             PointCheckerReporter.reportCheckResult(aPointCheckResult, bPointCheckResult, cPointCheckResult);
         } catch (LinearProgramDataCreatorException e) {
