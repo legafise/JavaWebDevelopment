@@ -3,7 +3,7 @@ package by.lashkevich.jwd.reporter;
 import java.util.Map;
 
 public final class FindNumberOfSymbolReporter {
-    private static final String INTRODUCED_SYMBOL_MESSAGE = "Introduced symbol = ";
+    private static final String RECEIVED_SYMBOL_MESSAGE = "Received symbol = ";
     private static final String RESULT_EQUALS_MESSAGE = "Result: ";
     private static final String NEW_LINE_BREAK = "\n";
 
@@ -15,6 +15,6 @@ public final class FindNumberOfSymbolReporter {
     }
 
     public static void reportIntroducedSymbol(char symbol) {
-        System.out.println(INTRODUCED_SYMBOL_MESSAGE + symbol);
+        System.out.println(RECEIVED_SYMBOL_MESSAGE + symbol);
     }
 }
