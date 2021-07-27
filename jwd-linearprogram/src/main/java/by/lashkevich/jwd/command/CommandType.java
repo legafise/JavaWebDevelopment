@@ -9,7 +9,8 @@ public enum CommandType {
     TRIANGLE_CALCULATOR(new TriangleCalculatorCommand()),
     RING_CALCULATOR(new RingCalculatorCommand()),
     SYMBOL_NUMBER_FINDER(new SymbolNumberFinderCommand()),
-    SQUARE_ROOT_FORMULA_CALCULATOR(new FormulaCalculatorCommand());
+    SQUARE_ROOT_FORMULA_CALCULATOR(new FormulaCalculatorCommand()),
+    POINT_CHECKER(new PointCheckerCommand());
 
     private static final String INVALID_COMMAND_WAS_CHOSEN_ERROR_MESSAGE = "Invalid command was chosen";
     private Command command;

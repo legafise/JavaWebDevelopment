@@ -80,4 +80,17 @@ public class ConsoleDataCreator implements DataCreator {
 
         return variablesList;
     }
+
+    @Override
+    public Point pointCreator() {
+        Point point = new Point();
+
+        System.out.println(ENTER_X_COORDINATE_MESSAGE);
+        point.setX(SCANNER.nextDouble());
+
+        System.out.println(ENTER_Y_COORDINATE_MESSAGE);
+        point.setY(SCANNER.nextDouble());
+
+        return point;
+    }
 }

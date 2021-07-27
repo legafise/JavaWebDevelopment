@@ -1,20 +1,20 @@
-package by.lashkevich.jwd.util.checker;
+package by.lashkevich.jwd.linearprogramutil.checker;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static by.lashkevich.jwd.util.checker.PointChecker.*;
+import static by.lashkevich.jwd.linearprogramutil.checker.PointCoordinatesChecker.*;
 
-public class PointCheckerTest {
-    private int validXValue;
-    private int validYValue;
-    private int notValidAYValue;
-    private int notValidAXValue;
-    private int notValidBYValue;
-    private int notValidBXValue;
-    private int notValidCYValue;
-    private int notValidCXValue;
+public class PointCoordinatesCheckerTest {
+    private double validXValue;
+    private double validYValue;
+    private double notValidAYValue;
+    private double notValidAXValue;
+    private double notValidBYValue;
+    private double notValidBXValue;
+    private double notValidCYValue;
+    private double notValidCXValue;
 
     @BeforeMethod
     public void setUp() {
