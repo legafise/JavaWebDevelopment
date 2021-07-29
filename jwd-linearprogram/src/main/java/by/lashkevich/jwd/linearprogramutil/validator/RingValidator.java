@@ -3,8 +3,6 @@ package by.lashkevich.jwd.linearprogramutil.validator;
 import by.lashkevich.jwd.entity.Ring;
 
 public final class RingValidator {
-    private static final String IMPOSSIBLE_RING_ERROR_MESSAGE = "Impossible ring introduced";
-
     private RingValidator() {
     }
 
@@ -13,6 +11,6 @@ public final class RingValidator {
             return false;
         }
 
-        return ring.getInnerRadius() < ring.getOuterRadius();
+        return ring.getInnerRadius() > 0 && ring.getInnerRadius() < ring.getOuterRadius();
     }
 }

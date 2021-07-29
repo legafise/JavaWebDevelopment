@@ -1,16 +1,12 @@
 package by.lashkevich.jwd.reporter;
 
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import java.util.List;
 
 public final class SquareRootFormulaReporter {
-    private static final Logger LOGGER = LogManager.getRootLogger();
     private static final String RESULT_EQUALS  = "Square root formula result = %.1f\n";
-    private static final String VARIABLES_EQUAL  = "Variable a =  %.1f; Variable b =  %.1f;" +
-            " Variable c =  %.1f;";
+    private static final String VARIABLES_EQUAL  = "Variable a = %.1f; Variable b = %.1f;" +
+            " Variable c = %.1f;";
 
     private SquareRootFormulaReporter() {
     }
