@@ -2,29 +2,26 @@ package by.lashkevich.jwd.linearprogramutil.validator;
 
 import by.lashkevich.jwd.entity.Ring;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class RingValidatorTest {
-    private Ring positiveTestRing;
-    private Ring negativeTestRing;
-
-    @BeforeMethod
-    public void setUp() {
-        double testInnerRadius = 8;
-        double positiveTestOuterRadius = 9;
-        double negativeTestOuterRadius = 5;
-        positiveTestRing = new Ring(testInnerRadius, positiveTestOuterRadius);
-        negativeTestRing = new Ring(testInnerRadius, negativeTestOuterRadius);
+    @DataProvider(name = "positiveRingValidateData")
+    public Object[][] createPositiveRingData() {
+        return new Object[][]{
+                {new double[]{1, 2}, true},
+                {new double[]{10, 20}, true},
+                {new double[]{23.23, 30.21}, true},
+                {new double[]{1, Double.MAX_VALUE}, true},
+        };
     }
 
-    @Test
-    public void isValidRingPositiveTest() {
-        Assert.assertTrue(RingValidator.isValidRing(positiveTestRing));
-    }
-
-    @Test
-    public void isValidRingNegativeTest() {
-        Assert.assertFalse(RingValidator.isValidRing(negativeTestRing));
+    @Test(description = "Positive scenario for validate ring",
+            dataProvider = "positiveRingValidateData")
+    public void isValidRingTest(double[] radii, boolean expectedResult) {
+        double testInnerRadius = radii[0];
+        double positiveTestOuterRadius = radii[1];
+        Ring testRing = new Ring(testInnerRadius, positiveTestOuterRadius);
+        Assert.assertEquals(RingValidator.isValidRing(testRing), expectedResult);
     }
 }

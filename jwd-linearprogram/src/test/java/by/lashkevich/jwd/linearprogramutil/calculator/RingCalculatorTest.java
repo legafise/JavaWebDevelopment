@@ -1,31 +1,26 @@
 package by.lashkevich.jwd.linearprogramutil.calculator;
 
 import by.lashkevich.jwd.entity.Ring;
-import by.lashkevich.jwd.exception.LinearProgramServiceException;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class RingCalculatorTest {
-    private Ring positiveTestRing;
-    private double expectedArea;
-
-    @BeforeMethod
-    public void setUp() {
-        double testInnerRadius = 8;
-        double positiveTestOuterRadius = 10;
-        positiveTestRing = new Ring(testInnerRadius, positiveTestOuterRadius);
-        expectedArea = 113;
+    @DataProvider(name = "positiveDataForRingCalculator")
+    public Object[][] createPositiveDataForSqrt() {
+        return new Object[][]{
+                {new double[]{8, 10}, 113},
+                {new double[]{1, 2}, 9.4},
+                {new double[]{1, Double.MAX_VALUE}, Double.POSITIVE_INFINITY},
+                {new double[]{Double.MAX_VALUE, 1}, Double.NEGATIVE_INFINITY},
+                {new double[]{Double.MAX_VALUE, Double.MAX_VALUE}, Double.NaN}
+        };
     }
 
-    @Test
-    public void calculateRingAreaPositiveTest() {
-        Assert.assertEquals(RingCalculator.calculateRingArea(positiveTestRing), expectedArea, 0.1);
-    }
-
-    @Test
-    public void calculateRingAreaNegativeTest() {
-        expectedArea = 10;
-        Assert.assertNotEquals(RingCalculator.calculateRingArea(positiveTestRing), expectedArea, 0.1);
+    @Test(description = "Positive scenario of area calculation",
+            dataProvider = "positiveDataForRingCalculator")
+    public void calculateRingAreaWithNormalDataTest(double[] radii, double expectedArea) {
+        Ring ring = new Ring(radii[0], radii[1]);
+        Assert.assertEquals(RingCalculator.calculateRingArea(ring), expectedArea, 0.1);
     }
 }

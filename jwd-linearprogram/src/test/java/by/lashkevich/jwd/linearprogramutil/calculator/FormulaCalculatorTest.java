@@ -1,36 +1,49 @@
 package by.lashkevich.jwd.linearprogramutil.calculator;
 
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static by.lashkevich.jwd.linearprogramutil.calculator.FormulaCalculator.calculateSquareRootFormula;
 
 public class FormulaCalculatorTest {
-    private double firstValue;
-    private double secondValue;
-    private double thirdValue;
-    private double expectedSquareRootFormulaResult;
+    @DataProvider(name = "positiveDataForSquareRootFormula")
+    public Object[][] createPositiveDataForSqrt() {
+        return new Object[][]{
+                {new double[]{0, -2, 0}, 0.25},
+                {new double[]{0, 2, 0}, 0.25},
+                {new double[]{1, -1, 3}, -0.69},
+                {new double[]{1, 1, -1}, Double.NaN},
+                {new double[]{-1, 2, 3}, Double.NaN},
+                {new double[]{1, 2, 0}, 2.25},
+                {new double[]{0, 2, 3}, 0.25},
+                {new double[]{1, 0, 3}, Double.POSITIVE_INFINITY},
+                {new double[]{Double.MAX_VALUE, 2, 3}, Double.NaN},
+                {new double[]{Double.MAX_VALUE, Double.MAX_VALUE, 3}, Double.NaN},
+                {new double[]{Double.MAX_VALUE, Double.MAX_VALUE, -3}, Double.NaN},
+                {new double[]{Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE}, Double.NaN},
+                {new double[]{1, Double.MAX_VALUE, 2}, Double.POSITIVE_INFINITY},
+                {new double[]{1, Double.MAX_VALUE, -2}, Double.POSITIVE_INFINITY},
+                {new double[]{-1, Double.MAX_VALUE, Double.MAX_VALUE}, Double.NaN}
+        };
+    }
 
-    @BeforeMethod
-    public void setUp() {
-        firstValue = 1;
-        secondValue = 2;
-        thirdValue = 3;
-        expectedSquareRootFormulaResult = 0.25;
+    @Test(description = "Positive scenario of the formula calculation with unusual variables",
+            dataProvider = "positiveDataForSquareRootFormula")
+    public void calculateSquareRootFormulaWithUnusualVariablesTest(double[] variables, double expectedResult) {
+        Assert.assertEquals(expectedResult,
+                calculateSquareRootFormula(variables[0], variables[1], variables[2]), 0.1);
     }
 
     @Test
-    public void calculateSquareRootFormulaPositiveTest() {
-        Assert.assertEquals(expectedSquareRootFormulaResult,
-                calculateSquareRootFormula(firstValue, secondValue, thirdValue), 0.1);
+    public void calculateSquareRootWithNormalWholeNumbersTest() {
+        Assert.assertEquals(0.25,
+                calculateSquareRootFormula(1, 2, 3), 0.1);
     }
 
     @Test
-    public void calculateSquareRootFormulaNegativeTest() {
-        firstValue = 4;
-
-        Assert.assertNotEquals(expectedSquareRootFormulaResult,
-                calculateSquareRootFormula(firstValue, secondValue, thirdValue), 0.1);
+    public void calculateSquareRootWithNormalFractionalNumbersTest() {
+        Assert.assertEquals(-6.3,
+                calculateSquareRootFormula(1.5, 2.3, 3.6), 0.1);
     }
 }

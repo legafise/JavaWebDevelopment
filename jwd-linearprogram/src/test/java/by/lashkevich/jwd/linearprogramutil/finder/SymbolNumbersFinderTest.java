@@ -1,41 +1,31 @@
 package by.lashkevich.jwd.linearprogramutil.finder;
 
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class SymbolNumbersFinderTest {
-    private char introducedSymbol;
-    private char previousSymbol;
-    private Map<Character, Integer> expectedSymbolsAndNumbers;
-
-    @BeforeMethod
-    public void setUp() {
-        introducedSymbol = 'y';
-        previousSymbol = 'x';
-        char nextSymbol = 'z';
-        int introducedSymbolNumber = 121;
-        int previousSymbolNumber = 120;
-        int nextSymbolNumber = 122;
-
-        expectedSymbolsAndNumbers = new HashMap<>();
-        expectedSymbolsAndNumbers.put(previousSymbol, previousSymbolNumber);
-        expectedSymbolsAndNumbers.put(introducedSymbol, introducedSymbolNumber);
-        expectedSymbolsAndNumbers.put(nextSymbol, nextSymbolNumber);
+    @DataProvider(name = "positiveDataSymbolNumbersFinder")
+    public Object[][] createPositiveDataForAreaC() {
+        return new Object[][]{
+                {new char[]{'x', 'y', 'z'}, new int[]{120, 121, 122}},
+                {new char[]{'X', 'Y', 'Z'}, new int[]{88, 89, 90}},
+                {new char[]{'1', '2', '3'}, new int[]{49, 50, 51}},
+                {new char[]{';', '<', '='}, new int[]{59, 60, 61}},
+        };
     }
 
-    @Test
-    public void findNumberOfSymbolPositiveTest() {
-        Assert.assertEquals(SymbolNumbersFinder.findSymbolNumbers(introducedSymbol),
-                expectedSymbolsAndNumbers);
-    }
-
-    @Test
-    public void findNumberOfSymbolNegativeTest() {
-        Assert.assertNotEquals(SymbolNumbersFinder.findSymbolNumbers(previousSymbol),
+    @Test(description = "Positive scenario for checking symbols",
+            dataProvider = "positiveDataSymbolNumbersFinder")
+    public void findNumberOfSymbolTest(char[] symbols, int[] symbolNumbers) {
+        Map<Character, Integer> expectedSymbolsAndNumbers = new HashMap<>();
+        expectedSymbolsAndNumbers.put(symbols[0], symbolNumbers[0]);
+        expectedSymbolsAndNumbers.put(symbols[1], symbolNumbers[1]);
+        expectedSymbolsAndNumbers.put(symbols[2], symbolNumbers[2]);
+        Assert.assertEquals(SymbolNumbersFinder.findSymbolNumbers(symbols[1]),
                 expectedSymbolsAndNumbers);
     }
 }
