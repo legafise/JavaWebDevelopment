@@ -9,7 +9,7 @@ public class LinearProgramMainViewReader {
         return SCANNER.nextInt();
     }
 
-    public int readDataEntry() {
+    public int readDataEntryNumber() {
         return SCANNER.nextInt();
     }
 }

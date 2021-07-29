@@ -3,6 +3,7 @@ package by.lashkevich.jwd.view.impl;
 import by.lashkevich.jwd.constant.LinearProgramConstant;
 import by.lashkevich.jwd.controller.Request;
 import by.lashkevich.jwd.reader.LinearProgramMainViewReader;
+import by.lashkevich.jwd.reader.LinearProgramReaderFactory;
 import by.lashkevich.jwd.server.LinearProgramServer;
 import by.lashkevich.jwd.view.View;
 
@@ -10,7 +11,7 @@ public class LinearProgramMainView implements View {
     private static final String SELECT_TASK_MESSAGE = "Enter the number and select the task: ";
     private static final String SELECT_DATA_ENTRY_TYPE_MESSAGE = "Select the type of data entry: ";
     private static final String NO_SUCH_TASK_MESSAGE = "Task under this number does not exist\n";
-    private static final String CONSOLE_DATA_ENTRY_MESSAGE = "1. Console data entry\n";
+    private static final String CONSOLE_DATA_ENTRY_MESSAGE = "\n1. Console data entry\n";
     private static final String FILE_DATA_ENTRY_MESSAGE = "2. File data entry";
     private static final String NO_SUCH_DATA_ENTRY_TYPE_MESSAGE = "Data entry type under this number does not exist\n";
     private static final String NEW_LINE_BREAK = "\n";
@@ -35,23 +36,33 @@ public class LinearProgramMainView implements View {
     @Override
     public void executeView() {
         Request request = new Request();
-
-        System.out.println(ENTER_ZERO_TO_END_PROGRAM_MESSAGE + NEW_LINE_BREAK
-                + SELECT_TASK_MESSAGE + NEW_LINE_BREAK
-                + THE_FIRST_TASK_INFORMATION + NEW_LINE_BREAK
-                + THE_SECOND_TASK_INFORMATION + NEW_LINE_BREAK
-                + THE_THIRD_TASK_INFORMATION + NEW_LINE_BREAK
-                + THE_FOURTH_TASK_INFORMATION + NEW_LINE_BREAK
-                + THE_FIFTH_TASK_INFORMATION);
-        int commandNumber = reader.readCommandNumber();
-
-        if (commandNumber > 5 || commandNumber < 0) {
-            System.out.println(NO_SUCH_TASK_MESSAGE);
-            request.putParameter(LinearProgramConstant.COMMAND_NUMBER, 6);
+        System.out.println(SELECT_DATA_ENTRY_TYPE_MESSAGE
+                + CONSOLE_DATA_ENTRY_MESSAGE
+                + FILE_DATA_ENTRY_MESSAGE);
+        int dataEntryTypeNumber = reader.readDataEntryNumber();
+        if (dataEntryTypeNumber < 1 || dataEntryTypeNumber > 2) {
+            System.out.println(NO_SUCH_DATA_ENTRY_TYPE_MESSAGE);
+            request.putParameter(LinearProgramConstant.COMMAND_NUMBER, getViewCommandNumber());
         } else {
-            request.putParameter(LinearProgramConstant.COMMAND_NUMBER, commandNumber);
-        }
+            LinearProgramReaderFactory.getInstance().setDataReaderNumber(dataEntryTypeNumber);
 
+            System.out.println(ENTER_ZERO_TO_END_PROGRAM_MESSAGE + NEW_LINE_BREAK
+                    + SELECT_TASK_MESSAGE + NEW_LINE_BREAK
+                    + THE_FIRST_TASK_INFORMATION + NEW_LINE_BREAK
+                    + THE_SECOND_TASK_INFORMATION + NEW_LINE_BREAK
+                    + THE_THIRD_TASK_INFORMATION + NEW_LINE_BREAK
+                    + THE_FOURTH_TASK_INFORMATION + NEW_LINE_BREAK
+                    + THE_FIFTH_TASK_INFORMATION);
+            int commandNumber = reader.readCommandNumber();
+
+            if (commandNumber > 5 || commandNumber < 0) {
+                System.out.println(NO_SUCH_TASK_MESSAGE);
+                request.putParameter(LinearProgramConstant.COMMAND_NUMBER, getViewCommandNumber());
+            } else {
+                request.putParameter(LinearProgramConstant.COMMAND_NUMBER, commandNumber);
+            }
+
+        }
         server.handleRequest(request);
     }
 
