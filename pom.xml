@@ -12,6 +12,7 @@
     <modules>
         <module>jwd-linearprogram</module>
         <module>jwd-resource</module>
+        <module>jwd-loopsandbranching</module>
     </modules>
 
     <properties>
