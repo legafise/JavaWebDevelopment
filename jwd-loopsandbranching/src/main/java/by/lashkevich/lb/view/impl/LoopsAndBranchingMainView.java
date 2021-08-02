@@ -1,10 +1,10 @@
 package by.lashkevich.lb.view.impl;
 
 import by.lashkevich.lb.constant.LoopsAndBranchingConstant;
+import by.lashkevich.lb.controller.LoopsAndBranchingController;
 import by.lashkevich.lb.controller.Request;
 import by.lashkevich.lb.reader.LoopsAndBranchingMainViewReader;
 import by.lashkevich.lb.reader.LoopsAndBranchingReaderFactory;
-import by.lashkevich.lb.server.LoopsAndBranchingServer;
 import by.lashkevich.lb.view.View;
 
 public class LoopsAndBranchingMainView implements View {
@@ -25,11 +25,11 @@ public class LoopsAndBranchingMainView implements View {
     private static final String THE_FOURTH_TASK_INFORMATION = "4. Calculate the value of an " +
             "expression using a square root formula";
     private static final String THE_SECOND_TASK_INFORMATION = "2. Find the area of a ring";
-    private LoopsAndBranchingServer server;
+    private LoopsAndBranchingController controller;
     private LoopsAndBranchingMainViewReader reader;
 
     public LoopsAndBranchingMainView() {
-        server = new LoopsAndBranchingServer();
+        controller = new LoopsAndBranchingController();
         reader = new LoopsAndBranchingMainViewReader();
     }
 
@@ -63,7 +63,7 @@ public class LoopsAndBranchingMainView implements View {
             }
 
         }
-        server.handleRequest(request);
+        controller.doRequest(request).executeView();
     }
 
     @Override

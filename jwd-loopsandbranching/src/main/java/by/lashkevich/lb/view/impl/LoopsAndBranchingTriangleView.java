@@ -1,6 +1,7 @@
 package by.lashkevich.lb.view.impl;
 
 import by.lashkevich.lb.constant.LoopsAndBranchingConstant;
+import by.lashkevich.lb.controller.LoopsAndBranchingController;
 import by.lashkevich.lb.controller.Request;
 import by.lashkevich.lb.exception.LoopsAndBranchingReaderException;
 import by.lashkevich.lb.reader.LoopsAndBranchingReader;
@@ -17,11 +18,11 @@ public class LoopsAndBranchingTriangleView implements View {
     private static final Logger LOGGER = LogManager.getRootLogger();
     private static final String FILE_NOT_FOUND_MESSAGE = "File for reading not found";
     private static final int MAIN_FORWARD_COMMAND_NUMBER = 6;
-    private LoopsAndBranchingServer server;
+    private LoopsAndBranchingController controller;
     private LoopsAndBranchingReader dataReader;
 
     public LoopsAndBranchingTriangleView() {
-        server = new LoopsAndBranchingServer();
+        controller = new LoopsAndBranchingController();
     }
 
     @Override
@@ -33,12 +34,12 @@ public class LoopsAndBranchingTriangleView implements View {
             List<String> triangleData = dataReader.readTriangleData();
             request.putParameter(LoopsAndBranchingConstant.COMMAND_NUMBER, getViewCommandNumber());
             request.putParameter(LoopsAndBranchingConstant.DATA_NAME, triangleData);
-            server.handleRequest(request);
+            controller.doRequest(request).executeView();
         } catch (LoopsAndBranchingReaderException e) {
             LOGGER.log(Level.ERROR, e);
             System.out.println(FILE_NOT_FOUND_MESSAGE);
             request.putParameter(LoopsAndBranchingConstant.COMMAND_NUMBER, MAIN_FORWARD_COMMAND_NUMBER);
-            server.handleRequest(request);
+            controller.doRequest(request).executeView();
         }
     }
 
