@@ -6,12 +6,12 @@ import by.lashkevich.lb.controller.Request;
 import by.lashkevich.lb.entity.Point;
 import by.lashkevich.lb.exception.LoopsAndBranchingCommandException;
 import by.lashkevich.lb.exception.LoopsAndBranchingTransformerException;
+import by.lashkevich.lb.loopsandbranchingutil.transformer.LoopsAndBranchingTransformer;
 import by.lashkevich.lb.reporter.PointCheckerReporter;
 import by.lashkevich.lb.service.PointService;
 import by.lashkevich.lb.service.impl.LoopsAndBranchingPointService;
 import by.lashkevich.lb.view.View;
-import by.lashkevich.lb.view.impl.LoopsAndBranchingMainView;
-import by.lashkevich.lb.loopsandbranchingutil.transformer.LoopsAndBranchingTransformer;
+import by.lashkevich.lb.view.impl.ViewType;
 
 import java.util.List;
 
@@ -33,7 +33,7 @@ public class PointCheckerCommand implements Command {
             boolean cPointCheckResult = pointService.checkCPoint(point);
             PointCheckerReporter.reportPointInfo(point);
             PointCheckerReporter.reportCheckResult(aPointCheckResult, bPointCheckResult, cPointCheckResult);
-            return new LoopsAndBranchingMainView();
+            return ViewType.MAIN_VIEW.getView();
         } catch (LoopsAndBranchingTransformerException e) {
             throw new LoopsAndBranchingCommandException(e);
         }

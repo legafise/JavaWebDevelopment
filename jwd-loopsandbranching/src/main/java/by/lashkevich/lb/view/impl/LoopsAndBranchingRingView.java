@@ -6,7 +6,6 @@ import by.lashkevich.lb.controller.Request;
 import by.lashkevich.lb.exception.LoopsAndBranchingReaderException;
 import by.lashkevich.lb.reader.LoopsAndBranchingReader;
 import by.lashkevich.lb.reader.LoopsAndBranchingReaderFactory;
-import by.lashkevich.lb.server.LoopsAndBranchingServer;
 import by.lashkevich.lb.view.View;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;

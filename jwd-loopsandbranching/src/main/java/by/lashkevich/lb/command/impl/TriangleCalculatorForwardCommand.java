@@ -4,11 +4,12 @@ import by.lashkevich.lb.command.Command;
 import by.lashkevich.lb.controller.Request;
 import by.lashkevich.lb.view.View;
 import by.lashkevich.lb.view.impl.LoopsAndBranchingTriangleView;
+import by.lashkevich.lb.view.impl.ViewType;
 
 public class TriangleCalculatorForwardCommand implements Command {
 
     @Override
     public View execute(Request request) {
-        return new LoopsAndBranchingTriangleView();
+        return ViewType.TRIANGLE_CALCULATOR_VIEW.getView();
     }
 }

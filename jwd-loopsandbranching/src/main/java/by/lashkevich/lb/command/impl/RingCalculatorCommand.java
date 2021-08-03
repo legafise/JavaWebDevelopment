@@ -7,12 +7,12 @@ import by.lashkevich.lb.entity.Ring;
 import by.lashkevich.lb.exception.LoopsAndBranchingCommandException;
 import by.lashkevich.lb.exception.LoopsAndBranchingServiceException;
 import by.lashkevich.lb.exception.LoopsAndBranchingTransformerException;
+import by.lashkevich.lb.loopsandbranchingutil.transformer.LoopsAndBranchingTransformer;
 import by.lashkevich.lb.reporter.RingCalculatorReporter;
 import by.lashkevich.lb.service.RingService;
 import by.lashkevich.lb.service.impl.LoopsAndBranchingRingService;
-import by.lashkevich.lb.view.impl.LoopsAndBranchingMainView;
 import by.lashkevich.lb.view.View;
-import by.lashkevich.lb.loopsandbranchingutil.transformer.LoopsAndBranchingTransformer;
+import by.lashkevich.lb.view.impl.ViewType;
 
 import java.util.List;
 
@@ -32,7 +32,7 @@ public class RingCalculatorCommand implements Command {
             double ringArea = ringService.calculateArea(ring);
             RingCalculatorReporter.reportRingInfo(ring);
             RingCalculatorReporter.reportRingArea(ringArea);
-            return new LoopsAndBranchingMainView();
+            return ViewType.MAIN_VIEW.getView();
         } catch (LoopsAndBranchingServiceException | LoopsAndBranchingTransformerException e) {
             throw new LoopsAndBranchingCommandException(e);
         }

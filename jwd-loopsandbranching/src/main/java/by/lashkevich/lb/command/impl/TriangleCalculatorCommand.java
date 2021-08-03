@@ -8,12 +8,12 @@ import by.lashkevich.lb.entity.Triangle;
 import by.lashkevich.lb.exception.LoopsAndBranchingCommandException;
 import by.lashkevich.lb.exception.LoopsAndBranchingServiceException;
 import by.lashkevich.lb.exception.LoopsAndBranchingTransformerException;
+import by.lashkevich.lb.loopsandbranchingutil.transformer.LoopsAndBranchingTransformer;
 import by.lashkevich.lb.reporter.TriangleCalculatorReporter;
 import by.lashkevich.lb.service.TriangleService;
 import by.lashkevich.lb.service.impl.LoopsAndBranchingTriangleService;
-import by.lashkevich.lb.view.impl.LoopsAndBranchingMainView;
 import by.lashkevich.lb.view.View;
-import by.lashkevich.lb.loopsandbranchingutil.transformer.LoopsAndBranchingTransformer;
+import by.lashkevich.lb.view.impl.ViewType;
 
 import java.util.List;
 
@@ -34,7 +34,7 @@ public class TriangleCalculatorCommand implements Command {
             double trianglePerimeter = triangleService.calculatePerimeter(triangle);
             TriangleCalculatorReporter.reportTriangleInfo(triangle);
             TriangleCalculatorReporter.reportTrianglePerimeterAndArea(trianglePerimeter, triangleArea);
-            return new LoopsAndBranchingMainView();
+            return ViewType.MAIN_VIEW.getView();
         } catch (LoopsAndBranchingServiceException | LoopsAndBranchingTransformerException e) {
             throw new LoopsAndBranchingCommandException(e);
         }
