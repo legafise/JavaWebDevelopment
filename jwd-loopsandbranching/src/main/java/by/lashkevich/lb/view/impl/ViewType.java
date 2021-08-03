@@ -8,6 +8,7 @@ public enum ViewType {
     SYMBOL_NUMBERS_FINDER_VIEW(new LoopsAndBranchingSymbolView()),
     CHECK_POINT_VIEW(new LoopsAndBranchingPointView()),
     MAIN_VIEW(new LoopsAndBranchingMainView()),
+    TWO_CONDITION_FUNCTION_VIEW(new LoopsAndBranchingTwoConditionFunctionView()),
     SQUARE_ROOT_FORMULA_VIEW(new LoopsAndBranchingFormulaView());
 
     private View view;

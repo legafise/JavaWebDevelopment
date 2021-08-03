@@ -14,4 +14,6 @@ public interface LoopsAndBranchingReader {
     List<String> readRingData() throws LoopsAndBranchingReaderException;
 
     List<String> readSymbolNumbersData() throws LoopsAndBranchingReaderException;
+
+    List<String> readTwoConditionFunctionData() throws LoopsAndBranchingReaderException;
 }

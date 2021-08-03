@@ -1,5 +1,6 @@
 package by.lashkevich.lb.reader.impl;
 
+import by.lashkevich.lb.exception.LoopsAndBranchingReaderException;
 import by.lashkevich.lb.reader.LoopsAndBranchingReader;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public class LoopsAndBranchingConsoleReader implements LoopsAndBranchingReader {
     private static final String ENTER_VARIABLE_A_MESSAGE = "Enter variable a";
     private static final String ENTER_VARIABLE_B_MESSAGE = "Enter variable b";
     private static final String ENTER_VARIABLE_C_MESSAGE = "Enter variable c";
+    private static final String ENTER_VARIABLE_X_MESSAGE = "Enter variable x";
     private final Scanner SCANNER = new Scanner(System.in);
 
     @Override
@@ -83,5 +85,13 @@ public class LoopsAndBranchingConsoleReader implements LoopsAndBranchingReader {
         System.out.println(ENTER_SYMBOL_COORDINATE_MESSAGE);
         symbols.add(SCANNER.next());
         return symbols;
+    }
+
+    @Override
+    public List<String> readTwoConditionFunctionData() throws LoopsAndBranchingReaderException {
+        List<String> functionVariables = new ArrayList<>();
+        System.out.println(ENTER_VARIABLE_X_MESSAGE);
+        functionVariables.add(SCANNER.next());
+        return functionVariables;
     }
 }

@@ -40,6 +40,11 @@ public class LoopsAndBranchingFileReader implements LoopsAndBranchingReader {
         return readInformation(FilePath.SYMBOL_NUMBERS_INFO_PATH.getURL());
     }
 
+    @Override
+    public List<String> readTwoConditionFunctionData() throws LoopsAndBranchingReaderException {
+        return readInformation(FilePath.TWO_CONDITION_FUNCTION_INFO_PATH.getURL());
+    }
+
     private List<String> readInformation(String filePath) throws LoopsAndBranchingReaderException {
         try {
             List<String> lines = new ArrayList<>();

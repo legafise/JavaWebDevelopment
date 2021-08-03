@@ -1,9 +1,13 @@
 package by.lashkevich.jwd.reader;
 
+import java.io.InputStream;
+
 public enum FilePath {
     CHECK_POINT_INFO_PATH {
         @Override
         public String getURL() {
+            ClassLoader classLoader = getClass().getClassLoader();
+            InputStream resourceAsStream = classLoader.getResourceAsStream("RingCalculator");
             return CHECK_POINT_TASK_INFO_FILE_PATH;
         }
     },

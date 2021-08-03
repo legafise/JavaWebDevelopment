@@ -30,19 +30,26 @@ public enum FilePath {
         public String getURL() {
             return TRIANGLE_CALCULATOR_TASK_INFO_FILE_PATH;
         }
+    },
+    TWO_CONDITION_FUNCTION_INFO_PATH {
+        @Override
+        public String getURL() {
+            return TWO_CONDITION_FUNCTION_TASK_INFO_FILE_PATH;
+        }
     };
 
     private static final String SYMBOL_NUMBERS_TASK_INFO_FILE_PATH =
-            "jwd-linearprogram/src/main/resources/info/SymbolNumbersTaskInfo.txt";
+            "jwd-loopsandbranching/src/main/resources/info/SymbolNumbersTaskInfo.txt";
     private static final String CHECK_POINT_TASK_INFO_FILE_PATH =
-            "jwd-linearprogram/src/main/resources/info/CheckPointTaskInfo.txt";
+            "jwd-loopsandbranching/src/main/resources/info/CheckPointTaskInfo.txt";
     private static final String RING_CALCULATOR_TASK_INFO_FILE_PATH =
-            "jwd-linearprogram/src/main/resources/info/RingCalculatorTaskInfo.txt";
+            "jwd-loopsandbranching/src/main/resources/info/RingCalculatorTaskInfo.txt";
     private static final String TRIANGLE_CALCULATOR_TASK_INFO_FILE_PATH =
-            "jwd-linearprogram/src/main/resources/info/TriangleCalculatorTaskInfo.txt";
+            "jwd-loopsandbranching/src/main/resources/info/TriangleCalculatorTaskInfo.txt";
     private static final String SQUARE_ROOT_FORMULA_TASK_INFO_FILE_PATH =
-            "jwd-linearprogram/src/main/resources/info/SquareRootFormulaTaskInfo.txt";
-    private String filePath;
+            "jwd-loopsandbranching/src/main/resources/info/SquareRootFormulaTaskInfo.txt";
+    private static final String TWO_CONDITION_FUNCTION_TASK_INFO_FILE_PATH =
+            "jwd-loopsandbranching/src/main/resources/info/TwoConditionFunctionTaskInfo.txt";
 
     public abstract String getURL();
-    }
+}

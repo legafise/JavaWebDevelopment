@@ -16,7 +16,7 @@ import java.util.List;
 public class LoopsAndBranchingSymbolView implements View {
     private static final Logger LOGGER = LogManager.getRootLogger();
     private static final String FILE_NOT_FOUND_MESSAGE = "File for reading not found";
-    private static final int MAIN_FORWARD_COMMAND_NUMBER = 6;
+    private static final int MAIN_FORWARD_COMMAND_NUMBER = -1;
     private LoopsAndBranchingController controller;
     private LoopsAndBranchingReader dataReader;
 
