@@ -6,6 +6,13 @@ import by.lashkevich.lb.command.impl.*;
 import java.util.Arrays;
 
 public enum CommandType {
+    DATE_VALIDATOR(new DateValidatorCommand(),-8),
+    TWO_CONDITION_FUNCTION_CALCULATOR(new TwoConditionFunctionCalculatorCommand(),-7),
+    POINT_CHECKER(new PointCheckerCommand(),-6),
+    SQUARE_ROOT_FORMULA_CALCULATOR(new SquareRootFormulaCalculatorCommand(), -5),
+    SYMBOL_NUMBERS_FINDER(new SymbolNumbersFinderCommand(),-4),
+    RING_CALCULATOR(new RingCalculatorCommand(), -3),
+    TRIANGLE_CALCULATOR(new TriangleCalculatorCommand(), -2),
     MAIN_FORWARD(new MainForwardCommand(), -1),
     MENU_EXIT(new MenuExitCommand(), 0),
     TRIANGLE_CALCULATOR_FORWARD(new TriangleCalculatorForwardCommand(), 1),
@@ -14,12 +21,7 @@ public enum CommandType {
     SQUARE_ROOT_FORMULA_CALCULATOR_FORWARD(new SquareRootFormulaCalculatorForwardCommand(), 4),
     POINT_CHECKER_FORWARD(new PointCheckerForwardCommand(), 5),
     TWO_CONDITION_FUNCTION_FORWARD(new TwoConditionFunctionForwardCommand(), 6),
-    TRIANGLE_CALCULATOR(new TriangleCalculatorCommand(), 7),
-    RING_CALCULATOR(new RingCalculatorCommand(), 8),
-    SYMBOL_NUMBERS_FINDER(new SymbolNumbersFinderCommand(),9),
-    SQUARE_ROOT_FORMULA_CALCULATOR(new SquareRootFormulaCalculatorCommand(), 10),
-    POINT_CHECKER(new PointCheckerCommand(),11),
-    TWO_CONDITION_FUNCTION_CALCULATOR(new TwoConditionFunctionCalculatorCommand(),12);
+    DATE_VALIDATOR_FORWARD(new DateValidatorForwardCommand(), 7);
 
     private static final String INVALID_COMMAND_WAS_CHOSEN_ERROR_MESSAGE = "Invalid command was chosen";
     private Command command;

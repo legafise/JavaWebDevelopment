@@ -44,6 +44,6 @@ public class LoopsAndBranchingTwoConditionFunctionView implements View {
 
     @Override
     public int getViewCommandNumber() {
-        return 12;
+        return -7;
     }
 }

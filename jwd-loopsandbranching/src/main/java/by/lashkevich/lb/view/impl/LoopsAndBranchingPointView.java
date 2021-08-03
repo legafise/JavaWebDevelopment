@@ -44,6 +44,6 @@ public class LoopsAndBranchingPointView implements View {
 
     @Override
     public int getViewCommandNumber() {
-        return 11;
+        return -6;
     }
 }

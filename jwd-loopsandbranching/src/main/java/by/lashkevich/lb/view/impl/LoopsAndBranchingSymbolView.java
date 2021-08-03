@@ -44,6 +44,6 @@ public class LoopsAndBranchingSymbolView implements View {
 
     @Override
     public int getViewCommandNumber() {
-        return 9;
+        return -4;
     }
 }

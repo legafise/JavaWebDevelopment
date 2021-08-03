@@ -44,7 +44,7 @@ public class LoopsAndBranchingTriangleView implements View {
 
     @Override
     public int getViewCommandNumber() {
-        return 7;
+        return -2;
     }
 
     public LoopsAndBranchingReader getDataReader() {
