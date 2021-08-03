@@ -6,4 +6,5 @@ public interface PointService {
     boolean checkAPoint(Point point);
     boolean checkBPoint(Point point);
     boolean checkCPoint(Point point);
+    String checkPointDistanceFromOrigin(Point firstPoint, Point secondPoint);
 }

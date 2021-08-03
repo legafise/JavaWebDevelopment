@@ -6,10 +6,11 @@ import by.lashkevich.lb.command.impl.*;
 import java.util.Arrays;
 
 public enum CommandType {
+    POINT_DISTANCE_FROM_ORIGIN_CHECKER(new PointDistanceFromOriginCheckerCommand(), -10),
     LEAST_SQUARE_FINDER(new LeastSquareFinderCommand(),-9),
     DATE_VALIDATOR(new DateValidatorCommand(),-8),
     TWO_CONDITION_FUNCTION_CALCULATOR(new TwoConditionFunctionCalculatorCommand(),-7),
-    POINT_CHECKER(new PointCheckerCommand(),-6),
+    POINT_CHECKER(new PointOnAreaCommand(),-6),
     SQUARE_ROOT_FORMULA_CALCULATOR(new SquareRootFormulaCalculatorCommand(), -5),
     SYMBOL_NUMBERS_FINDER(new SymbolNumbersFinderCommand(),-4),
     RING_CALCULATOR(new RingCalculatorCommand(), -3),
@@ -20,10 +21,11 @@ public enum CommandType {
     RING_CALCULATOR_FORWARD(new RingCalculatorForwardCommand(), 2),
     SYMBOL_NUMBERS_FORWARD(new SymbolNumbersFinderForwardCommand(), 3),
     SQUARE_ROOT_FORMULA_CALCULATOR_FORWARD(new SquareRootFormulaCalculatorForwardCommand(), 4),
-    POINT_CHECKER_FORWARD(new PointCheckerForwardCommand(), 5),
+    POINT_CHECKER_FORWARD(new PointOnAreaForwardCommand(), 5),
     TWO_CONDITION_FUNCTION_FORWARD(new TwoConditionFunctionForwardCommand(), 6),
     DATE_VALIDATOR_FORWARD(new DateValidatorForwardCommand(), 7),
-    LEAST_SQUARE_FINDER_FORWARD(new LeastSquareFinderForwardCommand(), 8);
+    LEAST_SQUARE_FINDER_FORWARD(new LeastSquareFinderForwardCommand(), 8),
+    POINT_DISTANCE_FROM_ORIGIN_FORWARD(new PointDistanceFromOriginForwardCommand(), 9);
 
     private static final String INVALID_COMMAND_WAS_CHOSEN_ERROR_MESSAGE = "Invalid command was chosen";
     private Command command;

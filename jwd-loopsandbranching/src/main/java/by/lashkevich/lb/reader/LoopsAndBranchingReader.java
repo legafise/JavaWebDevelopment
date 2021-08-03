@@ -7,7 +7,7 @@ import java.util.List;
 public interface LoopsAndBranchingReader {
     List<String> readTriangleData() throws LoopsAndBranchingReaderException;
 
-    List<String> readPointData() throws LoopsAndBranchingReaderException;
+    List<String> readPointOnAreaData() throws LoopsAndBranchingReaderException;
 
     List<String> readSquareRootFormulaData() throws LoopsAndBranchingReaderException;
 
@@ -20,4 +20,6 @@ public interface LoopsAndBranchingReader {
     List<String> readDateValidatorTaskData() throws LoopsAndBranchingReaderException;
 
     List<String> readLeastSquareFinderTaskData() throws LoopsAndBranchingReaderException;
+
+    List<String> readPointDistanceFromOriginData() throws LoopsAndBranchingReaderException;
 }

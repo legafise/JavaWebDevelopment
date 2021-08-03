@@ -13,12 +13,13 @@ import by.lashkevich.lb.service.impl.LoopsAndBranchingPointService;
 import by.lashkevich.lb.view.View;
 import by.lashkevich.lb.view.impl.ViewType;
 
+import java.util.Arrays;
 import java.util.List;
 
-public class PointCheckerCommand implements Command {
+public class PointOnAreaCommand implements Command {
     private PointService pointService;
 
-    public PointCheckerCommand() {
+    public PointOnAreaCommand() {
         pointService = new LoopsAndBranchingPointService();
     }
 
@@ -31,8 +32,8 @@ public class PointCheckerCommand implements Command {
             boolean aPointCheckResult = pointService.checkAPoint(point);
             boolean bPointCheckResult = pointService.checkBPoint(point);
             boolean cPointCheckResult = pointService.checkCPoint(point);
-            PointCheckerReporter.reportPointInfo(point);
-            PointCheckerReporter.reportCheckResult(aPointCheckResult, bPointCheckResult, cPointCheckResult);
+            PointCheckerReporter.reportPointInfo(Arrays.asList(point));
+            PointCheckerReporter.reportPointsOnAreaCheckingResult(aPointCheckResult, bPointCheckResult, cPointCheckResult);
             return ViewType.MAIN_VIEW.getView();
         } catch (LoopsAndBranchingTransformerException e) {
             throw new LoopsAndBranchingCommandException(e);

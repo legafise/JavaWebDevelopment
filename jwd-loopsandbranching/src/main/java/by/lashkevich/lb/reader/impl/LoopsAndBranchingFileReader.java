@@ -21,7 +21,7 @@ public class LoopsAndBranchingFileReader implements LoopsAndBranchingReader {
     }
 
     @Override
-    public List<String> readPointData() throws LoopsAndBranchingReaderException {
+    public List<String> readPointOnAreaData() throws LoopsAndBranchingReaderException {
         return readInformation(FilePath.CHECK_POINT_INFO_PATH.getURL());
     }
 
@@ -53,6 +53,11 @@ public class LoopsAndBranchingFileReader implements LoopsAndBranchingReader {
     @Override
     public List<String> readLeastSquareFinderTaskData() throws LoopsAndBranchingReaderException {
         return readInformation(FilePath.LEAST_SQUARE_FINDER_INFO_PATH.getURL());
+    }
+
+    @Override
+    public List<String> readPointDistanceFromOriginData() throws LoopsAndBranchingReaderException {
+        return readInformation(FilePath.POINT_DISTANCE_FROM_ORIGIN_INFO_PATH.getURL());
     }
 
     private List<String> readInformation(String filePath) throws LoopsAndBranchingReaderException {

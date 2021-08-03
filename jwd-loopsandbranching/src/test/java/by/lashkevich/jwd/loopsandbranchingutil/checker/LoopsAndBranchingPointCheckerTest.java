@@ -4,9 +4,9 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import static by.lashkevich.lb.loopsandbranchingutil.checker.LoopsAndBranchingPointCoordinatesChecker.*;
+import static by.lashkevich.lb.loopsandbranchingutil.checker.LoopsAndBranchingPointChecker.*;
 
-public class LoopsAndBranchingPointCoordinatesCheckerTest {
+public class LoopsAndBranchingPointCheckerTest {
     @DataProvider(name = "positiveDataForAreaA")
     public Object[][] createPositiveDataForAreaA() {
         return new Object[][]{

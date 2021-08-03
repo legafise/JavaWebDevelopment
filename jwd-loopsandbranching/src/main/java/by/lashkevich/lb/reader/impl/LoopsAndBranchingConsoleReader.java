@@ -1,6 +1,5 @@
 package by.lashkevich.lb.reader.impl;
 
-import by.lashkevich.lb.exception.LoopsAndBranchingReaderException;
 import by.lashkevich.lb.reader.LoopsAndBranchingReader;
 
 import java.util.ArrayList;
@@ -42,7 +41,7 @@ public class LoopsAndBranchingConsoleReader implements LoopsAndBranchingReader {
     }
 
     @Override
-    public List<String> readPointData() {
+    public List<String> readPointOnAreaData() {
         List<String> coordinateList = new ArrayList<>();
 
         System.out.println(ENTER_X_COORDINATE_MESSAGE);
@@ -92,7 +91,7 @@ public class LoopsAndBranchingConsoleReader implements LoopsAndBranchingReader {
     }
 
     @Override
-    public List<String> readTwoConditionFunctionData() throws LoopsAndBranchingReaderException {
+    public List<String> readTwoConditionFunctionData() {
         List<String> functionVariables = new ArrayList<>();
         System.out.println(ENTER_VARIABLE_X_MESSAGE);
         functionVariables.add(SCANNER.next());
@@ -100,7 +99,7 @@ public class LoopsAndBranchingConsoleReader implements LoopsAndBranchingReader {
     }
 
     @Override
-    public List<String> readDateValidatorTaskData() throws LoopsAndBranchingReaderException {
+    public List<String> readDateValidatorTaskData() {
         List<String> dateData = new ArrayList<>();
         System.out.println(ENTER_MONTH_MESSAGE);
         dateData.add(SCANNER.next());
@@ -110,12 +109,29 @@ public class LoopsAndBranchingConsoleReader implements LoopsAndBranchingReader {
     }
 
     @Override
-    public List<String> readLeastSquareFinderTaskData() throws LoopsAndBranchingReaderException {
+    public List<String> readLeastSquareFinderTaskData() {
         List<String> numbers = new ArrayList<>();
         System.out.println(ENTER_FIRST_NUMBER_MESSAGE);
         numbers.add(SCANNER.next());
         System.out.println(ENTER_SECOND_NUMBER_MESSAGE);
         numbers.add(SCANNER.next());
         return numbers;
+    }
+
+    @Override
+    public List<String> readPointDistanceFromOriginData() {
+        List<String> coordinateList = new ArrayList<>();
+
+        for (int i = 0; i < 2; i++) {
+            System.out.println(ENTER_POINT_COORDINATES_MESSAGE + (i + 1));
+
+            System.out.println(ENTER_X_COORDINATE_MESSAGE);
+            coordinateList.add(SCANNER.next());
+
+            System.out.println(ENTER_Y_COORDINATE_MESSAGE);
+            coordinateList.add(SCANNER.next());
+        }
+
+        return coordinateList;
     }
 }

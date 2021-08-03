@@ -5,7 +5,7 @@ import by.lashkevich.lb.controller.Request;
 import by.lashkevich.lb.view.View;
 import by.lashkevich.lb.view.impl.ViewType;
 
-public class PointCheckerForwardCommand implements Command {
+public class PointOnAreaForwardCommand implements Command {
 
     @Override
     public View execute(Request request) {

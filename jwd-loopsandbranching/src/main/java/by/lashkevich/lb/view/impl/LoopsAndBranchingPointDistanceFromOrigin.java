@@ -13,14 +13,14 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
-public class LoopsAndBranchingPointView implements View {
+public class LoopsAndBranchingPointDistanceFromOrigin implements View {
     private static final Logger LOGGER = LogManager.getRootLogger();
     private static final String FILE_NOT_FOUND_MESSAGE = "File for reading not found";
     private static final int MAIN_FORWARD_COMMAND_NUMBER = -1;
     private LoopsAndBranchingController controller;
     private LoopsAndBranchingReader dataReader;
 
-    public LoopsAndBranchingPointView() {
+    public LoopsAndBranchingPointDistanceFromOrigin() {
         controller = new LoopsAndBranchingController();
     }
 
@@ -30,7 +30,7 @@ public class LoopsAndBranchingPointView implements View {
 
         try {
             dataReader = LoopsAndBranchingReaderFactory.getInstance().createDataCreator();
-            List<String> pointCheckerData = dataReader.readPointData();
+            List<String> pointCheckerData = dataReader.readPointDistanceFromOriginData();
             request.putParameter(LoopsAndBranchingConstant.COMMAND_NUMBER, getViewCommandNumber());
             request.putParameter(LoopsAndBranchingConstant.DATA_NAME, pointCheckerData);
             controller.doRequest(request).executeView();
@@ -44,6 +44,6 @@ public class LoopsAndBranchingPointView implements View {
 
     @Override
     public int getViewCommandNumber() {
-        return -6;
+        return -10;
     }
 }

@@ -43,6 +43,12 @@ public enum FilePath {
             return LEAST_SQUARE_FINDER_TASK_INFO_PATH;
         }
     },
+    POINT_DISTANCE_FROM_ORIGIN_INFO_PATH {
+        @Override
+        public String getURL() {
+            return POINT_DISTANCE_FROM_ORIGIN_TASK_INFO_PATH;
+        }
+    },
     TWO_CONDITION_FUNCTION_INFO_PATH {
         @Override
         public String getURL() {
@@ -53,7 +59,7 @@ public enum FilePath {
     private static final String SYMBOL_NUMBERS_TASK_INFO_FILE_PATH =
             "jwd-loopsandbranching/src/main/resources/info/SymbolNumbersTaskInfo.txt";
     private static final String CHECK_POINT_TASK_INFO_FILE_PATH =
-            "jwd-loopsandbranching/src/main/resources/info/CheckPointTaskInfo.txt";
+            "jwd-loopsandbranching/src/main/resources/info/CheckPointOnAreaTaskInfo.txt";
     private static final String RING_CALCULATOR_TASK_INFO_FILE_PATH =
             "jwd-loopsandbranching/src/main/resources/info/RingCalculatorTaskInfo.txt";
     private static final String TRIANGLE_CALCULATOR_TASK_INFO_FILE_PATH =
@@ -66,6 +72,8 @@ public enum FilePath {
             "jwd-loopsandbranching/src/main/resources/info/DateValidatorTaskInfo.txt";
     private static final String LEAST_SQUARE_FINDER_TASK_INFO_PATH =
             "jwd-loopsandbranching/src/main/resources/info/LeastSquareFinderTaskInfo.txt";
+    private static final String POINT_DISTANCE_FROM_ORIGIN_TASK_INFO_PATH =
+            "jwd-loopsandbranching/src/main/resources/info/CheckPointDistanceFromOrigin.txt";
 
     public abstract String getURL();
 }
