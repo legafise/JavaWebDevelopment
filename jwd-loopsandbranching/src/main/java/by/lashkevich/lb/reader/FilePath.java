@@ -31,6 +31,12 @@ public enum FilePath {
             return TRIANGLE_CALCULATOR_TASK_INFO_FILE_PATH;
         }
     },
+    DATE_VALIDATOR_INFO_PATH {
+        @Override
+        public String getURL() {
+            return DATE_VALIDATOR_TASK_INFO_PATH;
+        }
+    },
     TWO_CONDITION_FUNCTION_INFO_PATH {
         @Override
         public String getURL() {
@@ -50,6 +56,8 @@ public enum FilePath {
             "jwd-loopsandbranching/src/main/resources/info/SquareRootFormulaTaskInfo.txt";
     private static final String TWO_CONDITION_FUNCTION_TASK_INFO_FILE_PATH =
             "jwd-loopsandbranching/src/main/resources/info/TwoConditionFunctionTaskInfo.txt";
+    private static final String DATE_VALIDATOR_TASK_INFO_PATH =
+            "jwd-loopsandbranching/src/main/resources/info/DateValidatorTaskInfo.txt";
 
     public abstract String getURL();
 }

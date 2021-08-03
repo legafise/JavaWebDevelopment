@@ -22,6 +22,17 @@ public final class LoopsAndBranchingTransformer {
         }
     }
 
+    public static List<Integer> transformStringsToIntegers(List<String> strings) throws LoopsAndBranchingTransformerException {
+        try {
+            return strings.stream()
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
+        } catch (NumberFormatException e) {
+            System.out.println(INCORRECT_DATA_WAS_ENTERED);
+            throw new LoopsAndBranchingTransformerException(e);
+        }
+    }
+
     public static char transformStringsToCharacter(List<String> strings) {
         return strings.get(0).charAt(0);
     }

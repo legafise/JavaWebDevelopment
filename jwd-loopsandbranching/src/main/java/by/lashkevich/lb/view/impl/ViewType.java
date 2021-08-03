@@ -9,7 +9,8 @@ public enum ViewType {
     CHECK_POINT_VIEW(new LoopsAndBranchingPointView()),
     MAIN_VIEW(new LoopsAndBranchingMainView()),
     TWO_CONDITION_FUNCTION_VIEW(new LoopsAndBranchingTwoConditionFunctionView()),
-    SQUARE_ROOT_FORMULA_VIEW(new LoopsAndBranchingFormulaView());
+    SQUARE_ROOT_FORMULA_VIEW(new LoopsAndBranchingFormulaView()),
+    DATE_VALIDATOR_VIEW(new LoopsAndBranchingDateValidatorView());
 
     private View view;
 

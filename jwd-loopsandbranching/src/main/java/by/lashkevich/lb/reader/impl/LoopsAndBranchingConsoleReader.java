@@ -18,6 +18,8 @@ public class LoopsAndBranchingConsoleReader implements LoopsAndBranchingReader {
     private static final String ENTER_VARIABLE_B_MESSAGE = "Enter variable b";
     private static final String ENTER_VARIABLE_C_MESSAGE = "Enter variable c";
     private static final String ENTER_VARIABLE_X_MESSAGE = "Enter variable x";
+    private static final String ENTER_DAY_MESSAGE = "Enter day";
+    private static final String ENTER_MONTH_MESSAGE = "Enter month";
     private final Scanner SCANNER = new Scanner(System.in);
 
     @Override
@@ -93,5 +95,15 @@ public class LoopsAndBranchingConsoleReader implements LoopsAndBranchingReader {
         System.out.println(ENTER_VARIABLE_X_MESSAGE);
         functionVariables.add(SCANNER.next());
         return functionVariables;
+    }
+
+    @Override
+    public List<String> readDateValidatorTaskData() throws LoopsAndBranchingReaderException {
+        List<String> dateData = new ArrayList<>();
+        System.out.println(ENTER_MONTH_MESSAGE);
+        dateData.add(SCANNER.next());
+        System.out.println(ENTER_DAY_MESSAGE);
+        dateData.add(SCANNER.next());
+        return dateData;
     }
 }

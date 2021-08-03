@@ -27,6 +27,7 @@ public class LoopsAndBranchingMainView implements View {
     private static final String THE_SECOND_TASK_INFORMATION = "2. Find the area of a ring";
     private static final String THE_SIXTH_TASK_INFORMATION = "6. Calculate function with " +
             "two conditions";
+    private static final String THE_SEVENTH_TASK_INFORMATION = "7. Validate date";
     private LoopsAndBranchingController controller;
     private LoopsAndBranchingMainViewReader reader;
 
@@ -55,10 +56,11 @@ public class LoopsAndBranchingMainView implements View {
                     + THE_THIRD_TASK_INFORMATION + NEW_LINE_BREAK
                     + THE_FOURTH_TASK_INFORMATION + NEW_LINE_BREAK
                     + THE_FIFTH_TASK_INFORMATION + NEW_LINE_BREAK
-                    + THE_SIXTH_TASK_INFORMATION);
+                    + THE_SIXTH_TASK_INFORMATION + NEW_LINE_BREAK
+                    + THE_SEVENTH_TASK_INFORMATION);
             int commandNumber = reader.readCommandNumber();
 
-            if (commandNumber > 6 || commandNumber < 0) {
+            if (commandNumber > 7 || commandNumber < 0) {
                 System.out.println(NO_SUCH_TASK_MESSAGE);
                 request.putParameter(LoopsAndBranchingConstant.COMMAND_NUMBER, getViewCommandNumber());
             } else {
