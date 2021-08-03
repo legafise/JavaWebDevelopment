@@ -3,7 +3,7 @@ package by.lashkevich.lb.reporter;
 import by.lashkevich.lb.entity.Ring;
 
 public final class RingCalculatorReporter {
-    private static final String RING_INFORMATION_MESSAGE = "Ring: ";
+    private static final String RING_INFORMATION_MESSAGE = "\nRing: ";
     private static final String AREA_IS_EQUAL_MESSAGE = "Area = %.1f\n";
 
     private RingCalculatorReporter() {

@@ -5,7 +5,7 @@ import java.util.List;
 
 public final class SquareRootFormulaReporter {
     private static final String RESULT_EQUALS  = "Square root formula result = %.1f\n";
-    private static final String VARIABLES_EQUAL  = "Variable a = %.1f; Variable b = %.1f;" +
+    private static final String VARIABLES_EQUAL  = "\nVariable a = %.1f; Variable b = %.1f;" +
             " Variable c = %.1f;";
 
     private SquareRootFormulaReporter() {

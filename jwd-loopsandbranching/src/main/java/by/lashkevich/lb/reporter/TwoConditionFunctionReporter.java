@@ -2,7 +2,7 @@ package by.lashkevich.lb.reporter;
 
 public final class TwoConditionFunctionReporter {
     private static final String FUNCTION_RESULT_EQUALS_MESSAGE = "Function result = %.1f\n";
-    private static final String FUNCTION_INFO_MESSAGE = "x = %.1f";
+    private static final String FUNCTION_INFO_MESSAGE = "\nx = %.1f";
 
     private TwoConditionFunctionReporter() {
     }

@@ -3,7 +3,7 @@ package by.lashkevich.lb.reporter;
 import by.lashkevich.lb.entity.Point;
 
 public final class PointCheckerReporter {
-    private static final String VARIABLES_EQUAL = "x = %.1f; y = %.1f;";
+    private static final String VARIABLES_EQUAL = "\nx = %.1f; y = %.1f;";
     private static final String CHECKING_RESULTS_EQUAL = "Checking result for area a = %b;"
             + "\nChecking result for area b = %b;\n"
             + "Checking result for area c = %b;\n";

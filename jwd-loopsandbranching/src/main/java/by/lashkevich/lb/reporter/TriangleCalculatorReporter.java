@@ -4,7 +4,7 @@ import by.lashkevich.lb.entity.Triangle;
 
 public final class TriangleCalculatorReporter {
     private static final String PERIMETER_AND_AREA_ARE_EQUAL_MESSAGE = "Perimeter = %.1f; Area = %.1f\n";
-    private static final String TRIANGLE_INFO_MESSAGE = "Triangle info: ";
+    private static final String TRIANGLE_INFO_MESSAGE = "\nTriangle info: ";
 
     private TriangleCalculatorReporter() {
     }
