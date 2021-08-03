@@ -50,6 +50,11 @@ public class LoopsAndBranchingFileReader implements LoopsAndBranchingReader {
         return readInformation(FilePath.DATE_VALIDATOR_INFO_PATH.getURL());
     }
 
+    @Override
+    public List<String> readLeastSquareFinderTaskData() throws LoopsAndBranchingReaderException {
+        return readInformation(FilePath.LEAST_SQUARE_FINDER_INFO_PATH.getURL());
+    }
+
     private List<String> readInformation(String filePath) throws LoopsAndBranchingReaderException {
         try {
             List<String> lines = new ArrayList<>();

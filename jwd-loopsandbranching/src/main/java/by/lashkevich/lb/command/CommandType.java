@@ -6,6 +6,7 @@ import by.lashkevich.lb.command.impl.*;
 import java.util.Arrays;
 
 public enum CommandType {
+    LEAST_SQUARE_FINDER(new LeastSquareFinderCommand(),-9),
     DATE_VALIDATOR(new DateValidatorCommand(),-8),
     TWO_CONDITION_FUNCTION_CALCULATOR(new TwoConditionFunctionCalculatorCommand(),-7),
     POINT_CHECKER(new PointCheckerCommand(),-6),
@@ -21,7 +22,8 @@ public enum CommandType {
     SQUARE_ROOT_FORMULA_CALCULATOR_FORWARD(new SquareRootFormulaCalculatorForwardCommand(), 4),
     POINT_CHECKER_FORWARD(new PointCheckerForwardCommand(), 5),
     TWO_CONDITION_FUNCTION_FORWARD(new TwoConditionFunctionForwardCommand(), 6),
-    DATE_VALIDATOR_FORWARD(new DateValidatorForwardCommand(), 7);
+    DATE_VALIDATOR_FORWARD(new DateValidatorForwardCommand(), 7),
+    LEAST_SQUARE_FINDER_FORWARD(new LeastSquareFinderForwardCommand(), 8);
 
     private static final String INVALID_COMMAND_WAS_CHOSEN_ERROR_MESSAGE = "Invalid command was chosen";
     private Command command;

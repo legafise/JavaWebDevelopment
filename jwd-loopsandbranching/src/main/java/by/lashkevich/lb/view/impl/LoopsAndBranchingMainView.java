@@ -13,7 +13,8 @@ public class LoopsAndBranchingMainView implements View {
     private static final String NO_SUCH_TASK_MESSAGE = "Task under this number does not exist\n";
     private static final String CONSOLE_DATA_ENTRY_MESSAGE = "\n1. Console data entry\n";
     private static final String FILE_DATA_ENTRY_MESSAGE = "2. File data entry";
-    private static final String NO_SUCH_DATA_ENTRY_TYPE_MESSAGE = "Data entry type under this number does not exist\n";
+    private static final String NO_SUCH_DATA_ENTRY_TYPE_MESSAGE = "Data entry type under this" +
+            "number does not exist\n";
     private static final String NEW_LINE_BREAK = "\n";
     private static final String ENTER_ZERO_TO_END_PROGRAM_MESSAGE = "Enter 0 to end the program";
     private static final String THE_FIRST_TASK_INFORMATION = "1. Find the area and perimeter of a" +
@@ -28,6 +29,8 @@ public class LoopsAndBranchingMainView implements View {
     private static final String THE_SIXTH_TASK_INFORMATION = "6. Calculate function with " +
             "two conditions";
     private static final String THE_SEVENTH_TASK_INFORMATION = "7. Validate date";
+    private static final String THE_EIGHTH_TASK_INFORMATION = "8. Find the least" +
+            "square of two numbers";
     private LoopsAndBranchingController controller;
     private LoopsAndBranchingMainViewReader reader;
 
@@ -57,10 +60,11 @@ public class LoopsAndBranchingMainView implements View {
                     + THE_FOURTH_TASK_INFORMATION + NEW_LINE_BREAK
                     + THE_FIFTH_TASK_INFORMATION + NEW_LINE_BREAK
                     + THE_SIXTH_TASK_INFORMATION + NEW_LINE_BREAK
-                    + THE_SEVENTH_TASK_INFORMATION);
+                    + THE_SEVENTH_TASK_INFORMATION + NEW_LINE_BREAK
+                    + THE_EIGHTH_TASK_INFORMATION);
             int commandNumber = reader.readCommandNumber();
 
-            if (commandNumber > 7 || commandNumber < 0) {
+            if (commandNumber > 8 || commandNumber < 0) {
                 System.out.println(NO_SUCH_TASK_MESSAGE);
                 request.putParameter(LoopsAndBranchingConstant.COMMAND_NUMBER, getViewCommandNumber());
             } else {

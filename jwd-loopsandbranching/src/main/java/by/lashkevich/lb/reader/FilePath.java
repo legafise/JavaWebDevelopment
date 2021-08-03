@@ -37,6 +37,12 @@ public enum FilePath {
             return DATE_VALIDATOR_TASK_INFO_PATH;
         }
     },
+    LEAST_SQUARE_FINDER_INFO_PATH {
+        @Override
+        public String getURL() {
+            return LEAST_SQUARE_FINDER_TASK_INFO_PATH;
+        }
+    },
     TWO_CONDITION_FUNCTION_INFO_PATH {
         @Override
         public String getURL() {
@@ -58,6 +64,8 @@ public enum FilePath {
             "jwd-loopsandbranching/src/main/resources/info/TwoConditionFunctionTaskInfo.txt";
     private static final String DATE_VALIDATOR_TASK_INFO_PATH =
             "jwd-loopsandbranching/src/main/resources/info/DateValidatorTaskInfo.txt";
+    private static final String LEAST_SQUARE_FINDER_TASK_INFO_PATH =
+            "jwd-loopsandbranching/src/main/resources/info/LeastSquareFinderTaskInfo.txt";
 
     public abstract String getURL();
 }

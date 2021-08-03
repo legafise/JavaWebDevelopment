@@ -18,4 +18,6 @@ public interface LoopsAndBranchingReader {
     List<String> readTwoConditionFunctionData() throws LoopsAndBranchingReaderException;
 
     List<String> readDateValidatorTaskData() throws LoopsAndBranchingReaderException;
+
+    List<String> readLeastSquareFinderTaskData() throws LoopsAndBranchingReaderException;
 }

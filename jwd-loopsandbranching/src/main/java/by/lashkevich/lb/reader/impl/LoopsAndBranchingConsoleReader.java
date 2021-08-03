@@ -20,6 +20,8 @@ public class LoopsAndBranchingConsoleReader implements LoopsAndBranchingReader {
     private static final String ENTER_VARIABLE_X_MESSAGE = "Enter variable x";
     private static final String ENTER_DAY_MESSAGE = "Enter day";
     private static final String ENTER_MONTH_MESSAGE = "Enter month";
+    private static final String ENTER_FIRST_NUMBER_MESSAGE = "Enter the first number";
+    private static final String ENTER_SECOND_NUMBER_MESSAGE = "Enter the second number";
     private final Scanner SCANNER = new Scanner(System.in);
 
     @Override
@@ -105,5 +107,15 @@ public class LoopsAndBranchingConsoleReader implements LoopsAndBranchingReader {
         System.out.println(ENTER_DAY_MESSAGE);
         dateData.add(SCANNER.next());
         return dateData;
+    }
+
+    @Override
+    public List<String> readLeastSquareFinderTaskData() throws LoopsAndBranchingReaderException {
+        List<String> numbers = new ArrayList<>();
+        System.out.println(ENTER_FIRST_NUMBER_MESSAGE);
+        numbers.add(SCANNER.next());
+        System.out.println(ENTER_SECOND_NUMBER_MESSAGE);
+        numbers.add(SCANNER.next());
+        return numbers;
     }
 }
