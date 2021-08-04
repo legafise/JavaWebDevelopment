@@ -7,7 +7,6 @@ import by.lashkevich.lb.exception.LoopsAndBranchingCommandException;
 import by.lashkevich.lb.exception.LoopsAndBranchingTransformerException;
 import by.lashkevich.lb.loopsandbranchingutil.transformer.LoopsAndBranchingTransformer;
 import by.lashkevich.lb.reporter.LeastSquareFinderReporter;
-import by.lashkevich.lb.reporter.TwoConditionFunctionReporter;
 import by.lashkevich.lb.service.LeastSquareFinderService;
 import by.lashkevich.lb.service.impl.LoopsAndBranchingLeastSquareFinderService;
 import by.lashkevich.lb.view.View;

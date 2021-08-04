@@ -55,6 +55,18 @@ public enum FilePath {
             return ACCESS_CHECKER_TASK_INFO_PATH;
         }
     },
+    TRIGONOMETRIC_FUNCTION_INFO_PATH {
+        @Override
+        public String getURL() {
+            return TRIGONOMETRIC_FUNCTION_TASK_INFO_PATH;
+        }
+    },
+    FUNCTION_WITH_STEP_INFO_PATH {
+        @Override
+        public String getURL() {
+            return FUNCTION_WITH_STEP_TASK_INFO_PATH;
+        }
+    },
     TWO_CONDITION_FUNCTION_INFO_PATH {
         @Override
         public String getURL() {
@@ -82,6 +94,10 @@ public enum FilePath {
             "jwd-loopsandbranching/src/main/resources/info/CheckPointDistanceFromOrigin.txt";
     private static final String ACCESS_CHECKER_TASK_INFO_PATH =
             "jwd-loopsandbranching/src/main/resources/info/AccessCheckerTaskInfo.txt";
+    private static final String FUNCTION_WITH_STEP_TASK_INFO_PATH =
+            "jwd-loopsandbranching/src/main/resources/info/FunctionWithStepTaskInfo.txt";
+    private static final String TRIGONOMETRIC_FUNCTION_TASK_INFO_PATH =
+            "jwd-loopsandbranching/src/main/resources/info/TrigonometricFunctionTaskInfo.txt";
 
     public abstract String getURL();
 }

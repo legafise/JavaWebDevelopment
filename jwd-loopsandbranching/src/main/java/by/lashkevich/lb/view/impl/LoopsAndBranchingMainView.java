@@ -34,6 +34,10 @@ public class LoopsAndBranchingMainView implements View {
     private static final String THE_NINTH_TASK_INFORMATION = "9. Determine which point" +
             "is closer to origin of coordinates.";
     private static final String THE_TENTH_TASK_INFORMATION = "10. Define available modules by password";
+    private static final String THE_ELEVENTH_TASK_INFORMATION = "11. Calculate the values of the" +
+            "trigonometric function F (x) on the segment [a, b] with step h";
+    private static final String THE_TWELFTH_TASK_INFORMATION = "12. Calculate the values of the" +
+            "function F (x) on the segment [a, b] with step h";
     private LoopsAndBranchingController controller;
     private LoopsAndBranchingMainViewReader reader;
 
@@ -66,10 +70,12 @@ public class LoopsAndBranchingMainView implements View {
                     + THE_SEVENTH_TASK_INFORMATION + NEW_LINE_BREAK
                     + THE_EIGHTH_TASK_INFORMATION + NEW_LINE_BREAK
                     + THE_NINTH_TASK_INFORMATION + NEW_LINE_BREAK
-                    + THE_TENTH_TASK_INFORMATION);
+                    + THE_TENTH_TASK_INFORMATION + NEW_LINE_BREAK
+                    + THE_ELEVENTH_TASK_INFORMATION + NEW_LINE_BREAK
+                    + THE_TWELFTH_TASK_INFORMATION);
             int commandNumber = reader.readCommandNumber();
 
-            if (commandNumber > 10 || commandNumber < 0) {
+            if (commandNumber > 12 || commandNumber < 0) {
                 System.out.println(NO_SUCH_TASK_MESSAGE);
                 request.putParameter(LoopsAndBranchingConstant.COMMAND_NUMBER, getViewCommandNumber());
             } else {

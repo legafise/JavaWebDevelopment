@@ -24,4 +24,8 @@ public interface LoopsAndBranchingReader {
     List<String> readPointDistanceFromOriginData() throws LoopsAndBranchingReaderException;
 
     List<String> readAccessCheckerData() throws LoopsAndBranchingReaderException;
+
+    List<String> readFunctionWithStepData() throws LoopsAndBranchingReaderException;
+
+    List<String> readTrigonometricFunctionData() throws LoopsAndBranchingReaderException;
 }

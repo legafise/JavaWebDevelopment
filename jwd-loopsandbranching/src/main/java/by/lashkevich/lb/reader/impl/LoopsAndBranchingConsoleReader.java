@@ -23,6 +23,9 @@ public class LoopsAndBranchingConsoleReader implements LoopsAndBranchingReader {
     private static final String ENTER_FIRST_NUMBER_MESSAGE = "Enter the first number";
     private static final String ENTER_SECOND_NUMBER_MESSAGE = "Enter the second number";
     private static final String ENTER_PASSWORD_MESSAGE = "Enter your password to gain access";
+    private static final String ENTER_FIRST_LINE_POINT_MESSAGE = "Enter the first point of the line";
+    private static final String ENTER_SECOND_LINE_POINT_MESSAGE = "Enter the second point of the line";
+    private static final String ENTER_LINE_STEP_MESSAGE = "Enter the line step";
     private final Scanner SCANNER = new Scanner(System.in);
 
     @Override
@@ -103,20 +106,26 @@ public class LoopsAndBranchingConsoleReader implements LoopsAndBranchingReader {
     @Override
     public List<String> readDateValidatorTaskData() {
         List<String> dateData = new ArrayList<>();
+
         System.out.println(ENTER_MONTH_MESSAGE);
         dateData.add(SCANNER.next());
+
         System.out.println(ENTER_DAY_MESSAGE);
         dateData.add(SCANNER.next());
+
         return dateData;
     }
 
     @Override
     public List<String> readLeastSquareFinderTaskData() {
         List<String> numbers = new ArrayList<>();
+
         System.out.println(ENTER_FIRST_NUMBER_MESSAGE);
         numbers.add(SCANNER.next());
+
         System.out.println(ENTER_SECOND_NUMBER_MESSAGE);
         numbers.add(SCANNER.next());
+
         return numbers;
     }
 
@@ -143,5 +152,35 @@ public class LoopsAndBranchingConsoleReader implements LoopsAndBranchingReader {
         System.out.println(ENTER_PASSWORD_MESSAGE);
         passwords.add(SCANNER.next());
         return passwords;
+    }
+
+    @Override
+    public List<String> readFunctionWithStepData() throws LoopsAndBranchingReaderException {
+        List<String> functionData = new ArrayList<>();
+        System.out.println(ENTER_FIRST_LINE_POINT_MESSAGE);
+        functionData.add(SCANNER.next());
+
+        System.out.println(ENTER_SECOND_LINE_POINT_MESSAGE);
+        functionData.add(SCANNER.next());
+
+        System.out.println(ENTER_LINE_STEP_MESSAGE);
+        functionData.add(SCANNER.next());
+
+        return functionData;
+    }
+
+    @Override
+    public List<String> readTrigonometricFunctionData() throws LoopsAndBranchingReaderException {
+        List<String> functionData = new ArrayList<>();
+        System.out.println(ENTER_FIRST_LINE_POINT_MESSAGE);
+        functionData.add(SCANNER.next());
+
+        System.out.println(ENTER_SECOND_LINE_POINT_MESSAGE);
+        functionData.add(SCANNER.next());
+
+        System.out.println(ENTER_LINE_STEP_MESSAGE);
+        functionData.add(SCANNER.next());
+
+        return functionData;
     }
 }
