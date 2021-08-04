@@ -33,6 +33,17 @@ public final class LoopsAndBranchingTransformer {
         }
     }
 
+    public static List<Long> transformStringsToLong(List<String> strings) throws LoopsAndBranchingTransformerException {
+        try {
+            return strings.stream()
+                    .map(Long::parseLong)
+                    .collect(Collectors.toList());
+        } catch (NumberFormatException e) {
+            System.out.println(INCORRECT_DATA_WAS_ENTERED);
+            throw new LoopsAndBranchingTransformerException(e);
+        }
+    }
+
     public static char transformStringsToCharacter(List<String> strings) {
         return strings.get(0).charAt(0);
     }

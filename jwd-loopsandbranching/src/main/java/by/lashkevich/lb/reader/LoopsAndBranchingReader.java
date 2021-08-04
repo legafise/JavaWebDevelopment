@@ -28,4 +28,6 @@ public interface LoopsAndBranchingReader {
     List<String> readFunctionWithStepData() throws LoopsAndBranchingReaderException;
 
     List<String> readTrigonometricFunctionData() throws LoopsAndBranchingReaderException;
+
+    List<String> readLargestDigitFinderData() throws LoopsAndBranchingReaderException;
 }

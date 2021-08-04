@@ -38,6 +38,8 @@ public class LoopsAndBranchingMainView implements View {
             "trigonometric function F (x) on the segment [a, b] with step h";
     private static final String THE_TWELFTH_TASK_INFORMATION = "12. Calculate the values of the" +
             "function F (x) on the segment [a, b] with step h";
+    private static final String THE_THIRTEENTH_TASK_INFORMATION = "13. Find the largest digit of" +
+            "a given natural number";
     private LoopsAndBranchingController controller;
     private LoopsAndBranchingMainViewReader reader;
 
@@ -72,10 +74,11 @@ public class LoopsAndBranchingMainView implements View {
                     + THE_NINTH_TASK_INFORMATION + NEW_LINE_BREAK
                     + THE_TENTH_TASK_INFORMATION + NEW_LINE_BREAK
                     + THE_ELEVENTH_TASK_INFORMATION + NEW_LINE_BREAK
-                    + THE_TWELFTH_TASK_INFORMATION);
+                    + THE_TWELFTH_TASK_INFORMATION + NEW_LINE_BREAK
+                    + THE_THIRTEENTH_TASK_INFORMATION);
             int commandNumber = reader.readCommandNumber();
 
-            if (commandNumber > 12 || commandNumber < 0) {
+            if (commandNumber > 13 || commandNumber < 0) {
                 System.out.println(NO_SUCH_TASK_MESSAGE);
                 request.putParameter(LoopsAndBranchingConstant.COMMAND_NUMBER, getViewCommandNumber());
             } else {

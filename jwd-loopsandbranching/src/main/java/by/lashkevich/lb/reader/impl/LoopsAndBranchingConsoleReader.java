@@ -26,6 +26,7 @@ public class LoopsAndBranchingConsoleReader implements LoopsAndBranchingReader {
     private static final String ENTER_FIRST_LINE_POINT_MESSAGE = "Enter the first point of the line";
     private static final String ENTER_SECOND_LINE_POINT_MESSAGE = "Enter the second point of the line";
     private static final String ENTER_LINE_STEP_MESSAGE = "Enter the line step";
+    private static final String ENTER_NUMBER_MESSAGE = "Enter number";
     private final Scanner SCANNER = new Scanner(System.in);
 
     @Override
@@ -182,5 +183,13 @@ public class LoopsAndBranchingConsoleReader implements LoopsAndBranchingReader {
         functionData.add(SCANNER.next());
 
         return functionData;
+    }
+
+    @Override
+    public List<String> readLargestDigitFinderData() throws LoopsAndBranchingReaderException {
+        List<String> numbers = new ArrayList<>();
+        System.out.println(ENTER_NUMBER_MESSAGE);
+        numbers.add(SCANNER.next());
+        return numbers;
     }
 }

@@ -75,6 +75,11 @@ public class LoopsAndBranchingFileReader implements LoopsAndBranchingReader {
         return readInformation(FilePath.TRIGONOMETRIC_FUNCTION_INFO_PATH.getURL());
     }
 
+    @Override
+    public List<String> readLargestDigitFinderData() throws LoopsAndBranchingReaderException {
+        return readInformation(FilePath.LARGEST_DIGIT_FINDER_INFO_PATH.getURL());
+    }
+
     private List<String> readInformation(String filePath) throws LoopsAndBranchingReaderException {
         try {
             List<String> lines = new ArrayList<>();

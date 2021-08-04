@@ -15,6 +15,7 @@ public enum ViewType {
     ACCESS_CHECKER_VIEW(new LoopsAndBranchingAccessCheckerView()),
     FUNCTION_WITH_STEP_VIEW(new LoopsAndBranchingFunctionWithStepView()),
     TRIGONOMETRIC_FUNCTION_VIEW(new LoopsAndBranchingTrigonometricFunctionView()),
+    LARGEST_DIGIT_FINDER_VIEW(new LoopsAndBranchingLargestDigitFinder()),
     DATE_VALIDATOR_VIEW(new LoopsAndBranchingDateValidatorView());
 
     private View view;
