@@ -6,6 +6,7 @@ import by.lashkevich.lb.command.impl.*;
 import java.util.Arrays;
 
 public enum CommandType {
+    ACCESS_CHECKER(new AccessCheckerCommand(), -11),
     POINT_DISTANCE_FROM_ORIGIN_CHECKER(new PointDistanceFromOriginCheckerCommand(), -10),
     LEAST_SQUARE_FINDER(new LeastSquareFinderCommand(),-9),
     DATE_VALIDATOR(new DateValidatorCommand(),-8),
@@ -25,7 +26,8 @@ public enum CommandType {
     TWO_CONDITION_FUNCTION_FORWARD(new TwoConditionFunctionForwardCommand(), 6),
     DATE_VALIDATOR_FORWARD(new DateValidatorForwardCommand(), 7),
     LEAST_SQUARE_FINDER_FORWARD(new LeastSquareFinderForwardCommand(), 8),
-    POINT_DISTANCE_FROM_ORIGIN_FORWARD(new PointDistanceFromOriginForwardCommand(), 9);
+    POINT_DISTANCE_FROM_ORIGIN_FORWARD(new PointDistanceFromOriginForwardCommand(), 9),
+    ACCESS_CHECKER_FORWARD(new AccessCheckerForwardCommand(), 10);
 
     private static final String INVALID_COMMAND_WAS_CHOSEN_ERROR_MESSAGE = "Invalid command was chosen";
     private Command command;

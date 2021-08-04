@@ -12,6 +12,7 @@ public enum ViewType {
     SQUARE_ROOT_FORMULA_VIEW(new LoopsAndBranchingFormulaView()),
     LEAST_SQUARE_FINDER_VIEW(new LoopsAndBranchingLeastSquareFinderView()),
     POINT_DISTANCE_FROM_ORIGIN_VIEW(new LoopsAndBranchingPointDistanceFromOrigin()),
+    ACCESS_CHECKER_VIEW(new LoopsAndBranchingAccessCheckerView()),
     DATE_VALIDATOR_VIEW(new LoopsAndBranchingDateValidatorView());
 
     private View view;

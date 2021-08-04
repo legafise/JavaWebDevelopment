@@ -1,5 +1,6 @@
 package by.lashkevich.lb.reader.impl;
 
+import by.lashkevich.lb.exception.LoopsAndBranchingReaderException;
 import by.lashkevich.lb.reader.LoopsAndBranchingReader;
 
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ public class LoopsAndBranchingConsoleReader implements LoopsAndBranchingReader {
     private static final String ENTER_MONTH_MESSAGE = "Enter month";
     private static final String ENTER_FIRST_NUMBER_MESSAGE = "Enter the first number";
     private static final String ENTER_SECOND_NUMBER_MESSAGE = "Enter the second number";
+    private static final String ENTER_PASSWORD_MESSAGE = "Enter your password to gain access";
     private final Scanner SCANNER = new Scanner(System.in);
 
     @Override
@@ -133,5 +135,13 @@ public class LoopsAndBranchingConsoleReader implements LoopsAndBranchingReader {
         }
 
         return coordinateList;
+    }
+
+    @Override
+    public List<String> readAccessCheckerData() throws LoopsAndBranchingReaderException {
+        List<String> passwords = new ArrayList<>();
+        System.out.println(ENTER_PASSWORD_MESSAGE);
+        passwords.add(SCANNER.next());
+        return passwords;
     }
 }

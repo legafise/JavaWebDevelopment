@@ -22,4 +22,6 @@ public interface LoopsAndBranchingReader {
     List<String> readLeastSquareFinderTaskData() throws LoopsAndBranchingReaderException;
 
     List<String> readPointDistanceFromOriginData() throws LoopsAndBranchingReaderException;
+
+    List<String> readAccessCheckerData() throws LoopsAndBranchingReaderException;
 }

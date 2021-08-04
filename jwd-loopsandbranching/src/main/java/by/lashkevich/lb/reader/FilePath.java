@@ -49,6 +49,12 @@ public enum FilePath {
             return POINT_DISTANCE_FROM_ORIGIN_TASK_INFO_PATH;
         }
     },
+    ACCESS_CHECKER_INFO_PATH {
+        @Override
+        public String getURL() {
+            return ACCESS_CHECKER_TASK_INFO_PATH;
+        }
+    },
     TWO_CONDITION_FUNCTION_INFO_PATH {
         @Override
         public String getURL() {
@@ -74,6 +80,8 @@ public enum FilePath {
             "jwd-loopsandbranching/src/main/resources/info/LeastSquareFinderTaskInfo.txt";
     private static final String POINT_DISTANCE_FROM_ORIGIN_TASK_INFO_PATH =
             "jwd-loopsandbranching/src/main/resources/info/CheckPointDistanceFromOrigin.txt";
+    private static final String ACCESS_CHECKER_TASK_INFO_PATH =
+            "jwd-loopsandbranching/src/main/resources/info/AccessCheckerTaskInfo.txt";
 
     public abstract String getURL();
 }

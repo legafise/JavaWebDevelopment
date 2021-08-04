@@ -60,6 +60,11 @@ public class LoopsAndBranchingFileReader implements LoopsAndBranchingReader {
         return readInformation(FilePath.POINT_DISTANCE_FROM_ORIGIN_INFO_PATH.getURL());
     }
 
+    @Override
+    public List<String> readAccessCheckerData() throws LoopsAndBranchingReaderException {
+        return readInformation(FilePath.ACCESS_CHECKER_INFO_PATH.getURL());
+    }
+
     private List<String> readInformation(String filePath) throws LoopsAndBranchingReaderException {
         try {
             List<String> lines = new ArrayList<>();

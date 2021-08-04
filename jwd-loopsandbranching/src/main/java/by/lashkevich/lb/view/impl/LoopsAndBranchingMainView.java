@@ -33,6 +33,7 @@ public class LoopsAndBranchingMainView implements View {
             "square of two numbers";
     private static final String THE_NINTH_TASK_INFORMATION = "9. Determine which point" +
             "is closer to origin of coordinates.";
+    private static final String THE_TENTH_TASK_INFORMATION = "10. Define available modules by password";
     private LoopsAndBranchingController controller;
     private LoopsAndBranchingMainViewReader reader;
 
@@ -64,10 +65,11 @@ public class LoopsAndBranchingMainView implements View {
                     + THE_SIXTH_TASK_INFORMATION + NEW_LINE_BREAK
                     + THE_SEVENTH_TASK_INFORMATION + NEW_LINE_BREAK
                     + THE_EIGHTH_TASK_INFORMATION + NEW_LINE_BREAK
-                    + THE_NINTH_TASK_INFORMATION);
+                    + THE_NINTH_TASK_INFORMATION + NEW_LINE_BREAK
+                    + THE_TENTH_TASK_INFORMATION);
             int commandNumber = reader.readCommandNumber();
 
-            if (commandNumber > 9 || commandNumber < 0) {
+            if (commandNumber > 10 || commandNumber < 0) {
                 System.out.println(NO_SUCH_TASK_MESSAGE);
                 request.putParameter(LoopsAndBranchingConstant.COMMAND_NUMBER, getViewCommandNumber());
             } else {
