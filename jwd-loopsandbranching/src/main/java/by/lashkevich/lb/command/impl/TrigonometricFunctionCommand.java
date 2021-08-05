@@ -31,7 +31,7 @@ public class TrigonometricFunctionCommand implements Command {
             Map<Double, Double> result = functionCalculatorService
                     .calculateTrigonometricFunction(variables.get(0), variables.get(1), variables.get(2));
             FunctionReporter.reportFunctionWithStepInfo(variables);
-            FunctionReporter.reportTrigonometricFunctionResult(result);
+            FunctionReporter.reportTableFunctionResult(result);
             return ViewType.MAIN_VIEW.getView();
         } catch (LoopsAndBranchingTransformerException | LoopsAndBranchingServiceException e) {
             throw new LoopsAndBranchingCommandException(e);

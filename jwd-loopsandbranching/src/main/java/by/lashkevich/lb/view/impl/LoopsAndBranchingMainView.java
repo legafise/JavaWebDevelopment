@@ -40,6 +40,8 @@ public class LoopsAndBranchingMainView implements View {
             "function F (x) on the segment [a, b] with step h";
     private static final String THE_THIRTEENTH_TASK_INFORMATION = "13. Find the largest digit of" +
             "a given natural number";
+    private static final String THE_FOURTEENTH_TASK_INFORMATION = "14. Make a table of the values" +
+            "of the function y = 5 - x^2 / 2 on the segment [-5; 5] with a step of 0.5";
     private LoopsAndBranchingController controller;
     private LoopsAndBranchingMainViewReader reader;
 
@@ -75,10 +77,11 @@ public class LoopsAndBranchingMainView implements View {
                     + THE_TENTH_TASK_INFORMATION + NEW_LINE_BREAK
                     + THE_ELEVENTH_TASK_INFORMATION + NEW_LINE_BREAK
                     + THE_TWELFTH_TASK_INFORMATION + NEW_LINE_BREAK
-                    + THE_THIRTEENTH_TASK_INFORMATION);
+                    + THE_THIRTEENTH_TASK_INFORMATION + NEW_LINE_BREAK
+                    + THE_FOURTEENTH_TASK_INFORMATION);
             int commandNumber = reader.readCommandNumber();
 
-            if (commandNumber > 13 || commandNumber < 0) {
+            if (commandNumber > 14 || commandNumber < 0) {
                 System.out.println(NO_SUCH_TASK_MESSAGE);
                 request.putParameter(LoopsAndBranchingConstant.COMMAND_NUMBER, getViewCommandNumber());
             } else {

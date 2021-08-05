@@ -8,7 +8,11 @@ import java.util.Map;
 public interface FunctionCalculatorService {
     double calculateTwoConditionFunction(double x);
 
-    List<Double> calculateFunctionWithStep(double a, double b, double h) throws LoopsAndBranchingServiceException;
+    List<Double> calculateFunctionWithStep(double a, double b,
+                                           double h) throws LoopsAndBranchingServiceException;
 
-    Map<Double, Double> calculateTrigonometricFunction(double a, double b, double h) throws LoopsAndBranchingServiceException;
+    Map<Double, Double> calculateTrigonometricFunction(double a, double b,
+                                                       double h) throws LoopsAndBranchingServiceException;
+
+    Map<Double, Double> calculateFunctionWithoutDataEntry();
 }

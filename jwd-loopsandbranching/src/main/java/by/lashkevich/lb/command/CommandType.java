@@ -33,7 +33,8 @@ public enum CommandType {
     ACCESS_CHECKER_FORWARD(new AccessCheckerForwardCommand(), 10),
     TRIGONOMETRIC_FUNCTION_FORWARD(new TrigonometricFunctionForwardCommand(), 11),
     FUNCTION_WITH_STEP_FORWARD(new FunctionWithStepForwardCommand(), 12),
-    LARGEST_DIGIT_FINDER_FORWARD(new LargestDigitFinderForwardCommand(), 13);
+    LARGEST_DIGIT_FINDER_FORWARD(new LargestDigitFinderForwardCommand(), 13),
+    FUNCTION_WITHOUT_DATA_ENTRY_CALCULATOR(new FunctionWithoutDataEntryCommand(), 14);
 
     private static final String INVALID_COMMAND_WAS_CHOSEN_ERROR_MESSAGE = "Invalid command was chosen";
     private Command command;
