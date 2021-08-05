@@ -1,6 +1,5 @@
 package by.lashkevich.lb.reader.impl;
 
-import by.lashkevich.lb.exception.LoopsAndBranchingReaderException;
 import by.lashkevich.lb.reader.LoopsAndBranchingReader;
 
 import java.util.ArrayList;
@@ -27,6 +26,8 @@ public class LoopsAndBranchingConsoleReader implements LoopsAndBranchingReader {
     private static final String ENTER_SECOND_LINE_POINT_MESSAGE = "Enter the second point of the line";
     private static final String ENTER_LINE_STEP_MESSAGE = "Enter the line step";
     private static final String ENTER_NUMBER_MESSAGE = "Enter number";
+    private static final String ENTER_NUMBER_OF_FOUR_OR_MORE_DIGITS_MESSAGE = "Enter a number of" +
+            " three or more digits";
     private final Scanner SCANNER = new Scanner(System.in);
 
     @Override
@@ -148,7 +149,7 @@ public class LoopsAndBranchingConsoleReader implements LoopsAndBranchingReader {
     }
 
     @Override
-    public List<String> readAccessCheckerData() throws LoopsAndBranchingReaderException {
+    public List<String> readAccessCheckerData() {
         List<String> passwords = new ArrayList<>();
         System.out.println(ENTER_PASSWORD_MESSAGE);
         passwords.add(SCANNER.next());
@@ -156,7 +157,7 @@ public class LoopsAndBranchingConsoleReader implements LoopsAndBranchingReader {
     }
 
     @Override
-    public List<String> readFunctionWithStepData() throws LoopsAndBranchingReaderException {
+    public List<String> readFunctionWithStepData() {
         List<String> functionData = new ArrayList<>();
         System.out.println(ENTER_FIRST_LINE_POINT_MESSAGE);
         functionData.add(SCANNER.next());
@@ -171,7 +172,7 @@ public class LoopsAndBranchingConsoleReader implements LoopsAndBranchingReader {
     }
 
     @Override
-    public List<String> readTrigonometricFunctionData() throws LoopsAndBranchingReaderException {
+    public List<String> readTrigonometricFunctionData() {
         List<String> functionData = new ArrayList<>();
         System.out.println(ENTER_FIRST_LINE_POINT_MESSAGE);
         functionData.add(SCANNER.next());
@@ -186,9 +187,17 @@ public class LoopsAndBranchingConsoleReader implements LoopsAndBranchingReader {
     }
 
     @Override
-    public List<String> readLargestDigitFinderData() throws LoopsAndBranchingReaderException {
+    public List<String> readLargestDigitFinderData() {
         List<String> numbers = new ArrayList<>();
         System.out.println(ENTER_NUMBER_MESSAGE);
+        numbers.add(SCANNER.next());
+        return numbers;
+    }
+
+    @Override
+    public List<String> readArithmeticProgressionCheckerData() {
+        List<String> numbers = new ArrayList<>();
+        System.out.println(ENTER_NUMBER_OF_FOUR_OR_MORE_DIGITS_MESSAGE);
         numbers.add(SCANNER.next());
         return numbers;
     }

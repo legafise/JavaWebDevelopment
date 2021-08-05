@@ -42,6 +42,8 @@ public class LoopsAndBranchingMainView implements View {
             "a given natural number";
     private static final String THE_FOURTEENTH_TASK_INFORMATION = "14. Make a table of the values" +
             "of the function y = 5 - x^2 / 2 on the segment [-5; 5] with a step of 0.5";
+    private static final String THE_FIFTEENTH_TASK_INFORMATION = "15. For a given natural number, " +
+            "determine whether its digits form an arithmetic progression";
     private LoopsAndBranchingController controller;
     private LoopsAndBranchingMainViewReader reader;
 
@@ -78,10 +80,11 @@ public class LoopsAndBranchingMainView implements View {
                     + THE_ELEVENTH_TASK_INFORMATION + NEW_LINE_BREAK
                     + THE_TWELFTH_TASK_INFORMATION + NEW_LINE_BREAK
                     + THE_THIRTEENTH_TASK_INFORMATION + NEW_LINE_BREAK
-                    + THE_FOURTEENTH_TASK_INFORMATION);
+                    + THE_FOURTEENTH_TASK_INFORMATION + NEW_LINE_BREAK
+                    + THE_FIFTEENTH_TASK_INFORMATION);
             int commandNumber = reader.readCommandNumber();
 
-            if (commandNumber > 14 || commandNumber < 0) {
+            if (commandNumber > 15 || commandNumber < 0) {
                 System.out.println(NO_SUCH_TASK_MESSAGE);
                 request.putParameter(LoopsAndBranchingConstant.COMMAND_NUMBER, getViewCommandNumber());
             } else {

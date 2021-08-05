@@ -13,14 +13,14 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
-public class LoopsAndBranchingLargestDigitFinder implements View {
+public class LoopsAndBranchingArithmeticProgressionCheckerView implements View {
     private static final Logger LOGGER = LogManager.getRootLogger();
     private static final String FILE_NOT_FOUND_MESSAGE = "File for reading not found";
     private static final int MAIN_FORWARD_COMMAND_NUMBER = -1;
     private LoopsAndBranchingController controller;
     private LoopsAndBranchingReader dataReader;
 
-    public LoopsAndBranchingLargestDigitFinder() {
+    public LoopsAndBranchingArithmeticProgressionCheckerView() {
         controller = new LoopsAndBranchingController();
     }
 
@@ -30,9 +30,9 @@ public class LoopsAndBranchingLargestDigitFinder implements View {
 
         try {
             dataReader = LoopsAndBranchingReaderFactory.getInstance().createDataCreator();
-            List<String> symbolsNumbersData = dataReader.readLargestDigitFinderData();
+            List<String> arithmeticProgressionData = dataReader.readArithmeticProgressionCheckerData();
             request.putParameter(LoopsAndBranchingConstant.COMMAND_NUMBER, getViewCommandNumber());
-            request.putParameter(LoopsAndBranchingConstant.DATA_NAME, symbolsNumbersData);
+            request.putParameter(LoopsAndBranchingConstant.DATA_NAME, arithmeticProgressionData);
             controller.doRequest(request).executeView();
         } catch (LoopsAndBranchingReaderException e) {
             LOGGER.log(Level.ERROR, e);
@@ -44,6 +44,6 @@ public class LoopsAndBranchingLargestDigitFinder implements View {
 
     @Override
     public int getViewCommandNumber() {
-        return -14;
+        return -15;
     }
 }

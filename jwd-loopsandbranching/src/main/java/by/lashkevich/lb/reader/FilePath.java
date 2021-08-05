@@ -72,6 +72,11 @@ public enum FilePath {
         public String getURL() {
             return LARGEST_DIGIT_FINDER_TASK_INFO_PATH;
         }
+    }, ARITHMETIC_PROGRESSION_CHECKER_INFO_PATH {
+        @Override
+        public String getURL() {
+            return ARITHMETIC_PROGRESSION_CHECKER_TASK_INFO_PATH;
+        }
     },
     TWO_CONDITION_FUNCTION_INFO_PATH {
         @Override
@@ -106,6 +111,8 @@ public enum FilePath {
             "jwd-loopsandbranching/src/main/resources/info/TrigonometricFunctionTaskInfo.txt";
     private static final String LARGEST_DIGIT_FINDER_TASK_INFO_PATH =
             "jwd-loopsandbranching/src/main/resources/info/LargestDigitFinderTaskInfo.txt";
+    private static final String ARITHMETIC_PROGRESSION_CHECKER_TASK_INFO_PATH =
+            "jwd-loopsandbranching/src/main/resources/info/ArithmeticProgressionCheckerTaskInfo.txt";
 
     public abstract String getURL();
 }

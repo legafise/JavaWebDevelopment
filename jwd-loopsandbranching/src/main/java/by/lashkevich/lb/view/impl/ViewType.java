@@ -11,11 +11,12 @@ public enum ViewType {
     TWO_CONDITION_FUNCTION_VIEW(new LoopsAndBranchingTwoConditionFunctionView()),
     SQUARE_ROOT_FORMULA_VIEW(new LoopsAndBranchingFormulaView()),
     LEAST_SQUARE_FINDER_VIEW(new LoopsAndBranchingLeastSquareFinderView()),
-    POINT_DISTANCE_FROM_ORIGIN_VIEW(new LoopsAndBranchingPointDistanceFromOrigin()),
+    POINT_DISTANCE_FROM_ORIGIN_VIEW(new LoopsAndBranchingPointDistanceFromOriginView()),
     ACCESS_CHECKER_VIEW(new LoopsAndBranchingAccessCheckerView()),
     FUNCTION_WITH_STEP_VIEW(new LoopsAndBranchingFunctionWithStepView()),
     TRIGONOMETRIC_FUNCTION_VIEW(new LoopsAndBranchingTrigonometricFunctionView()),
-    LARGEST_DIGIT_FINDER_VIEW(new LoopsAndBranchingLargestDigitFinder()),
+    LARGEST_DIGIT_FINDER_VIEW(new LoopsAndBranchingLargestDigitFinderView()),
+    ARITHMETIC_PROGRESSION_CHECKER_VIEW(new LoopsAndBranchingArithmeticProgressionCheckerView()),
     DATE_VALIDATOR_VIEW(new LoopsAndBranchingDateValidatorView());
 
     private View view;

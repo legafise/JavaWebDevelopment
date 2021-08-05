@@ -80,6 +80,11 @@ public class LoopsAndBranchingFileReader implements LoopsAndBranchingReader {
         return readInformation(FilePath.LARGEST_DIGIT_FINDER_INFO_PATH.getURL());
     }
 
+    @Override
+    public List<String> readArithmeticProgressionCheckerData() throws LoopsAndBranchingReaderException {
+        return readInformation(FilePath.ARITHMETIC_PROGRESSION_CHECKER_INFO_PATH.getURL());
+    }
+
     private List<String> readInformation(String filePath) throws LoopsAndBranchingReaderException {
         try {
             List<String> lines = new ArrayList<>();

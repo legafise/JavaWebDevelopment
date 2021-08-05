@@ -6,6 +6,7 @@ import by.lashkevich.lb.command.impl.*;
 import java.util.Arrays;
 
 public enum CommandType {
+    ARITHMETIC_PROGRESSION_CHECKER(new ArithmeticProgressionCheckerCommand(), -15),
     LARGEST_DIGIT_FINDER(new LargestDigitFinderCommand(), -14),
     TRIGONOMETRIC_FUNCTION_CALCULATOR(new TrigonometricFunctionCommand(), -13),
     FUNCTION_WITH_STEP_CALCULATOR(new FunctionWithStepCommand(), -12),
@@ -34,7 +35,8 @@ public enum CommandType {
     TRIGONOMETRIC_FUNCTION_FORWARD(new TrigonometricFunctionForwardCommand(), 11),
     FUNCTION_WITH_STEP_FORWARD(new FunctionWithStepForwardCommand(), 12),
     LARGEST_DIGIT_FINDER_FORWARD(new LargestDigitFinderForwardCommand(), 13),
-    FUNCTION_WITHOUT_DATA_ENTRY_CALCULATOR(new FunctionWithoutDataEntryCommand(), 14);
+    FUNCTION_WITHOUT_DATA_ENTRY_CALCULATOR(new FunctionWithoutDataEntryCommand(), 14),
+    ARITHMETIC_PROGRESSION_CHECKER_FORWARD(new ArithmeticProgressionCheckerForwardCommand(), 15);
 
     private static final String INVALID_COMMAND_WAS_CHOSEN_ERROR_MESSAGE = "Invalid command was chosen";
     private Command command;
