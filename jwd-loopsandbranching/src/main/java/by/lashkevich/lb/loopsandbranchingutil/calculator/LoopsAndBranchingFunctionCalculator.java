@@ -35,7 +35,7 @@ public final class LoopsAndBranchingFunctionCalculator {
 
     public static Map<Double, Double> calculateFunctionWithoutDataEntry() {
         Map<Double, Double> functionValues = new LinkedHashMap<>();
-        for (double x = -5; x < 5; x += 0.5) {
+        for (double x = -5; x <= 5; x += 0.5) {
             double functionResult = 5 - Math.pow(x, 2) / 2;
             functionValues.put(x, functionResult);
         }

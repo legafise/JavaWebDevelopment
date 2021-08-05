@@ -5,8 +5,11 @@ public final class LoopsAndBranchingDigitFinder {
     }
 
     public static int findLargestDigit(long number) {
-        int max = 0;
+        if (number < 0) {
+            number *= -1;
+        }
 
+        int max = 0;
         while (number > 0) {
             if (number % 10 > max) max = (int) (number % 10);
             number /= 10;
