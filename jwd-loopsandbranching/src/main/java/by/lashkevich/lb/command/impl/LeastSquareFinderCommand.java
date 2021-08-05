@@ -8,7 +8,7 @@ import by.lashkevich.lb.exception.LoopsAndBranchingTransformerException;
 import by.lashkevich.lb.loopsandbranchingutil.transformer.LoopsAndBranchingTransformer;
 import by.lashkevich.lb.reporter.LeastSquareFinderReporter;
 import by.lashkevich.lb.service.LeastSquareFinderService;
-import by.lashkevich.lb.service.impl.LoopsAndBranchingLeastSquareFinderService;
+import by.lashkevich.lb.service.impl.LoopsAndBranchingSquaredNumberFinderService;
 import by.lashkevich.lb.view.View;
 import by.lashkevich.lb.view.impl.ViewType;
 
@@ -18,7 +18,7 @@ public class LeastSquareFinderCommand implements Command {
     private LeastSquareFinderService leastSquareFinderService;
 
     public LeastSquareFinderCommand() {
-        this.leastSquareFinderService = new LoopsAndBranchingLeastSquareFinderService();
+        this.leastSquareFinderService = new LoopsAndBranchingSquaredNumberFinderService();
     }
 
     @Override
@@ -27,7 +27,7 @@ public class LeastSquareFinderCommand implements Command {
             List<Double> numbers = LoopsAndBranchingTransformer.transformStringsToDoubles((List<String>) request
                     .getParameter(LoopsAndBranchingConstant.DATA_NAME));
             double leastSquare = leastSquareFinderService
-                    .findLeastSquare(numbers.get(0), numbers.get(1));
+                    .findLeastSquaredNumber(numbers.get(0), numbers.get(1));
             LeastSquareFinderReporter.reportNumbersInfo(numbers.get(0), numbers.get(1));
             LeastSquareFinderReporter.reportLeastSquareFindingResult(leastSquare);
             return ViewType.MAIN_VIEW.getView();

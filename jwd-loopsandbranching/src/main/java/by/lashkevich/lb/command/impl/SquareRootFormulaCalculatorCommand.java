@@ -8,7 +8,7 @@ import by.lashkevich.lb.exception.LoopsAndBranchingTransformerException;
 import by.lashkevich.lb.loopsandbranchingutil.transformer.LoopsAndBranchingTransformer;
 import by.lashkevich.lb.reporter.SquareRootFormulaReporter;
 import by.lashkevich.lb.service.FormulaCalculatorService;
-import by.lashkevich.lb.service.impl.LoopsAndBranchingFormulaCalculatorService;
+import by.lashkevich.lb.service.impl.LoopsAndBranchingFormulaService;
 import by.lashkevich.lb.view.View;
 import by.lashkevich.lb.view.impl.ViewType;
 
@@ -18,7 +18,7 @@ public class SquareRootFormulaCalculatorCommand implements Command {
     private FormulaCalculatorService formulaCalculatorService;
 
     public SquareRootFormulaCalculatorCommand() {
-        this.formulaCalculatorService = new LoopsAndBranchingFormulaCalculatorService();
+        this.formulaCalculatorService = new LoopsAndBranchingFormulaService();
     }
 
     @Override

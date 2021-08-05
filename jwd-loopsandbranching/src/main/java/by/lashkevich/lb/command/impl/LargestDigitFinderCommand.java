@@ -6,10 +6,9 @@ import by.lashkevich.lb.controller.Request;
 import by.lashkevich.lb.exception.LoopsAndBranchingCommandException;
 import by.lashkevich.lb.exception.LoopsAndBranchingTransformerException;
 import by.lashkevich.lb.loopsandbranchingutil.transformer.LoopsAndBranchingTransformer;
-import by.lashkevich.lb.reporter.FindNumberOfSymbolReporter;
 import by.lashkevich.lb.reporter.LargestDigitFinderReporter;
 import by.lashkevich.lb.service.LargestDigitFinderService;
-import by.lashkevich.lb.service.impl.LoopsAndBranchingLargestDigitFinderService;
+import by.lashkevich.lb.service.impl.LoopsAndBranchingDigitService;
 import by.lashkevich.lb.view.View;
 import by.lashkevich.lb.view.impl.ViewType;
 
@@ -19,7 +18,7 @@ public class LargestDigitFinderCommand implements Command {
     private LargestDigitFinderService largestDigitFinderService;
 
     public LargestDigitFinderCommand() {
-        this.largestDigitFinderService = new LoopsAndBranchingLargestDigitFinderService();
+        this.largestDigitFinderService = new LoopsAndBranchingDigitService();
     }
 
     @Override
