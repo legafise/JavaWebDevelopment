@@ -1,5 +1,9 @@
 package by.lashkevich.lb.loopsandbranchingutil.finder;
 
+/**
+ * Utilitarian class for finding least square
+ * @author Roman Lashkevich
+ */
 public final class LoopsAndBranchingLeastSquareFinder {
     private LoopsAndBranchingLeastSquareFinder() {
     }

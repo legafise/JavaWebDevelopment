@@ -6,6 +6,10 @@ import by.lashkevich.lb.loopsandbranchingutil.calculator.LoopsAndBranchingTriang
 import by.lashkevich.lb.service.TriangleService;
 import by.lashkevich.lb.loopsandbranchingutil.validator.LoopsAndBranchingTriangleValidator;
 
+/**
+ * @see by.lashkevich.lb.service.TriangleService
+ * @author Roman Lashkevich
+ */
 public class LoopsAndBranchingTriangleService implements TriangleService {
     private static final String IMPOSSIBLE_TRIANGLE_ERROR_MESSAGE = "Impossible triangle introduced";
 

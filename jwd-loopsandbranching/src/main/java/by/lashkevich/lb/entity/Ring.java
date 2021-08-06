@@ -2,6 +2,10 @@ package by.lashkevich.lb.entity;
 
 import java.util.Objects;
 
+/**
+ * Class created to work within a job with rings
+ * @author RomalLashkevich
+ */
 public class Ring {
     private double innerRadius;
     private double outerRadius;

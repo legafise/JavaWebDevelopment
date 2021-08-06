@@ -6,6 +6,10 @@ import by.lashkevich.lb.view.View;
 import by.lashkevich.lb.view.impl.LoopsAndBranchingTriangleView;
 import by.lashkevich.lb.view.impl.ViewType;
 
+/**
+ * @author Roman Lashkevich
+ * @see by.lashkevich.lb.command.Command
+ */
 public class TriangleCalculatorForwardCommand implements Command {
 
     @Override

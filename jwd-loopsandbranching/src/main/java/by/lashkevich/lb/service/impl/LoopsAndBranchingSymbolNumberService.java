@@ -5,6 +5,10 @@ import by.lashkevich.lb.service.SymbolNumberService;
 
 import java.util.Map;
 
+/**
+ * @see by.lashkevich.lb.service.SymbolNumberService
+ * @author Roman Lashkevich
+ */
 public class LoopsAndBranchingSymbolNumberService implements SymbolNumberService {
     @Override
     public Map<Character, Integer> find(char symbol) {

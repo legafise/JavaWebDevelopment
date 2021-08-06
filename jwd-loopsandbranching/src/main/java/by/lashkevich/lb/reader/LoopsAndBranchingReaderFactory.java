@@ -2,6 +2,10 @@ package by.lashkevich.lb.reader;
 
 import by.lashkevich.lb.exception.LoopsAndBranchingReaderException;
 
+/**
+ * Factory for choosing implementation.
+ * @author Roman Lashkevich
+ */
 public class LoopsAndBranchingReaderFactory {
     private static LoopsAndBranchingReaderFactory instance;
     private int dataReaderNumber;

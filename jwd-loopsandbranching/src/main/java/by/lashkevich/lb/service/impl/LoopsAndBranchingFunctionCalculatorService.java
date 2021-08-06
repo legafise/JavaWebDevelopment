@@ -8,6 +8,10 @@ import by.lashkevich.lb.service.FunctionCalculatorService;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @see by.lashkevich.lb.service.FunctionCalculatorService
+ * @author Roman Lashkevich
+ */
 public class LoopsAndBranchingFunctionCalculatorService implements FunctionCalculatorService {
     private static final String INCORRECT_DATA_MESSAGE = "Incorrect data was entered";
 

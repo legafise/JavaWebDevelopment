@@ -2,6 +2,10 @@ package by.lashkevich.lb.loopsandbranchingutil.validator;
 
 import by.lashkevich.lb.entity.LoopsAndBranchingDate;
 
+/**
+ * Utilitarian class for date validation
+ * @author Roman Lashkevich
+ */
 public final class LoopsAndBranchingDateValidator {
     private LoopsAndBranchingDateValidator() {
     }

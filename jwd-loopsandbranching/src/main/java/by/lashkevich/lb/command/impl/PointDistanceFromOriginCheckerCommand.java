@@ -16,6 +16,10 @@ import by.lashkevich.lb.view.impl.ViewType;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Roman Lashkevich
+ * @see by.lashkevich.lb.command.Command
+ */
 public class PointDistanceFromOriginCheckerCommand implements Command {
     private PointService pointService;
 

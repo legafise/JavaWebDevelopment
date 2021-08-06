@@ -2,6 +2,10 @@ package by.lashkevich.lb.entity;
 
 import java.util.Objects;
 
+/**
+ * Class created to work within a job with date validation
+ * @author RomalLashkevich
+ */
 public class LoopsAndBranchingDate {
     private int day;
     private int month;

@@ -1,5 +1,9 @@
 package by.lashkevich.lb.loopsandbranchingutil.finder;
 
+/**
+ * Utilitarian class for finding digits in numbers
+ * @author Roman Lashkevich
+ */
 public final class LoopsAndBranchingDigitFinder {
     private LoopsAndBranchingDigitFinder() {
     }

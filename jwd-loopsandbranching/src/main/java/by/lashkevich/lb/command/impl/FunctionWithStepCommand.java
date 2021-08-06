@@ -15,6 +15,10 @@ import by.lashkevich.lb.view.impl.ViewType;
 
 import java.util.List;
 
+/**
+ * @author Roman Lashkevich
+ * @see by.lashkevich.lb.command.Command
+ */
 public class FunctionWithStepCommand implements Command {
     private FunctionCalculatorService functionCalculatorService;
 

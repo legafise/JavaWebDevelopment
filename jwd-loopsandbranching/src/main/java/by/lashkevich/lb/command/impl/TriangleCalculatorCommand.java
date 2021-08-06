@@ -17,6 +17,10 @@ import by.lashkevich.lb.view.impl.ViewType;
 
 import java.util.List;
 
+/**
+ * @author Roman Lashkevich
+ * @see by.lashkevich.lb.command.Command
+ */
 public class TriangleCalculatorCommand implements Command {
     private TriangleService triangleService;
 

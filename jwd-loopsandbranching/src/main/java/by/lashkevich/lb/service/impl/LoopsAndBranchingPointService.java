@@ -4,6 +4,10 @@ import by.lashkevich.lb.entity.Point;
 import by.lashkevich.lb.loopsandbranchingutil.checker.LoopsAndBranchingPointChecker;
 import by.lashkevich.lb.service.PointService;
 
+/**
+ * @see by.lashkevich.lb.service.PointService
+ * @author Roman Lashkevich
+ */
 public class LoopsAndBranchingPointService implements PointService {
     @Override
     public boolean checkAPoint(Point point) {

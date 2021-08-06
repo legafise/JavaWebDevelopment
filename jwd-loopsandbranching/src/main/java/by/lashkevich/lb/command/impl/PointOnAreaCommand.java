@@ -16,6 +16,10 @@ import by.lashkevich.lb.view.impl.ViewType;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * @author Roman Lashkevich
+ * @see by.lashkevich.lb.command.Command
+ */
 public class PointOnAreaCommand implements Command {
     private PointService pointService;
 

@@ -6,6 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Loops and branching reader implementation for
+ * reading data from console
+ * @author Roman Lashkevich
+ * @see by.lashkevich.lb.reader.LoopsAndBranchingReader
+ */
 public class LoopsAndBranchingConsoleReader implements LoopsAndBranchingReader {
     private static final String ENTER_POINT_COORDINATES_MESSAGE = "Enter the coordinates of the point №";
     private static final String ENTER_X_COORDINATE_MESSAGE = "Enter the x coordinate";

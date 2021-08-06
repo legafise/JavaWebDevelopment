@@ -2,6 +2,10 @@ package by.lashkevich.lb.loopsandbranchingutil.checker;
 
 import by.lashkevich.lb.entity.Point;
 
+/**
+ * Utilitarian class for checking point
+ * @author Roman Lashkevich
+ */
 public final class LoopsAndBranchingPointChecker {
     private static final String FIRST_POINT_IS_CLOSER_MESSAGE = "The first point is closer";
     private static final String SECOND_POINT_IS_CLOSER_MESSAGE = "The second point is closer";

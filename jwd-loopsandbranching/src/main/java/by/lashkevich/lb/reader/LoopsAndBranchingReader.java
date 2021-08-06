@@ -4,6 +4,10 @@ import by.lashkevich.lb.exception.LoopsAndBranchingReaderException;
 
 import java.util.List;
 
+/**
+ * Interface for reading data for tasks
+ * @author Roman Lashkevich
+ */
 public interface LoopsAndBranchingReader {
     List<String> readTriangleData() throws LoopsAndBranchingReaderException;
 

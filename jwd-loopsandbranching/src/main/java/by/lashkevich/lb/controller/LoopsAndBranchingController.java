@@ -11,10 +11,20 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * Class that handles requests from the view layer
+ * @author Roman Lashkevich
+ */
 public class LoopsAndBranchingController {
     private static final String NO_COMMAND_ERROR_MESSAGE = "There is't command number";
     private static final Logger LOGGER = LogManager.getRootLogger();
 
+    /**
+     * Request and exception handler
+     * @param request
+     * @return view for any task or menu
+     * @see by.lashkevich.lb.controller.Request
+     */
     public View doRequest(Request request) {
         try {
             Object commandNumber = request.getParameter(LoopsAndBranchingConstant.COMMAND_NUMBER);

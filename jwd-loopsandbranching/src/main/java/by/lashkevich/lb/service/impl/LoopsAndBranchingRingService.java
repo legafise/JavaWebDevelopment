@@ -6,6 +6,10 @@ import by.lashkevich.lb.loopsandbranchingutil.calculator.LoopsAndBranchingRingCa
 import by.lashkevich.lb.loopsandbranchingutil.validator.LoopsAndBranchingRingValidator;
 import by.lashkevich.lb.service.RingService;
 
+/**
+ * @see by.lashkevich.lb.service.RingService
+ * @author Roman Lashkevich
+ */
 public class LoopsAndBranchingRingService implements RingService {
     private static final String IMPOSSIBLE_RING_ERROR_MESSAGE = "Impossible ring was introduced";
 

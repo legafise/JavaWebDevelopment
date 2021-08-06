@@ -4,6 +4,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Class for task with access checking
+ * @author Roman Lashkevich
+ */
 public enum AccessType {
     A("A", Arrays.asList(9583, 1747)),
     B("B", Arrays.asList(9583, 1747, 3331, 7922)),

@@ -3,6 +3,11 @@ package by.lashkevich.lb.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Sheath for Map
+ * @author Roman Lashkevich
+ * @see java.util.Map
+ */
 public class Request {
     private Map<String, Object> parameters;
 

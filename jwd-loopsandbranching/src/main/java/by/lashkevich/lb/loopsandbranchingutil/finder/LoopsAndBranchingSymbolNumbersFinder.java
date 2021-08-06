@@ -3,6 +3,10 @@ package by.lashkevich.lb.loopsandbranchingutil.finder;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Utilitarian class for finding symbol numbers
+ * @author Roman Lashkevich
+ */
 public final class LoopsAndBranchingSymbolNumbersFinder {
     private LoopsAndBranchingSymbolNumbersFinder() {
     }

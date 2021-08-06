@@ -5,6 +5,11 @@ import by.lashkevich.lb.exception.LoopsAndBranchingTransformerException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Utilitarian class for transform String lists to
+ * other data types
+ * @author Roman Lashkevich
+ */
 public final class LoopsAndBranchingTransformer {
     private static final String INCORRECT_DATA_WAS_ENTERED = "Incorrect data was entered";
 

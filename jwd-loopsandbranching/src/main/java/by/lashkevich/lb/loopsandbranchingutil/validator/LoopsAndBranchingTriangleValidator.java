@@ -5,6 +5,10 @@ import by.lashkevich.lb.loopsandbranchingutil.finder.LoopsAndBranchingSideFinder
 
 import java.util.List;
 
+/**
+ * Utilitarian class for triangle validation
+ * @author Roman Lashkevich
+ */
 public final class LoopsAndBranchingTriangleValidator {
     private LoopsAndBranchingTriangleValidator() {
     }

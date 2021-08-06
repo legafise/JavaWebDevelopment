@@ -8,6 +8,10 @@ import java.util.List;
 import static by.lashkevich.lb.loopsandbranchingutil.finder.LoopsAndBranchingSideFinder.findTriangleSide;
 import static java.lang.Math.sqrt;
 
+/**
+ * Utilitarian class for calculation triangle components
+ * @author Roman Lashkevich
+ */
 public final class LoopsAndBranchingTriangleCalculator {
     private LoopsAndBranchingTriangleCalculator() {
     }

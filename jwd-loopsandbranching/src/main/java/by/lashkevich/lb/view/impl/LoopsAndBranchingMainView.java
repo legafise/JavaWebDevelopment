@@ -7,6 +7,13 @@ import by.lashkevich.lb.reader.LoopsAndBranchingMainViewReader;
 import by.lashkevich.lb.reader.LoopsAndBranchingReaderFactory;
 import by.lashkevich.lb.view.View;
 
+/**
+ * Class {@code Object} serves as a menu for selecting a task
+ * Implements View interface
+ * @author Roman Lashkevich
+ * @see by.lashkevich.lb.view.View
+ * @see by.lashkevich.lb.reader.LoopsAndBranchingMainViewReader
+ */
 public class LoopsAndBranchingMainView implements View {
     private static final String SELECT_TASK_MESSAGE = "Enter the number and select the task: ";
     private static final String SELECT_DATA_ENTRY_TYPE_MESSAGE = "Select the type of data entry: ";

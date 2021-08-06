@@ -13,6 +13,10 @@ import by.lashkevich.lb.view.impl.ViewType;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author Roman Lashkevich
+ * @see by.lashkevich.lb.command.Command
+ */
 public class SymbolNumbersFinderCommand implements Command {
     private SymbolNumberService symbolNumberService;
 

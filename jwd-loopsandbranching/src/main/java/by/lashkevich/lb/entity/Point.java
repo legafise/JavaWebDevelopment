@@ -2,6 +2,10 @@ package by.lashkevich.lb.entity;
 
 import java.util.Objects;
 
+/**
+ * Class created to work within a job with points
+ * @author RomalLashkevich
+ */
 public class Point {
     private double x;
     private double y;

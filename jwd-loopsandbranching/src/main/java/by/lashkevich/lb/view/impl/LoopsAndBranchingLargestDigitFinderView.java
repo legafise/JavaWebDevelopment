@@ -13,6 +13,14 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
+/**
+ * Class for receiving and sending information to the controller
+ * on a job with finding the largest digit in a number
+ * Implements View interface
+ * @author Roman Lashkevich
+ * @see by.lashkevich.lb.view.View
+ * @see by.lashkevich.lb.reader.LoopsAndBranchingReader
+ */
 public class LoopsAndBranchingLargestDigitFinderView implements View {
     private static final Logger LOGGER = LogManager.getRootLogger();
     private static final String FILE_NOT_FOUND_MESSAGE = "File for reading not found";

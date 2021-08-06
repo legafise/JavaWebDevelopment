@@ -5,6 +5,10 @@ import by.lashkevich.lb.entity.Triangle;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Utilitarian class for triangle sids finding
+ * @author Roman Lashkevich
+ */
 public final class LoopsAndBranchingSideFinder {
     private LoopsAndBranchingSideFinder() {
     }

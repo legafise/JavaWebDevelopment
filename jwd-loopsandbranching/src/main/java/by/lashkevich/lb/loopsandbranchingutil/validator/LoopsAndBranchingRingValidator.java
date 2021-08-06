@@ -2,6 +2,10 @@ package by.lashkevich.lb.loopsandbranchingutil.validator;
 
 import by.lashkevich.lb.entity.Ring;
 
+/**
+ * Utilitarian class for ring validation
+ * @author Roman Lashkevich
+ */
 public final class LoopsAndBranchingRingValidator {
     private LoopsAndBranchingRingValidator() {
     }

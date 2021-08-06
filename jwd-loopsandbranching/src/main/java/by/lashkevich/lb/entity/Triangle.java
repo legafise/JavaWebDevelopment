@@ -2,6 +2,10 @@ package by.lashkevich.lb.entity;
 
 import java.util.Objects;
 
+/**
+ * Class created to work within a job with triangles
+ * @author RomalLashkevich
+ */
 public class Triangle {
     private Point firstPoint;
     private Point secondPoint;

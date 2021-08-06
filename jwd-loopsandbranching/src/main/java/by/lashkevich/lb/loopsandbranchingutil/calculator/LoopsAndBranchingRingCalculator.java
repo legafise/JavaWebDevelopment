@@ -2,6 +2,10 @@ package by.lashkevich.lb.loopsandbranchingutil.calculator;
 
 import by.lashkevich.lb.entity.Ring;
 
+/**
+ * Utilitarian class for calculation ring components
+ * @author Roman Lashkevich
+ */
 public final class LoopsAndBranchingRingCalculator {
     private LoopsAndBranchingRingCalculator() {
     }

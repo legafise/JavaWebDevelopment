@@ -10,6 +10,10 @@ import by.lashkevich.lb.view.impl.ViewType;
 
 import java.util.Map;
 
+/**
+ * @author Roman Lashkevich
+ * @see by.lashkevich.lb.command.Command
+ */
 public class FunctionWithoutDataEntryCommand implements Command {
     private FunctionCalculatorService functionCalculatorService;
 

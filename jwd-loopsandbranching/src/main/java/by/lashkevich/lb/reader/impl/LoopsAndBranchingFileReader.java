@@ -11,6 +11,12 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Loops and branching reader implementation for
+ * reading data from file
+ * @author Roman Lashkevich
+ * @see by.lashkevich.lb.reader.LoopsAndBranchingReader
+ */
 public class LoopsAndBranchingFileReader implements LoopsAndBranchingReader {
     public LoopsAndBranchingFileReader() {
     }

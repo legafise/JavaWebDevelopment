@@ -1,5 +1,9 @@
 package by.lashkevich.lb.loopsandbranchingutil.checker;
 
+/**
+ * Utilitarian class for checking arithmetical progression
+ * @author Roman Lashkevich
+ */
 public final class LoopsAndBranchingArithmeticProgressionChecker {
     private LoopsAndBranchingArithmeticProgressionChecker() {
     }
