@@ -1,15 +1,16 @@
 package by.lashkevich.lb.loopsandbranchingutil.checker;
 
 import by.lashkevich.lb.entity.Point;
+import by.lashkevich.lb.reader.LoopsAndBranchingPropertiesReader;
 
 /**
  * Utilitarian class for checking point
  * @author Roman Lashkevich
  */
 public final class LoopsAndBranchingPointChecker {
-    private static final String FIRST_POINT_IS_CLOSER_MESSAGE = "The first point is closer";
-    private static final String SECOND_POINT_IS_CLOSER_MESSAGE = "The second point is closer";
-    private static final String POINTS_AT_THE_TAME_DISTANCE_MESSAGE = "Points at the same distance";
+    private static final String FIRST_POINT_IS_CLOSER_MESSAGE_KEY = "util.first.point.is.closer.result.message";
+    private static final String SECOND_POINT_IS_CLOSER_MESSAGE_KEY = "util.second.point.is.closer.result.message";
+    private static final String POINTS_AT_THE_TAME_DISTANCE_MESSAGE_KEY = "util.points.at.the.same.distance.result.message";
 
     private LoopsAndBranchingPointChecker() {
     }
@@ -34,11 +35,14 @@ public final class LoopsAndBranchingPointChecker {
         double secondDistanceCoefficient = Math.pow(secondPoint.getX(), 2)
                 + Math.pow(secondPoint.getY(), 2);
         if (firstDistanceCoefficient < secondDistanceCoefficient) {
-            return FIRST_POINT_IS_CLOSER_MESSAGE;
+            return LoopsAndBranchingPropertiesReader
+                    .getInstance().readMessageFromBundle(FIRST_POINT_IS_CLOSER_MESSAGE_KEY);
         } else if (secondDistanceCoefficient < firstDistanceCoefficient) {
-            return SECOND_POINT_IS_CLOSER_MESSAGE;
+            return LoopsAndBranchingPropertiesReader
+                    .getInstance().readMessageFromBundle(SECOND_POINT_IS_CLOSER_MESSAGE_KEY);
         } else {
-            return POINTS_AT_THE_TAME_DISTANCE_MESSAGE;
+            return LoopsAndBranchingPropertiesReader
+                    .getInstance().readMessageFromBundle(POINTS_AT_THE_TAME_DISTANCE_MESSAGE_KEY);
         }
     }
 }

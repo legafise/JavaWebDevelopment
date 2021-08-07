@@ -12,4 +12,8 @@ public class LoopsAndBranchingMainViewReader {
     public int readDataEntryNumber() {
         return SCANNER.nextInt();
     }
+
+    public int readLocaleNumber() {
+        return SCANNER.nextInt();
+    }
 }
