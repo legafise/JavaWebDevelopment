@@ -23,7 +23,8 @@ public class AccessTypeTest {
         };
     }
 
-    @Test (description = "All positive scenario of password checking", dataProvider = "positiveDataAccessChecking")
+    @Test(description = "All positive scenario of password checking",
+            dataProvider = "allPositiveDataForAccessChecking")
     public void checkAccessPositiveScenarioTest(int password, List<String> expectedAccesses) {
         Assert.assertEquals(AccessType.checkAccess(password), expectedAccesses);
     }
