@@ -5,7 +5,7 @@ import by.lashkevich.arrays.arraysutill.reader.ArraysViewConsoleReader;
 import by.lashkevich.arrays.constant.ArraysConstant;
 import by.lashkevich.arrays.controller.ArraysController;
 import by.lashkevich.arrays.controller.ArraysRequest;
-import by.lashkevich.arrays.creator.ArraysDataCreatorFactory;
+import by.lashkevich.arrays.arraysutill.creator.ArraysDataCreatorFactory;
 import by.lashkevich.arrays.view.View;
 
 public class ArraysMainView implements View {
@@ -16,6 +16,7 @@ public class ArraysMainView implements View {
     private static final String WRONG_MENU_ITEM_SELECTED_MESSAGE_KEY = "view.wrong.menu.item.selected.message";
     private static final String ENTER_ZERO_TO_END_PROGRAM_MESSAGE_KEY = "view.end.program.message";
     private static final String THE_FIRST_TASK_INFORMATION_KEY = "view.first.task.info.message";
+    private static final String THE_SECOND_TASK_INFORMATION_KEY = "view.second.task.info.message";
     private final ArraysViewConsoleReader reader;
     private final ArraysPropertiesReader propertiesReader;
     private final ArraysRequest request;
@@ -44,9 +45,11 @@ public class ArraysMainView implements View {
                 + NEW_LINE_BREAK
                 + propertiesReader.readMessageFromBundle(SELECT_TASK_MESSAGE_KEY)
                 + NEW_LINE_BREAK
-                + propertiesReader.readMessageFromBundle(THE_FIRST_TASK_INFORMATION_KEY));
+                + propertiesReader.readMessageFromBundle(THE_FIRST_TASK_INFORMATION_KEY)
+                + NEW_LINE_BREAK
+                + propertiesReader.readMessageFromBundle(THE_SECOND_TASK_INFORMATION_KEY));
         int commandNumber = reader.readCommandNumber();
-        boolean isValidCommandNumber = commandNumber > -1 && commandNumber < 2;
+        boolean isValidCommandNumber = commandNumber > -1 && commandNumber < 3;
         if (isValidCommandNumber) {
             request.putParameter(ArraysConstant.COMMAND_NUMBER, commandNumber);
         }

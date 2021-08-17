@@ -4,7 +4,8 @@ import by.lashkevich.arrays.view.View;
 
 public enum ViewType {
     MAIN_VIEW(new ArraysMainView()),
-    MATRIX_VIEW(new ArraysMatrixView());
+    MATRIX_VIEW(new ArraysMatrixView()),
+    ARRAY_VIEW(new ArraysArrayView());
 
     private final View view;
 

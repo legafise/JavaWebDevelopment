@@ -8,11 +8,11 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ArraysFileReader {
+public class ArraysMatrixFileReader {
     private final List<Integer> matrixData;
     private int returnedValuesCounter;
 
-    public ArraysFileReader(String filePath) throws ArraysReaderException {
+    public ArraysMatrixFileReader(String filePath) throws ArraysReaderException {
         try {
             matrixData = Files.lines(Paths.get(filePath))
                     .map(Integer::parseInt).collect(Collectors.toList());

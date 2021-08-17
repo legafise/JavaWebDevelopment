@@ -1,4 +1,4 @@
-package by.lashkevich.arrays.creator;
+package by.lashkevich.arrays.arraysutill.creator;
 
 import by.lashkevich.arrays.exception.ArraysDataCreatorException;
 

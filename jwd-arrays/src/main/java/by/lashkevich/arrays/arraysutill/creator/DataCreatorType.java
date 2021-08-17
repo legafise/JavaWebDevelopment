@@ -1,7 +1,7 @@
-package by.lashkevich.arrays.creator;
+package by.lashkevich.arrays.arraysutill.creator;
 
-import by.lashkevich.arrays.creator.impl.ArraysFileDataCreator;
-import by.lashkevich.arrays.creator.impl.ArraysRandomDataCreator;
+import by.lashkevich.arrays.arraysutill.creator.impl.ArraysFileDataCreator;
+import by.lashkevich.arrays.arraysutill.creator.impl.ArraysRandomDataCreator;
 import by.lashkevich.arrays.exception.ArraysDataCreatorException;
 
 import java.util.Arrays;

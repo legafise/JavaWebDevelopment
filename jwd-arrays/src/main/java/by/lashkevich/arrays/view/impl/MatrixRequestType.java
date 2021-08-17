@@ -2,8 +2,8 @@ package by.lashkevich.arrays.view.impl;
 
 import by.lashkevich.arrays.constant.ArraysConstant;
 import by.lashkevich.arrays.controller.ArraysRequest;
-import by.lashkevich.arrays.creator.ArraysDataCreator;
-import by.lashkevich.arrays.creator.ArraysDataCreatorFactory;
+import by.lashkevich.arrays.arraysutill.creator.ArraysDataCreator;
+import by.lashkevich.arrays.arraysutill.creator.ArraysDataCreatorFactory;
 import by.lashkevich.arrays.exception.ArraysDataCreatorException;
 import by.lashkevich.arrays.exception.RequestTypeException;
 
