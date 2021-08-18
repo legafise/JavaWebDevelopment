@@ -1,33 +1,40 @@
 package by.lashkevich.arrays.command.impl;
 
+import by.lashkevich.arrays.arraysutill.parser.ArraysArrayParserFactory;
 import by.lashkevich.arrays.arraysutill.reporter.ArraysArrayReporter;
 import by.lashkevich.arrays.command.Command;
 import by.lashkevich.arrays.constant.ArraysConstant;
 import by.lashkevich.arrays.controller.ArraysRequest;
 import by.lashkevich.arrays.entity.ArraysArray;
 import by.lashkevich.arrays.exception.ArraysCommandException;
+import by.lashkevich.arrays.exception.ArraysParserException;
 import by.lashkevich.arrays.exception.ArraysServiceException;
 import by.lashkevich.arrays.service.ArrayService;
 import by.lashkevich.arrays.service.impl.ArraysArrayService;
 import by.lashkevich.arrays.view.View;
 import by.lashkevich.arrays.view.impl.ViewType;
 
-public class CocktailSortCommand implements Command {
+import java.util.List;
+
+public class FileArrayBubbleSortCommand implements Command {
     private ArrayService arrayService;
 
-    public CocktailSortCommand() {
+    public FileArrayBubbleSortCommand() {
         arrayService = new ArraysArrayService();
     }
 
     @Override
     public View execute(ArraysRequest request) throws ArraysCommandException {
         try {
-            ArraysArray array = (ArraysArray) request.getParameter(ArraysConstant.DATA_NAME);
-            ArraysArrayReporter.reportReceivedArrayInfo(array);
-            arrayService.cocktailSort(array);
-            ArraysArrayReporter.reportCocktailSortResult(array);
+            List<String> arrayData = (List<String>) request.getParameter(ArraysConstant.DATA_NAME);
+            ArraysArray<Number> array = ArraysArrayParserFactory.getInstance()
+                    .createArrayParser().parseArray(arrayData);
+            ArraysArrayReporter.reportReceivedFileArrayInfo(array, ArraysArrayParserFactory
+                    .getInstance().createArrayParser().getType());
+            ArraysArray<Number> sortedArray = arrayService.bubbleSort(array);
+            ArraysArrayReporter.reportBubbleSortResult(sortedArray);
             return ViewType.MAIN_VIEW.getView();
-        } catch (ArraysServiceException e) {
+        } catch (ArraysServiceException | ArraysParserException e) {
             throw new ArraysCommandException(e.getMessage());
         }
     }

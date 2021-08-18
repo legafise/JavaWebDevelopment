@@ -1,26 +1,23 @@
 package by.lashkevich.arrays.view.impl;
 
+import by.lashkevich.arrays.arraysutill.reader.ArraysFileDataReader;
 import by.lashkevich.arrays.constant.ArraysConstant;
 import by.lashkevich.arrays.controller.ArraysRequest;
-import by.lashkevich.arrays.arraysutill.creator.ArraysDataCreator;
-import by.lashkevich.arrays.arraysutill.creator.ArraysDataCreatorFactory;
 import by.lashkevich.arrays.exception.ArraysDataCreatorException;
 import by.lashkevich.arrays.exception.RequestTypeException;
 
 import java.util.Arrays;
+import java.util.List;
 
 public enum MatrixRequestType {
     MATRIX_MULTIPLICATION_REQUEST(1) {
         @Override
-        ArraysRequest createRequest() throws RequestTypeException {
+        ArraysRequest createRequest(int entryNumber) throws RequestTypeException {
             try {
-                ArraysRequest request = new ArraysRequest();
-                ArraysDataCreator creator = ArraysDataCreatorFactory.getInstance().createDataCreator();
-                int multiplicationCommandNumber = -2;
-                request.putParameter(ArraysConstant.COMMAND_NUMBER, multiplicationCommandNumber);
-                request.putParameter(ArraysConstant.DATA_NAME,
-                        Arrays.asList(creator.createSquareMatrix(), creator.createSquareMatrix()));
-                return request;
+                ArraysFileDataReader dataReader = new ArraysFileDataReader();
+                List<String> matrixData = dataReader.readSquareMatrixData();
+                return MatrixRequestType.collectRequest(entryNumber, RANDOM_MATRIX_MULTIPLICATION_COMMAND_NUMBER,
+                        FILE_MATRIX_MULTIPLICATION_COMMAND_NUMBER, matrixData);
             } catch (ArraysDataCreatorException e) {
                 throw new RequestTypeException(e.getMessage());
             }
@@ -28,15 +25,12 @@ public enum MatrixRequestType {
     },
     MATRIX_ADDITION_REQUEST(2) {
         @Override
-        ArraysRequest createRequest() throws RequestTypeException {
+        ArraysRequest createRequest(int entryNumber) throws RequestTypeException {
             try {
-                ArraysRequest request = new ArraysRequest();
-                ArraysDataCreator creator = ArraysDataCreatorFactory.getInstance().createDataCreator();
-                int additionCommandNumber = -3;
-                request.putParameter(ArraysConstant.COMMAND_NUMBER, additionCommandNumber);
-                request.putParameter(ArraysConstant.DATA_NAME,
-                        Arrays.asList(creator.createRectangularMatrix(), creator.createRectangularMatrix()));
-                return request;
+                ArraysFileDataReader dataReader = new ArraysFileDataReader();
+                List<String> matrixData = dataReader.readRectangularMatrixData();
+                return MatrixRequestType.collectRequest(entryNumber, RANDOM_MATRIX_ADDITION_COMMAND_NUMBER,
+                        FILE_MATRIX_ADDITION_COMMAND_NUMBER, matrixData);
             } catch (ArraysDataCreatorException e) {
                 throw new RequestTypeException(e.getMessage());
             }
@@ -44,15 +38,12 @@ public enum MatrixRequestType {
     },
     MATRIX_SUBTRACTION_REQUEST(3) {
         @Override
-        ArraysRequest createRequest() throws RequestTypeException {
+        ArraysRequest createRequest(int entryNumber) throws RequestTypeException {
             try {
-                ArraysRequest request = new ArraysRequest();
-                ArraysDataCreator creator = ArraysDataCreatorFactory.getInstance().createDataCreator();
-                int subtractionCommandNumber = -4;
-                request.putParameter(ArraysConstant.COMMAND_NUMBER, subtractionCommandNumber);
-                request.putParameter(ArraysConstant.DATA_NAME,
-                        Arrays.asList(creator.createRectangularMatrix(), creator.createRectangularMatrix()));
-                return request;
+                ArraysFileDataReader dataReader = new ArraysFileDataReader();
+                List<String> matrixData = dataReader.readRectangularMatrixData();
+                return MatrixRequestType.collectRequest(entryNumber, RANDOM_MATRIX_SUBTRACTION_COMMAND_NUMBER,
+                        FILE_MATRIX_SUBTRACTION_COMMAND_NUMBER, matrixData);
             } catch (ArraysDataCreatorException e) {
                 throw new RequestTypeException(e.getMessage());
             }
@@ -60,14 +51,12 @@ public enum MatrixRequestType {
     },
     MATRIX_TRANSPOSE_REQUEST(4) {
         @Override
-        ArraysRequest createRequest() throws RequestTypeException {
+        ArraysRequest createRequest(int entryNumber) throws RequestTypeException {
             try {
-                ArraysRequest request = new ArraysRequest();
-                ArraysDataCreator creator = ArraysDataCreatorFactory.getInstance().createDataCreator();
-                int transposeCommandNumber = -5;
-                request.putParameter(ArraysConstant.COMMAND_NUMBER, transposeCommandNumber);
-                request.putParameter(ArraysConstant.DATA_NAME, creator.createRectangularMatrix());
-                return request;
+                ArraysFileDataReader dataReader = new ArraysFileDataReader();
+                List<String> matrixData = dataReader.readSquareMatrixData();
+                return MatrixRequestType.collectRequest(entryNumber, RANDOM_MATRIX_TRANSPOSE_COMMAND_NUMBER,
+                        FILE_MATRIX_TRANSPOSE_COMMAND_NUMBER, matrixData);
             } catch (ArraysDataCreatorException e) {
                 throw new RequestTypeException(e.getMessage());
             }
@@ -75,13 +64,21 @@ public enum MatrixRequestType {
     };
 
     private static final String INVALID_OPERATION_WAS_CHOSEN_ERROR_MESSAGE = "Invalid operation was chosen";
+    private static final int RANDOM_MATRIX_TRANSPOSE_COMMAND_NUMBER = -5;
+    private static final int FILE_MATRIX_TRANSPOSE_COMMAND_NUMBER = -15;
+    private static final int RANDOM_MATRIX_MULTIPLICATION_COMMAND_NUMBER = -2;
+    private static final int FILE_MATRIX_MULTIPLICATION_COMMAND_NUMBER = -12;
+    private static final int RANDOM_MATRIX_ADDITION_COMMAND_NUMBER = -3;
+    private static final int FILE_MATRIX_ADDITION_COMMAND_NUMBER = -13;
+    private static final int RANDOM_MATRIX_SUBTRACTION_COMMAND_NUMBER = -4;
+    private static final int FILE_MATRIX_SUBTRACTION_COMMAND_NUMBER = -14;
     private final int requestNumber;
 
     MatrixRequestType(int requestNumber) {
         this.requestNumber = requestNumber;
     }
 
-    abstract ArraysRequest createRequest() throws RequestTypeException;
+    abstract ArraysRequest createRequest(int entryNumber) throws RequestTypeException;
 
     public int getRequestNumber() {
         return requestNumber;
@@ -92,5 +89,26 @@ public enum MatrixRequestType {
                 .filter(requestTypeNumber -> number == requestTypeNumber.getRequestNumber())
                 .findAny()
                 .orElseThrow(() -> new RequestTypeException(INVALID_OPERATION_WAS_CHOSEN_ERROR_MESSAGE));
+    }
+
+    private static ArraysRequest collectRequest(int entryNumber, int randomMatrixCommandNumber,
+                                                int fileMatrixCommandNumber, List<String> matrixData) {
+        return entryNumber == 1 ? MatrixRequestType
+                .createRandomMatrixSortRequest(randomMatrixCommandNumber)
+                : MatrixRequestType
+                .createFileMatrixSortRequest(fileMatrixCommandNumber, matrixData);
+    }
+
+    private static ArraysRequest createRandomMatrixSortRequest(int matrixCommandNumber) {
+        ArraysRequest request = new ArraysRequest();
+        request.putParameter(ArraysConstant.COMMAND_NUMBER, matrixCommandNumber);
+        return request;
+    }
+
+    private static ArraysRequest createFileMatrixSortRequest(int matrixCommandNumber, List<String> matrixData) {
+        ArraysRequest request = new ArraysRequest();
+        request.putParameter(ArraysConstant.DATA_NAME, matrixData);
+        request.putParameter(ArraysConstant.COMMAND_NUMBER, matrixCommandNumber);
+        return request;
     }
 }

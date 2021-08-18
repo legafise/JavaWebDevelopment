@@ -10,7 +10,7 @@ public class ArraysArrayService implements ArrayService {
     private static final String INVALID_ARRAY_MESSAGE = "Invalid array was received";
 
     @Override
-    public <T extends Number> ArraysArray<T> bubbleSort(ArraysArray<T> array) throws ArraysServiceException {
+    public ArraysArray<Number> bubbleSort(ArraysArray<Number> array) throws ArraysServiceException {
         try {
             if (validateForNull(array)) {
                 return ArraysSorter.sortByBubbleSort(array);
@@ -23,7 +23,7 @@ public class ArraysArrayService implements ArrayService {
     }
 
     @Override
-    public <T extends Number> ArraysArray<T> cocktailSort(ArraysArray array) throws ArraysServiceException {
+    public ArraysArray<Number> cocktailSort(ArraysArray<Number> array) throws ArraysServiceException {
         try {
             if (validateForNull(array)) {
                 return ArraysSorter.sortByCocktailSort(array);
@@ -35,7 +35,20 @@ public class ArraysArrayService implements ArrayService {
         }
     }
 
-    private boolean validateForNull(ArraysArray array) {
+    @Override
+    public ArraysArray<Number> selectionSort(ArraysArray<Number> array) throws ArraysServiceException {
+        try {
+            if (validateForNull(array)) {
+                return ArraysSorter.sortBySelectionSort(array);
+            }
+
+            throw new ArraysServiceException(INVALID_ARRAY_MESSAGE);
+        } catch (ArraysSorterException e) {
+            throw new ArraysServiceException(e.getMessage());
+        }
+    }
+
+    private boolean validateForNull(ArraysArray<Number> array) {
         return array != null;
     }
 }

@@ -20,4 +20,8 @@ public class ArraysViewConsoleReader {
     public int readRequestNumber() {
         return SCANNER.nextInt();
     }
+
+    public int readParserNumber() {
+        return SCANNER.nextInt();
+    }
 }

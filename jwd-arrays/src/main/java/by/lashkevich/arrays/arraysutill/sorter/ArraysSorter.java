@@ -11,9 +11,9 @@ public final class ArraysSorter {
     private ArraysSorter() {
     }
 
-    public static <T extends Number> ArraysArray<T> sortByBubbleSort(ArraysArray<T> array) throws ArraysSorterException {
+    public static ArraysArray<Number> sortByBubbleSort(ArraysArray<Number> array) throws ArraysSorterException {
         try {
-            for (int i = array.getLenght() - 1; i >= 1; i--) {
+            for (int i = array.getLength() - 1; i >= 1; i--) {
                 for (int j = 0; j < i; j++)
                     if (numberComparator(array.getElement(j), array.getElement(j + 1))) {
                         swapElements(array, j, j + 1);
@@ -26,10 +26,10 @@ public final class ArraysSorter {
         }
     }
 
-    public static <T extends Number> ArraysArray<T> sortByCocktailSort(ArraysArray<T> array) throws ArraysSorterException {
+    public static ArraysArray<Number> sortByCocktailSort(ArraysArray<Number> array) throws ArraysSorterException {
         try {
             int leftBorder = 0;
-            int rightBorder = array.getLenght() - 1;
+            int rightBorder = array.getLength() - 1;
 
             do {
                 for (int i = leftBorder; i < rightBorder; i++) {
@@ -43,6 +43,7 @@ public final class ArraysSorter {
                         swapElements(array, i, i - 1);
                     }
                 }
+
                 leftBorder++;
             } while (leftBorder <= rightBorder);
 
@@ -52,9 +53,51 @@ public final class ArraysSorter {
         }
     }
 
-    private static <T extends Number> void swapElements(ArraysArray<T> array, int firstElementIndex,
+    public static ArraysArray<Number> sortBySelectionSort(ArraysArray<Number> array) throws ArraysSorterException {
+        try {
+            int leftBorder = 0;
+
+            for (int i = leftBorder; i < array.getLength(); i++) {
+                int minInd = i;
+                for (int j = i; j < array.getLength(); j++) {
+                    if (numberComparator(array.getElement(minInd), array.getElement(j))) {
+                        minInd = j;
+                    }
+                }
+
+                swapElements(array, i, minInd);
+            }
+
+            return array;
+        } catch (ArraysArrayException e) {
+            throw new ArraysSorterException(e.getMessage());
+        }
+    }
+
+    public static ArraysArray<java.lang.Number> sortByInsertionSort(ArraysArray<Number> array) throws ArraysSorterException {
+        try {
+            for (int i = 1; i < array.getLength(); i++) {
+                Number key = array.getElement(i);
+                int j = i - 1;
+
+                while ((j > -1) && numberComparator(array.getElement(j), key)){
+                    array.setElement(j + 1, array.getElement(j));
+                    j--;
+                }
+
+                array.setElement(j + 1, key);
+            }
+
+            return array;
+        } catch (ArraysArrayException e) {
+            throw new ArraysSorterException(e.getMessage());
+        }
+    }
+
+
+    private static void swapElements(ArraysArray<Number> array, int firstElementIndex,
                                                         int secondElementIndex) throws ArraysArrayException {
-        T temp = array.getElement(firstElementIndex);
+        Number temp = array.getElement(firstElementIndex);
         array.setElement(firstElementIndex, array.getElement(secondElementIndex));
         array.setElement(secondElementIndex, temp);
     }

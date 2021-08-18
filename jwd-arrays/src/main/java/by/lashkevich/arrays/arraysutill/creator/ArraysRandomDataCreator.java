@@ -1,11 +1,9 @@
-package by.lashkevich.arrays.arraysutill.creator.impl;
+package by.lashkevich.arrays.arraysutill.creator;
 
-import by.lashkevich.arrays.arraysutill.creator.ArrayCreator;
-import by.lashkevich.arrays.arraysutill.creator.ArraysDataCreator;
 import by.lashkevich.arrays.entity.ArraysArray;
 import by.lashkevich.arrays.entity.ArraysMatrix;
 
-public class ArraysRandomDataCreator implements ArraysDataCreator {
+public class ArraysRandomDataCreator {
     private int squareMatrixRandomSize;
     private int rectangularMatrixRandomVerticalSize;
     private int rectangularMatrixRandomHorizontalSize;
@@ -17,7 +15,6 @@ public class ArraysRandomDataCreator implements ArraysDataCreator {
         generateRandomRectangularMatrixSizes();
     }
 
-    @Override
     public ArraysMatrix createSquareMatrix() {
         squareMatrixRandomizerCounter++;
         if (squareMatrixRandomizerCounter > 2) {
@@ -28,7 +25,6 @@ public class ArraysRandomDataCreator implements ArraysDataCreator {
         return createMatrix(squareMatrixRandomSize, squareMatrixRandomSize);
     }
 
-    @Override
     public ArraysMatrix createRectangularMatrix() {
         rectangularMatrixRandomizerCounter++;
         if (rectangularMatrixRandomizerCounter > 2) {
@@ -39,8 +35,7 @@ public class ArraysRandomDataCreator implements ArraysDataCreator {
         return createMatrix(rectangularMatrixRandomVerticalSize, rectangularMatrixRandomHorizontalSize);
     }
 
-    @Override
-    public <T extends Number> ArraysArray<T> createArray() {
+    public ArraysArray<Number> createArray() {
         int arrayTypeNumber = (int) (Math.random() * (6 - 1) + 1);
         return new ArraysArray<>(ArrayCreator.findArrayType(arrayTypeNumber).createArray());
     }

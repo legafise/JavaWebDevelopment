@@ -47,7 +47,6 @@ public class ArraysMatrix {
         }
     }
 
-
     @Override
     public String toString() {
         StringBuilder s = new StringBuilder(MATRIX_SIZE_EQUAL_MESSAGE + matrix.length + X_SIGN

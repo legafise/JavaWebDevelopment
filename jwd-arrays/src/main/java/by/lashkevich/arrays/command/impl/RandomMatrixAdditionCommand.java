@@ -1,5 +1,6 @@
 package by.lashkevich.arrays.command.impl;
 
+import by.lashkevich.arrays.arraysutill.creator.ArraysRandomDataCreator;
 import by.lashkevich.arrays.command.Command;
 import by.lashkevich.arrays.constant.ArraysConstant;
 import by.lashkevich.arrays.controller.ArraysRequest;
@@ -13,23 +14,25 @@ import by.lashkevich.arrays.view.impl.ViewType;
 
 import java.util.List;
 
+import static by.lashkevich.arrays.arraysutill.reporter.ArraysMatrixReporter.reportAdditionResult;
 import static by.lashkevich.arrays.arraysutill.reporter.ArraysMatrixReporter.reportReceivedMatricesInfo;
-import static by.lashkevich.arrays.arraysutill.reporter.ArraysMatrixReporter.reportSubtractionResult;
 
-public class MatrixSubtractionCommand implements Command {
+public class RandomMatrixAdditionCommand implements Command {
     private MatrixService matrixService;
 
-    public MatrixSubtractionCommand() {
+    public RandomMatrixAdditionCommand() {
         matrixService = new ArraysMatrixService();
     }
 
     @Override
     public View execute(ArraysRequest request) throws ArraysCommandException {
         try {
-            List<ArraysMatrix> matrices = (List<ArraysMatrix>) request.getParameter(ArraysConstant.DATA_NAME);
-            ArraysMatrix result = matrixService.subtractMatrices(matrices.get(0), matrices.get(1));
-            reportReceivedMatricesInfo(matrices.get(0), matrices.get(1));
-            reportSubtractionResult(result);
+            ArraysRandomDataCreator randomDataCreator = new ArraysRandomDataCreator();
+            ArraysMatrix firstRectangularMatrix = randomDataCreator.createRectangularMatrix();
+            ArraysMatrix secondRectangularMatrix = randomDataCreator.createRectangularMatrix();
+            ArraysMatrix result = matrixService.addMatrices(firstRectangularMatrix, secondRectangularMatrix);
+            reportReceivedMatricesInfo(firstRectangularMatrix, secondRectangularMatrix);
+            reportAdditionResult(result);
             return ViewType.MAIN_VIEW.getView();
         } catch (ArraysServiceException e) {
             throw new ArraysCommandException(e.getMessage());

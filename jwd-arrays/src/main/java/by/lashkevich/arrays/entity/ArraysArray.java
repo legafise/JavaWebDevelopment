@@ -26,7 +26,7 @@ public class ArraysArray<T extends Number> {
         throw new ArraysArrayException(INCORRECT_ELEMENT_INDEX_MESSAGE);
     }
 
-    public int getLenght() {
+    public int getLength() {
         return array.length;
     }
 

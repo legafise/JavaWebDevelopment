@@ -4,7 +4,9 @@ import by.lashkevich.arrays.entity.ArraysArray;
 import by.lashkevich.arrays.exception.ArraysServiceException;
 
 public interface ArrayService {
-    <T extends Number> ArraysArray<T> bubbleSort(ArraysArray<T> array) throws ArraysServiceException;
+    ArraysArray<Number> bubbleSort(ArraysArray<Number> array) throws ArraysServiceException;
 
-    <T extends Number> ArraysArray<T> cocktailSort(ArraysArray array) throws ArraysServiceException;
+    ArraysArray<Number> cocktailSort(ArraysArray<Number> array) throws ArraysServiceException;
+
+    ArraysArray<Number> selectionSort(ArraysArray<Number> array) throws ArraysServiceException;
 }

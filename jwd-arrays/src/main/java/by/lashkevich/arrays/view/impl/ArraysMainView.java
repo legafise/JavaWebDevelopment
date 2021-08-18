@@ -5,14 +5,12 @@ import by.lashkevich.arrays.arraysutill.reader.ArraysViewConsoleReader;
 import by.lashkevich.arrays.constant.ArraysConstant;
 import by.lashkevich.arrays.controller.ArraysController;
 import by.lashkevich.arrays.controller.ArraysRequest;
-import by.lashkevich.arrays.arraysutill.creator.ArraysDataCreatorFactory;
 import by.lashkevich.arrays.view.View;
 
 public class ArraysMainView implements View {
     private static final String NEW_LINE_BREAK = "\n";
     private static final String SELECT_LANGUAGE_MESSAGE = "view.select.language.message";
     private static final String SELECT_TASK_MESSAGE_KEY = "view.select.task.message";
-    private static final String SELECT_DATA_ENTRY_TYPE_MESSAGE_KEY = "view.select.creator.message";
     private static final String WRONG_MENU_ITEM_SELECTED_MESSAGE_KEY = "view.wrong.menu.item.selected.message";
     private static final String ENTER_ZERO_TO_END_PROGRAM_MESSAGE_KEY = "view.end.program.message";
     private static final String THE_FIRST_TASK_INFORMATION_KEY = "view.first.task.info.message";
@@ -32,7 +30,7 @@ public class ArraysMainView implements View {
     public void executeView() {
         int mainViewCommandNumber = -1;
 
-        if (!chooseLocale() || !chooseDataCreatorType() || !chooseTask()) {
+        if (!chooseLocale() || !chooseTask()) {
             System.out.println(propertiesReader.readMessageFromBundle(WRONG_MENU_ITEM_SELECTED_MESSAGE_KEY));
             request.putParameter(ArraysConstant.COMMAND_NUMBER, mainViewCommandNumber);
         }
@@ -55,17 +53,6 @@ public class ArraysMainView implements View {
         }
 
         return isValidCommandNumber;
-    }
-
-    private boolean chooseDataCreatorType() {
-        System.out.println(propertiesReader.readMessageFromBundle(SELECT_DATA_ENTRY_TYPE_MESSAGE_KEY));
-        int dataCreatorTypeNumber = reader.readDataEntryNumber();
-        boolean isValidEntryType = dataCreatorTypeNumber > 0 && dataCreatorTypeNumber < 3;
-        if (isValidEntryType) {
-            ArraysDataCreatorFactory.getInstance().setDataCreatorNumber(dataCreatorTypeNumber);
-        }
-
-        return isValidEntryType;
     }
 
     private boolean chooseLocale() {

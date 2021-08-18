@@ -7,6 +7,7 @@ import by.lashkevich.arrays.controller.ArraysController;
 import by.lashkevich.arrays.controller.ArraysRequest;
 import by.lashkevich.arrays.exception.RequestTypeException;
 import by.lashkevich.arrays.view.View;
+import by.lashkevich.arrays.view.ViewEntryTypeChooser;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -29,8 +30,10 @@ public class ArraysArrayView implements View {
 
         try {
             System.out.println(propertiesReader.readMessageFromBundle(ARRAY_OPERATIONS_INFO_KEY));
+            int requestNumber = consoleReader.readRequestNumber();
             request = ArrayRequestType
-                    .findRequestType(consoleReader.readRequestNumber()).createRequest();
+                    .findRequestType(requestNumber)
+                    .createRequest(ViewEntryTypeChooser.chooseEntryType(ARRAY_VIEW_NUMBER));
             ArraysController.getInstance().doRequest(request).executeView();
         } catch (RequestTypeException e) {
             LOGGER.log(Level.ERROR, e.getMessage());
