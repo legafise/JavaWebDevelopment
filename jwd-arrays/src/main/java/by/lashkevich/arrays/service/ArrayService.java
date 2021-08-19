@@ -11,4 +11,6 @@ public interface ArrayService {
     ArraysArray<Number> selectionSort(ArraysArray<Number> array) throws ArraysServiceException;
 
     ArraysArray<Number> insertionSort(ArraysArray<Number> array) throws ArraysServiceException;
+
+    ArraysArray<Number> shellSort(ArraysArray<Number> array) throws ArraysServiceException;
 }

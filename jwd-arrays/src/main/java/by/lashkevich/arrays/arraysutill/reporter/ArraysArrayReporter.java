@@ -11,6 +11,7 @@ public class ArraysArrayReporter {
     private static final String COCKTAIL_SORT_RESULT_MESSAGE_KEY = "reporter.cocktail.sort.result.info.message";
     private static final String SELECTION_SORT_RESULT_MESSAGE_KEY = "reporter.selection.sort.result.info.message";
     private static final String INSERTION_SORT_RESULT_MESSAGE_KEY = "reporter.insertion.sort.result.info.message";
+    private static final String SHELL_SORT_RESULT_MESSAGE_KEY = "reporter.shell.sort.result.info.message";
     private static final String NEW_LINE_BREAK = "\n";
 
     public static void reportReceivedFileArrayInfo(ArraysArray<Number> array, String arrayTypeInfo) {
@@ -37,6 +38,10 @@ public class ArraysArrayReporter {
 
     public static void reportInsertionSortResult(ArraysArray<Number> array) {
         reportResult(array, INSERTION_SORT_RESULT_MESSAGE_KEY);
+    }
+
+    public static void reportShellSortResult(ArraysArray<Number> array) {
+        reportResult(array, SHELL_SORT_RESULT_MESSAGE_KEY);
     }
 
     private static void reportResult(ArraysArray<Number> result, String resultMessageKey) {

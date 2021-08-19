@@ -80,7 +80,7 @@ public final class ArraysSorter {
                 Number key = array.getElement(i);
                 int j = i - 1;
 
-                while ((j > -1) && numberComparator(array.getElement(j), key)){
+                while ((j > -1) && numberComparator(array.getElement(j), key)) {
                     array.setElement(j + 1, array.getElement(j));
                     j--;
                 }
@@ -94,9 +94,32 @@ public final class ArraysSorter {
         }
     }
 
+    public static ArraysArray<Number> sortByShellSort(ArraysArray<Number> array) throws ArraysSorterException {
+        try {
+            int h = 1;
+            while (h * 3 < array.getLength()) {
+                h = h * 3 + 1;
+            }
+
+            while (h >= 1) {
+                for (int i = h; i < array.getLength(); i++) {
+                    for (int j = i; j >= h; j = j - h) {
+                        if (numberComparator(array.getElement(j - h), array.getElement(j)))
+                            swapElements(array, j, j - h);
+                    }
+                }
+
+                h = h / 3;
+            }
+
+            return array;
+        } catch (ArraysArrayException e) {
+            throw new ArraysSorterException(e.getMessage());
+        }
+    }
 
     private static void swapElements(ArraysArray<Number> array, int firstElementIndex,
-                                                        int secondElementIndex) throws ArraysArrayException {
+                                     int secondElementIndex) throws ArraysArrayException {
         Number temp = array.getElement(firstElementIndex);
         array.setElement(firstElementIndex, array.getElement(secondElementIndex));
         array.setElement(secondElementIndex, temp);

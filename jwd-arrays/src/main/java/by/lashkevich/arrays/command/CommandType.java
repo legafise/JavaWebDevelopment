@@ -6,6 +6,8 @@ import by.lashkevich.arrays.exception.ArraysCommandException;
 import java.util.Arrays;
 
 public enum CommandType {
+    RANDOM_ARRAY_SHELL_SORT(new RandomArrayShellSortCommand(), -19),
+    FILE_ARRAY_SHELL_SORT(new FileArrayShellSortCommand(), -18),
     RANDOM_ARRAY_INSERTION_SORT(new RandomArrayInsertionSortCommand(), -17),
     FILE_ARRAY_INSERTION_SORT(new FileArrayInsertionSortCommand(), -16),
     FILE_MATRIX_TRANSPOSE(new FileMatrixTransposeCommand(), -15),

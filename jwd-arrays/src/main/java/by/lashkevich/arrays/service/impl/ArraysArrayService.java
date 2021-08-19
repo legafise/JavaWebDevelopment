@@ -61,6 +61,19 @@ public class ArraysArrayService implements ArrayService {
         }
     }
 
+    @Override
+    public ArraysArray<Number> shellSort(ArraysArray<Number> array) throws ArraysServiceException {
+        try {
+            if (validateForNull(array)) {
+                return ArraysSorter.sortByShellSort(array);
+            }
+
+            throw new ArraysServiceException(INVALID_ARRAY_MESSAGE);
+        } catch (ArraysSorterException e) {
+            throw new ArraysServiceException(e.getMessage());
+        }
+    }
+
     private boolean validateForNull(ArraysArray<Number> array) {
         return array != null;
     }

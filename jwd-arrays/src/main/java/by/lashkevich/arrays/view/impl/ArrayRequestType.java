@@ -43,6 +43,14 @@ public enum ArrayRequestType {
                     .createRandomArraySortRequest(RANDOM_ARRAY_INSERTION_SORT_COMMAND_NUMBER)
                     : ArrayRequestType.createFileArraySortRequest(FILE_ARRAY_INSERTION_SORT_COMMAND_NUMBER);
         }
+    },
+    SHELL_SORT_REQUEST(5) {
+        @Override
+        ArraysRequest createRequest(int entryNumber) throws RequestTypeException {
+            return entryNumber == 1 ? ArrayRequestType
+                    .createRandomArraySortRequest(RANDOM_ARRAY_SHELL_SORT_COMMAND_NUMBER)
+                    : ArrayRequestType.createFileArraySortRequest(FILE_ARRAY_SHELL_SORT_COMMAND_NUMBER);
+        }
     };
 
     private static final String INVALID_OPERATION_ERROR_MESSAGE = "Invalid operation was chosen";
@@ -56,6 +64,8 @@ public enum ArrayRequestType {
     private static final int FILE_ARRAY_SELECTION_SORT_COMMAND_NUMBER = -11;
     private static final int RANDOM_ARRAY_INSERTION_SORT_COMMAND_NUMBER = -16;
     private static final int FILE_ARRAY_INSERTION_SORT_COMMAND_NUMBER = -17;
+    private static final int FILE_ARRAY_SHELL_SORT_COMMAND_NUMBER = -18;
+    private static final int RANDOM_ARRAY_SHELL_SORT_COMMAND_NUMBER = -19;
     private final int requestNumber;
 
     ArrayRequestType(int requestNumber) {
