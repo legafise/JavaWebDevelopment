@@ -4,6 +4,11 @@ import by.lashkevich.arrays.entity.ArraysMatrix;
 import by.lashkevich.arrays.exception.ArraysMatrixCalculatorException;
 import by.lashkevich.arrays.exception.ArraysMatrixException;
 
+/**
+ * Class for performing various operations with matrices
+ * @author Roman Lashkevich
+ * @see by.lashkevich.arrays.entity.ArraysMatrix
+ */
 public final class ArraysMatrixCalculator {
     private ArraysMatrixCalculator() {
     }

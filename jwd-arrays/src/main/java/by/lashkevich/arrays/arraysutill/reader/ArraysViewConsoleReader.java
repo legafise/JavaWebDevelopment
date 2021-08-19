@@ -2,6 +2,10 @@ package by.lashkevich.arrays.arraysutill.reader;
 
 import java.util.Scanner;
 
+/**
+ * Class for reading data for views from console
+ * @author Roman Lashkevich
+ */
 public class ArraysViewConsoleReader {
     private final Scanner SCANNER = new Scanner(System.in);
 

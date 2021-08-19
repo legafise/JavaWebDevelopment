@@ -3,6 +3,10 @@ package by.lashkevich.arrays.arraysutill.parser;
 import by.lashkevich.arrays.arraysutill.parser.impl.ArrayParserType;
 import by.lashkevich.arrays.exception.ArraysParserException;
 
+/**
+ * Factory for choosing parser implementation.
+ * @author Roman Lashkevich
+ */
 public class ArraysArrayParserFactory {
     private static ArraysArrayParserFactory instance;
     private int parserNumber;

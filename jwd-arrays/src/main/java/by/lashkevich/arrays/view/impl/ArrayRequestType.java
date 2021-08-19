@@ -11,6 +11,11 @@ import by.lashkevich.arrays.exception.RequestTypeException;
 
 import java.util.Arrays;
 
+/**
+ * Enum for fast request creating
+ * @author Roman Lashkevich
+ * @see by.lashkevich.arrays.controller.ArraysRequest
+ */
 public enum ArrayRequestType {
     BUBBLE_SORT_REQUEST(1) {
         @Override

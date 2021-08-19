@@ -6,6 +6,10 @@ import by.lashkevich.arrays.exception.ArraysServiceException;
 import by.lashkevich.arrays.exception.ArraysSorterException;
 import by.lashkevich.arrays.service.ArrayService;
 
+
+/**
+ * @see by.lashkevich.arrays.service.ArrayService
+ */
 public class ArraysArrayService implements ArrayService {
     private static final String INVALID_ARRAY_MESSAGE = "Invalid array was received";
 

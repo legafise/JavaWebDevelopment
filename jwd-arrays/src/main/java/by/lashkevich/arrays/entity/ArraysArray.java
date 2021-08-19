@@ -3,7 +3,10 @@ package by.lashkevich.arrays.entity;
 import by.lashkevich.arrays.exception.ArraysArrayException;
 
 import java.util.Arrays;
-
+/**
+ * Class created to work with arrays
+ * @author RomalLashkevich
+ */
 public class ArraysArray<T extends Number> {
     private static final String INCORRECT_ELEMENT_INDEX_MESSAGE = "Incorrect element index was entered";
     private static final String NEW_LINE_BREAK = "\n";

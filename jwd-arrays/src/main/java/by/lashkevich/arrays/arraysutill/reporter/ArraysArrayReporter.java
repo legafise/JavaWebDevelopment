@@ -4,6 +4,10 @@ import by.lashkevich.arrays.entity.ArraysArray;
 
 import static by.lashkevich.arrays.arraysutill.reader.ArraysPropertiesReader.getInstance;
 
+/**
+ * Class for report information about arrays
+ * @author Roman Lashkevich
+ */
 public class ArraysArrayReporter {
     private static final String RECEIVED_FILE_ARRAY_INFO_MESSAGE_KEY = "reporter.received.file.array.info.message";
     private static final String RECEIVED_RANDOM_ARRAY_INFO_MESSAGE_KEY = "reporter.received.random.array.info.message";

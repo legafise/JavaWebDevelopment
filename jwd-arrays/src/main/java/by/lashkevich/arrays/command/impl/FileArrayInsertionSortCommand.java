@@ -16,6 +16,10 @@ import by.lashkevich.arrays.view.impl.ViewType;
 
 import java.util.List;
 
+/**
+ * @author Roman Lashkevich
+ * @see by.lashkevich.arrays.command.Command
+ */
 public class FileArrayInsertionSortCommand implements Command {
     private ArrayService arrayService;
 

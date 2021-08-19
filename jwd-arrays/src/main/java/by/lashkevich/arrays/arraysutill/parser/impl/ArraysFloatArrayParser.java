@@ -5,6 +5,9 @@ import by.lashkevich.arrays.entity.ArraysArray;
 
 import java.util.List;
 
+/**
+ * @see by.lashkevich.arrays.arraysutill.parser.ArrayParser
+ */
 public class ArraysFloatArrayParser implements ArrayParser {
     private static final String READABLE_TYPE = "Float";
 

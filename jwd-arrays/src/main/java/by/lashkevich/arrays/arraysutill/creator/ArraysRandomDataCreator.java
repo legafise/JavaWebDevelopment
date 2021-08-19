@@ -3,6 +3,11 @@ package by.lashkevich.arrays.arraysutill.creator;
 import by.lashkevich.arrays.entity.ArraysArray;
 import by.lashkevich.arrays.entity.ArraysMatrix;
 
+/**
+ * Class for creation random data for
+ * matrix operations and array sorts
+ * @author Roman Lashkevich
+ */
 public class ArraysRandomDataCreator {
     private int squareMatrixRandomSize;
     private int rectangularMatrixRandomVerticalSize;

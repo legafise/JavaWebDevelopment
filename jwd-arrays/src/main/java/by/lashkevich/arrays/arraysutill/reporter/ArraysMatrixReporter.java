@@ -6,6 +6,10 @@ import java.util.Arrays;
 
 import static by.lashkevich.arrays.arraysutill.reader.ArraysPropertiesReader.getInstance;
 
+/**
+ * Class for report information about matrices
+ * @author Roman Lashkevich
+ */
 public final class ArraysMatrixReporter {
     private static final String RECEIVED_MATRICES_INFO_MESSAGE_KEY = "reporter.received.matrices.info.message";
     private static final String MULTIPLICATION_RESULT_MESSAGE_KEY = "reporter.multiplication.result.info.message";

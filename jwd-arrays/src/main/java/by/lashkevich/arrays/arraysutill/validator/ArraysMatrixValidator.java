@@ -5,6 +5,10 @@ import by.lashkevich.arrays.entity.ArraysMatrix;
 import java.util.Arrays;
 import java.util.Objects;
 
+/**
+ * Class for validation matrices
+ * @author Roman Lashkevich
+ */
 public final class ArraysMatrixValidator {
     private ArraysMatrixValidator() {
     }

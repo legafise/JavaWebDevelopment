@@ -17,6 +17,10 @@ import java.util.List;
 
 import static by.lashkevich.arrays.arraysutill.reporter.ArraysMatrixReporter.*;
 
+/**
+ * @author Roman Lashkevich
+ * @see by.lashkevich.arrays.command.Command
+ */
 public class FileMatrixAdditionCommand implements Command {
     private final MatrixService matrixService;
     private final ArraysMatrixParser matrixParser;

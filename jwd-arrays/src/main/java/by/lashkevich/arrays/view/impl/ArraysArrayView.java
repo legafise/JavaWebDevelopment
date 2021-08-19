@@ -12,6 +12,14 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * Class serves as a menu for selecting
+ * operation for work with array
+ * @author Roman Lashkevich
+ * @see by.lashkevich.arrays.view.View
+ * @see by.lashkevich.arrays.arraysutill.reader.ArraysPropertiesReader
+ * @see by.lashkevich.arrays.arraysutill.reader.ArraysViewConsoleReader
+ */
 public class ArraysArrayView implements View {
     private static final Logger LOGGER = LogManager.getRootLogger();
     private static final String ARRAY_OPERATIONS_INFO_KEY = "view.array.operation.info.message";

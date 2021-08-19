@@ -6,6 +6,11 @@ import by.lashkevich.arrays.exception.ArraysSorterException;
 
 import java.math.BigDecimal;
 
+/**
+ * A class for applying different sorts to an array
+ * @author Roman Lashkevich
+ * @see by.lashkevich.arrays.entity.ArraysArray
+ */
 public final class ArraysSorter {
 
     private ArraysSorter() {

@@ -8,6 +8,9 @@ import by.lashkevich.arrays.service.MatrixService;
 
 import static by.lashkevich.arrays.arraysutill.validator.ArraysMatrixValidator.*;
 
+/**
+ * @see by.lashkevich.arrays.service.MatrixService
+ */
 public class ArraysMatrixService implements MatrixService {
     private static final String INCORRECT_MATRICES_MESSAGE = "Incorrect matrices received";
 

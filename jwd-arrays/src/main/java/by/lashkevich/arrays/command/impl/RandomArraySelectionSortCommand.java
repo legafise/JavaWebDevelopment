@@ -12,6 +12,10 @@ import by.lashkevich.arrays.service.impl.ArraysArrayService;
 import by.lashkevich.arrays.view.View;
 import by.lashkevich.arrays.view.impl.ViewType;
 
+/**
+ * @author Roman Lashkevich
+ * @see by.lashkevich.arrays.command.Command
+ */
 public class RandomArraySelectionSortCommand implements Command {
     private final ArrayService arrayService;
     private final ArraysRandomDataCreator arraysCreator;

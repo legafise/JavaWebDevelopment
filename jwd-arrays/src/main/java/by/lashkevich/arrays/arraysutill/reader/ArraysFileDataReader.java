@@ -8,6 +8,10 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Class for reading data from file
+ * @author Roman Lashkevich
+ */
 public class ArraysFileDataReader {
     private static final String SQUARE_MATRIX_INFO_FILE_PATH =
             "jwd-arrays/src/main/resources/info/SquareMatrixInfo.txt";

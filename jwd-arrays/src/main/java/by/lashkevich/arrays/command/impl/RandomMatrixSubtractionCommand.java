@@ -17,6 +17,10 @@ import java.util.List;
 import static by.lashkevich.arrays.arraysutill.reporter.ArraysMatrixReporter.reportReceivedMatricesInfo;
 import static by.lashkevich.arrays.arraysutill.reporter.ArraysMatrixReporter.reportSubtractionResult;
 
+/**
+ * @author Roman Lashkevich
+ * @see by.lashkevich.arrays.command.Command
+ */
 public class RandomMatrixSubtractionCommand implements Command {
     private MatrixService matrixService;
 

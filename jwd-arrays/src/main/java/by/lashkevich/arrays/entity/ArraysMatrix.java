@@ -1,7 +1,10 @@
 package by.lashkevich.arrays.entity;
 
 import by.lashkevich.arrays.exception.ArraysMatrixException;
-
+/**
+ * Class created to work with matrices
+ * @author RomalLashkevich
+ */
 public class ArraysMatrix {
     private static final String INVALID_RANGE_MESSAGE = "You are out of range of the matrix";
     private static final String INVALID_MATRIX_SIZE_MESSAGE = "Invalid matrix size entered";

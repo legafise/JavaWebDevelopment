@@ -7,6 +7,13 @@ import by.lashkevich.arrays.controller.ArraysController;
 import by.lashkevich.arrays.controller.ArraysRequest;
 import by.lashkevich.arrays.view.View;
 
+/**
+ * Class serves as a menu for selecting a task
+ * @author Roman Lashkevich
+ * @see by.lashkevich.arrays.view.View
+ * @see by.lashkevich.arrays.arraysutill.reader.ArraysPropertiesReader
+ * @see by.lashkevich.arrays.arraysutill.reader.ArraysViewConsoleReader
+ */
 public class ArraysMainView implements View {
     private static final String NEW_LINE_BREAK = "\n";
     private static final String SELECT_LANGUAGE_MESSAGE = "view.select.language.message";

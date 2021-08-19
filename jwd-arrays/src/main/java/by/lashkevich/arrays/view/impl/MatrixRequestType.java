@@ -9,6 +9,11 @@ import by.lashkevich.arrays.exception.RequestTypeException;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Enum for fast request creating
+ * @author Roman Lashkevich
+ * @see by.lashkevich.arrays.controller.ArraysRequest
+ */
 public enum MatrixRequestType {
     MATRIX_MULTIPLICATION_REQUEST(1) {
         @Override

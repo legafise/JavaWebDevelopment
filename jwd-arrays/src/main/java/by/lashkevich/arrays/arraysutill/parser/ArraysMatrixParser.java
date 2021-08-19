@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * Class for parsing matrices from different information
+ * @author Roman Lashkevich
+ */
 public class ArraysMatrixParser {
     public ArraysMatrixParser() {
     }

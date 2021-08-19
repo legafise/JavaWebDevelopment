@@ -18,6 +18,10 @@ import java.util.List;
 import static by.lashkevich.arrays.arraysutill.reporter.ArraysMatrixReporter.*;
 import static by.lashkevich.arrays.arraysutill.reporter.ArraysMatrixReporter.reportReceivedMatricesInfo;
 
+/**
+ * @author Roman Lashkevich
+ * @see by.lashkevich.arrays.command.Command
+ */
 public class RandomMatrixMultiplicationCommand implements Command {
     private MatrixService matrixService;
 
