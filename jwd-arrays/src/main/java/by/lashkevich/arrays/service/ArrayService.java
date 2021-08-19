@@ -9,4 +9,6 @@ public interface ArrayService {
     ArraysArray<Number> cocktailSort(ArraysArray<Number> array) throws ArraysServiceException;
 
     ArraysArray<Number> selectionSort(ArraysArray<Number> array) throws ArraysServiceException;
+
+    ArraysArray<Number> insertionSort(ArraysArray<Number> array) throws ArraysServiceException;
 }

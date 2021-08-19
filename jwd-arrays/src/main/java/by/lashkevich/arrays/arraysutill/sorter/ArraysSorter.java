@@ -74,7 +74,7 @@ public final class ArraysSorter {
         }
     }
 
-    public static ArraysArray<java.lang.Number> sortByInsertionSort(ArraysArray<Number> array) throws ArraysSorterException {
+    public static ArraysArray<Number> sortByInsertionSort(ArraysArray<Number> array) throws ArraysSorterException {
         try {
             for (int i = 1; i < array.getLength(); i++) {
                 Number key = array.getElement(i);
