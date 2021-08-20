@@ -1,6 +1,6 @@
 package by.lashkevich.arrays.service.impl;
 
-import by.lashkevich.arrays.arraysutill.sorter.ArraysSorter;
+import by.lashkevich.arrays.arraysutill.sorter.ArraysArraySorter;
 import by.lashkevich.arrays.entity.ArraysArray;
 import by.lashkevich.arrays.exception.ArraysServiceException;
 import by.lashkevich.arrays.exception.ArraysSorterException;
@@ -17,7 +17,7 @@ public class ArraysArrayService implements ArrayService {
     public ArraysArray<Number> bubbleSort(ArraysArray<Number> array) throws ArraysServiceException {
         try {
             if (validateForNull(array)) {
-                return ArraysSorter.sortByBubbleSort(array);
+                return ArraysArraySorter.sortByBubbleSort(array);
             }
 
             throw new ArraysServiceException(INVALID_ARRAY_MESSAGE);
@@ -30,7 +30,7 @@ public class ArraysArrayService implements ArrayService {
     public ArraysArray<Number> cocktailSort(ArraysArray<Number> array) throws ArraysServiceException {
         try {
             if (validateForNull(array)) {
-                return ArraysSorter.sortByCocktailSort(array);
+                return ArraysArraySorter.sortByCocktailSort(array);
             }
 
             throw new ArraysServiceException(INVALID_ARRAY_MESSAGE);
@@ -43,7 +43,7 @@ public class ArraysArrayService implements ArrayService {
     public ArraysArray<Number> selectionSort(ArraysArray<Number> array) throws ArraysServiceException {
         try {
             if (validateForNull(array)) {
-                return ArraysSorter.sortBySelectionSort(array);
+                return ArraysArraySorter.sortBySelectionSort(array);
             }
 
             throw new ArraysServiceException(INVALID_ARRAY_MESSAGE);
@@ -56,7 +56,7 @@ public class ArraysArrayService implements ArrayService {
     public ArraysArray<Number> insertionSort(ArraysArray<Number> array) throws ArraysServiceException {
         try {
             if (validateForNull(array)) {
-                return ArraysSorter.sortByInsertionSort(array);
+                return ArraysArraySorter.sortByInsertionSort(array);
             }
 
             throw new ArraysServiceException(INVALID_ARRAY_MESSAGE);
@@ -69,7 +69,7 @@ public class ArraysArrayService implements ArrayService {
     public ArraysArray<Number> shellSort(ArraysArray<Number> array) throws ArraysServiceException {
         try {
             if (validateForNull(array)) {
-                return ArraysSorter.sortByShellSort(array);
+                return ArraysArraySorter.sortByShellSort(array);
             }
 
             throw new ArraysServiceException(INVALID_ARRAY_MESSAGE);

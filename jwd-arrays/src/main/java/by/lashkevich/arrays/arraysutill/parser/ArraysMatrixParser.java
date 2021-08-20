@@ -16,7 +16,7 @@ public class ArraysMatrixParser {
 
     public ArraysMatrix parseOneMatrix(List<String> matrixData) {
         Iterator matrixDataIterator = matrixData.iterator();
-        return parseMatrix(matrixData, matrixDataIterator);
+        return parseMatrix(matrixDataIterator);
     }
 
     public List<ArraysMatrix> parseMatrixList(List<String> matrixData) {
@@ -24,13 +24,13 @@ public class ArraysMatrixParser {
         Iterator matrixDataIterator = matrixData.iterator();
 
         while (matrixDataIterator.hasNext()) {
-            matrices.add(parseMatrix(matrixData, matrixDataIterator));
+            matrices.add(parseMatrix(matrixDataIterator));
         }
 
         return matrices;
     }
 
-    private ArraysMatrix parseMatrix(List<String> matrixData, Iterator matrixDataIterator) {
+    private ArraysMatrix parseMatrix(Iterator matrixDataIterator) {
         int verticalSize = Integer.parseInt((String) matrixDataIterator.next());
         int horizontalSize = Integer.parseInt((String) matrixDataIterator.next());
         int[][] matrix = new int[verticalSize][horizontalSize];

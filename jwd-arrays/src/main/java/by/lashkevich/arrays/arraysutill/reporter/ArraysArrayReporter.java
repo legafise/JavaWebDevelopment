@@ -8,7 +8,7 @@ import static by.lashkevich.arrays.arraysutill.reader.ArraysPropertiesReader.get
  * Class for report information about arrays
  * @author Roman Lashkevich
  */
-public class ArraysArrayReporter {
+public final class ArraysArrayReporter {
     private static final String RECEIVED_FILE_ARRAY_INFO_MESSAGE_KEY = "reporter.received.file.array.info.message";
     private static final String RECEIVED_RANDOM_ARRAY_INFO_MESSAGE_KEY = "reporter.received.random.array.info.message";
     private static final String BUBBLE_SORT_RESULT_MESSAGE_KEY = "reporter.bubble.sort.result.info.message";
@@ -17,6 +17,9 @@ public class ArraysArrayReporter {
     private static final String INSERTION_SORT_RESULT_MESSAGE_KEY = "reporter.insertion.sort.result.info.message";
     private static final String SHELL_SORT_RESULT_MESSAGE_KEY = "reporter.shell.sort.result.info.message";
     private static final String NEW_LINE_BREAK = "\n";
+
+    private ArraysArrayReporter() {
+    }
 
     public static void reportReceivedFileArrayInfo(ArraysArray<Number> array, String arrayTypeInfo) {
         System.out.println(String.format(getInstance().readMessageFromBundle(RECEIVED_FILE_ARRAY_INFO_MESSAGE_KEY),

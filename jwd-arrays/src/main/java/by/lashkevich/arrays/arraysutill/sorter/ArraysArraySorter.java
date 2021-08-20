@@ -11,9 +11,9 @@ import java.math.BigDecimal;
  * @author Roman Lashkevich
  * @see by.lashkevich.arrays.entity.ArraysArray
  */
-public final class ArraysSorter {
+public final class ArraysArraySorter {
 
-    private ArraysSorter() {
+    private ArraysArraySorter() {
     }
 
     public static ArraysArray<Number> sortByBubbleSort(ArraysArray<Number> array) throws ArraysSorterException {
@@ -43,6 +43,7 @@ public final class ArraysSorter {
                     }
                 }
                 rightBorder--;
+
                 for (int i = rightBorder; i > leftBorder; i--) {
                     if (numberComparator(array.getElement(i - 1), array.getElement(i))) {
                         swapElements(array, i, i - 1);
@@ -60,17 +61,15 @@ public final class ArraysSorter {
 
     public static ArraysArray<Number> sortBySelectionSort(ArraysArray<Number> array) throws ArraysSorterException {
         try {
-            int leftBorder = 0;
-
-            for (int i = leftBorder; i < array.getLength(); i++) {
-                int minInd = i;
+            for (int i = 0; i < array.getLength(); i++) {
+                int minElementId = i;
                 for (int j = i; j < array.getLength(); j++) {
-                    if (numberComparator(array.getElement(minInd), array.getElement(j))) {
-                        minInd = j;
+                    if (numberComparator(array.getElement(minElementId), array.getElement(j))) {
+                        minElementId = j;
                     }
                 }
 
-                swapElements(array, i, minInd);
+                swapElements(array, i, minElementId);
             }
 
             return array;

@@ -1,11 +1,20 @@
 package by.lashkevich.arrays.entity;
 
 import by.lashkevich.arrays.exception.ArraysMatrixException;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.math.BigDecimal;
+import java.util.Arrays;
+
 /**
  * Class created to work with matrices
+ *
  * @author RomalLashkevich
  */
 public class ArraysMatrix {
+    private static final Logger LOGGER = LogManager.getRootLogger();
     private static final String INVALID_RANGE_MESSAGE = "You are out of range of the matrix";
     private static final String INVALID_MATRIX_SIZE_MESSAGE = "Invalid matrix size entered";
     private static final String BLANK = " ";
@@ -51,6 +60,20 @@ public class ArraysMatrix {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ArraysMatrix matrix1 = (ArraysMatrix) o;
+        return matrix1.getVerticalSize() == this.getVerticalSize()
+                && matrix1.getHorizontalSize() == this.getHorizontalSize() && compareMatrices(matrix1);
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(matrix);
+    }
+
+    @Override
     public String toString() {
         StringBuilder s = new StringBuilder(MATRIX_SIZE_EQUAL_MESSAGE + matrix.length + X_SIGN
                 + matrix[0].length + NEW_LINE_BREAK);
@@ -66,5 +89,22 @@ public class ArraysMatrix {
 
     private boolean checkRange(int i, int j) {
         return i >= 0 && i < matrix.length && j >= 0 && j < matrix[0].length;
+    }
+
+    private boolean compareMatrices(ArraysMatrix matrix) {
+        try {
+            for (int i = 0; i < matrix.getHorizontalSize(); i++) {
+                for (int j = 0; j < matrix.getVerticalSize(); j++) {
+                    if (BigDecimal.valueOf(matrix.getElement(i, j))
+                            .compareTo(BigDecimal.valueOf(this.getElement(i, j))) != 0) {
+                        return false;
+                    }
+                }
+            }
+        } catch (ArraysMatrixException e) {
+           LOGGER.log(Level.ERROR, e.getMessage());
+        }
+
+        return true;
     }
 }
