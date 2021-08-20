@@ -7,6 +7,7 @@ import by.lashkevich.arrays.controller.ArraysRequest;
 import by.lashkevich.arrays.entity.ArraysMatrix;
 import by.lashkevich.arrays.exception.ArraysCommandException;
 import by.lashkevich.arrays.exception.ArraysServiceException;
+import by.lashkevich.arrays.service.ArraysServiceFactory;
 import by.lashkevich.arrays.service.MatrixService;
 import by.lashkevich.arrays.service.impl.ArraysMatrixService;
 import by.lashkevich.arrays.view.View;
@@ -22,10 +23,10 @@ import static by.lashkevich.arrays.arraysutill.reporter.ArraysMatrixReporter.rep
  * @see by.lashkevich.arrays.command.Command
  */
 public class RandomMatrixSubtractionCommand implements Command {
-    private MatrixService matrixService;
+    private final MatrixService matrixService;
 
     public RandomMatrixSubtractionCommand() {
-        matrixService = new ArraysMatrixService();
+        matrixService = ArraysServiceFactory.getInstance().getMatrixService();
     }
 
     @Override

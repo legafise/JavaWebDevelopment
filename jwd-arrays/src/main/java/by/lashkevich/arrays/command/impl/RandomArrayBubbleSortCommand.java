@@ -8,6 +8,7 @@ import by.lashkevich.arrays.entity.ArraysArray;
 import by.lashkevich.arrays.exception.ArraysCommandException;
 import by.lashkevich.arrays.exception.ArraysServiceException;
 import by.lashkevich.arrays.service.ArrayService;
+import by.lashkevich.arrays.service.ArraysServiceFactory;
 import by.lashkevich.arrays.service.impl.ArraysArrayService;
 import by.lashkevich.arrays.view.View;
 import by.lashkevich.arrays.view.impl.ViewType;
@@ -21,7 +22,7 @@ public class RandomArrayBubbleSortCommand implements Command {
     private final ArraysRandomDataCreator arraysCreator;
 
     public RandomArrayBubbleSortCommand() {
-        arrayService = new ArraysArrayService();
+        arrayService = ArraysServiceFactory.getInstance().getArrayService();
         arraysCreator = new ArraysRandomDataCreator();
     }
 

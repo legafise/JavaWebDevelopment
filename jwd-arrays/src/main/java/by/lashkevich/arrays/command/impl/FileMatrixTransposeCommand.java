@@ -7,6 +7,7 @@ import by.lashkevich.arrays.controller.ArraysRequest;
 import by.lashkevich.arrays.entity.ArraysMatrix;
 import by.lashkevich.arrays.exception.ArraysCommandException;
 import by.lashkevich.arrays.exception.ArraysServiceException;
+import by.lashkevich.arrays.service.ArraysServiceFactory;
 import by.lashkevich.arrays.service.MatrixService;
 import by.lashkevich.arrays.service.impl.ArraysMatrixService;
 import by.lashkevich.arrays.view.View;
@@ -26,7 +27,7 @@ public class FileMatrixTransposeCommand implements Command {
     private final ArraysMatrixParser matrixParser;
 
     public FileMatrixTransposeCommand() {
-        matrixService = new ArraysMatrixService();
+        matrixService = ArraysServiceFactory.getInstance().getMatrixService();
         matrixParser = new ArraysMatrixParser();
     }
 
