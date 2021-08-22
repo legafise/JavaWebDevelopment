@@ -14,6 +14,7 @@
         <module>jwd-resource</module>
         <module>jwd-loopsandbranching</module>
         <module>jwd-arrays</module>
+        <module>jwd-bills</module>
     </modules>
 
     <properties>
