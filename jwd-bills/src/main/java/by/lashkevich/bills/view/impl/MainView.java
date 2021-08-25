@@ -22,24 +22,28 @@ public class MainView implements View {
     private static final String ENTER_ZERO_TO_END_PROGRAM_MESSAGE_KEY = "view.end.program.message";
     private static final String THE_FIRST_TASK_INFORMATION_KEY = "view.first.task.info.message";
     private static final String THE_SECOND_TASK_INFORMATION_KEY = "view.second.task.info.message";
+    private static final String THE_THIRD_TASK_INFORMATION_KEY = "view.third.task.info.message";
+    private static final int MAIN_VIEW_COMMAND_NUMBER = -1;
+    private static final int CHOSE_LOCALE_COMMAND_NUMBER = 1;
     private final ViewConsoleReader consoleReader;
     private final LocaleReader localeReader;
     private final Request request;
-
+    private boolean isChosenLocale = false;
 
     public MainView() {
-
         request = new Request();consoleReader = new ViewConsoleReader();
         localeReader = LocaleReader.getInstance();
     }
 
     @Override
     public void executeView() {
-        int mainViewCommandNumber = -1;
+        if (!isChosenLocale) {
+            chooseLocale();
+        }
 
-        if (!chooseLocale() || !chooseTask()) {
+        if (!chooseTask()) {
             System.out.println(localeReader.readMessageFromBundle(WRONG_MENU_ITEM_SELECTED_MESSAGE_KEY));
-            request.putParameter(RequestConstant.COMMAND_NUMBER, mainViewCommandNumber);
+            request.putParameter(RequestConstant.COMMAND_NUMBER, MAIN_VIEW_COMMAND_NUMBER);
         }
 
         Controller.getInstance().doRequest(request).executeView();
@@ -52,9 +56,15 @@ public class MainView implements View {
                 + NEW_LINE_BREAK
                 + localeReader.readMessageFromBundle(THE_FIRST_TASK_INFORMATION_KEY)
                 + NEW_LINE_BREAK
-                + localeReader.readMessageFromBundle(THE_SECOND_TASK_INFORMATION_KEY));
+                + localeReader.readMessageFromBundle(THE_SECOND_TASK_INFORMATION_KEY)
+                + NEW_LINE_BREAK
+                + localeReader.readMessageFromBundle(THE_THIRD_TASK_INFORMATION_KEY));
         int commandNumber = consoleReader.readCommandNumber();
-        boolean isValidCommandNumber = commandNumber > -1 && commandNumber < 3;
+        if (commandNumber == 1) {
+            chooseLocale();
+        }
+
+        boolean isValidCommandNumber = commandNumber > -1 && commandNumber < 4;
         if (isValidCommandNumber) {
             request.putParameter(RequestConstant.COMMAND_NUMBER, commandNumber);
         }
@@ -62,14 +72,13 @@ public class MainView implements View {
         return isValidCommandNumber;
     }
 
-    private boolean chooseLocale() {
+    private void chooseLocale() {
+        Request request = new Request();
         System.out.println(localeReader.readMessageFromBundle(SELECT_LANGUAGE_MESSAGE));
         int localeNumber = consoleReader.readLocaleNumber();
-        boolean isValidLocaleNumber = localeNumber > 0 && localeNumber < 3;
-        if (isValidLocaleNumber) {
-            LocaleReader.getInstance().setLocaleNumber(localeNumber);
-        }
-
-        return isValidLocaleNumber;
+        request.putParameter(RequestConstant.COMMAND_NUMBER, CHOSE_LOCALE_COMMAND_NUMBER);
+        request.putParameter(RequestConstant.DATA_NAME, localeNumber);
+        isChosenLocale = true;
+        Controller.getInstance().doRequest(request).executeView();
     }
 }
