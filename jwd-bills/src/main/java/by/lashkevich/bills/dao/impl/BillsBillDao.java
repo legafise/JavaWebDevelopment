@@ -34,6 +34,11 @@ public class BillsBillDao implements BillDao {
                 .orElseThrow(() -> new DaoException(String.format(INCORRECT_ID_MESSAGE, id)));
     }
 
+    @Override
+    public List<Bill> findAllBills() throws DaoException {
+        return bills;
+    }
+
     private void readBillsData() throws DaoException {
         try {
             List<Bill> bills = new ArrayList<>();

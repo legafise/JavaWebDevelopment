@@ -9,6 +9,8 @@ public class BillReporter {
     private static final String BILL_INFO_MESSAGE_KEY = "reporter.bill.info.message";
     private static final String BALANCE_DESCENDING_SORT_RESULT_MESSAGE_KEY = "reporter.bill.balance" +
             ".descending.sort.result.message";
+    private static final String BALANCE_ASCENDING_SORT_RESULT_MESSAGE_KEY = "reporter.bill.balance" +
+            ".ascending.sort.result.message";
     private static final String NEW_LINE_BREAK = "\n";
     private final LocaleReader localeReader;
 
@@ -25,7 +27,12 @@ public class BillReporter {
         reportBillsSortResult(bills, BALANCE_DESCENDING_SORT_RESULT_MESSAGE_KEY);
     }
 
+    public void reportBalanceAscendingSortResult(List<Bill> bills) {
+        reportBillsSortResult(bills, BALANCE_ASCENDING_SORT_RESULT_MESSAGE_KEY);
+    }
+
     private void reportBillsSortResult(List<Bill> bills, String messageKey) {
-        System.out.println(localeReader.readMessageFromBundle(messageKey) + NEW_LINE_BREAK + bills);
+        System.out.println(localeReader.readMessageFromBundle(messageKey)
+                + NEW_LINE_BREAK + bills + NEW_LINE_BREAK);
     }
 }

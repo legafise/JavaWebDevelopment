@@ -8,4 +8,6 @@ public interface BillService {
     Bill findBillById(String id) throws ServiceException;
 
     List<Bill> balanceDescendingOrderSort() throws ServiceException;
+
+    List<Bill> balanceAscendingOrderSort() throws ServiceException;
 }
