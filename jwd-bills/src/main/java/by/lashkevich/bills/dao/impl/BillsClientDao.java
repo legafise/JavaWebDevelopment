@@ -19,49 +19,59 @@ public class BillsClientDao implements ClientDao {
     private static final String BILL_SEPARATION_SIGN = "BillsInfo";
     private static final String INCORRECT_ID_MESSAGE = "Incorrect client id(%d) was entered";
     private final FilePathFinder filePathFinder;
+    private List<Client> clients;
 
-    public BillsClientDao() {
+    public BillsClientDao() throws DaoException {
         filePathFinder = new FilePathFinder();
+        readClientsData();
     }
 
     @Override
     public Client findClientById(long id) throws DaoException {
+        return clients.stream()
+                .filter(client -> client.getId() == id)
+                .findFirst()
+                .orElseThrow(() -> new DaoException(String.format(INCORRECT_ID_MESSAGE, id)));
+    }
+
+    public void readClientsData() throws DaoException {
         try {
-            Client client = new Client();
-            List<Long> billsIds = new ArrayList<>();
+            List<Client> clients = new ArrayList<>();
             List<String> clientData = Files.lines(Paths.get(filePathFinder.findInfoFilePath(CLIENT_INFO_FILE_NAME)))
                     .collect(Collectors.toList());
             Iterator clientIterator = clientData.iterator();
-            boolean billMarker;
+            String currentElement = clientIterator.next().toString();
+
             while (clientIterator.hasNext()) {
-                if (clientIterator.next().toString().equals(CLIENT_SEPARATION_SIGN)
-                        && clientIterator.next().toString().equals(String.valueOf(id))) {
-                    client.setId(id);
+                boolean billMarker;
+                if (currentElement.equals(CLIENT_SEPARATION_SIGN)) {
+                    List<Long> billsIds = new ArrayList<>();
+                    Client client = new Client();
+                    client.setId(Long.parseLong(clientIterator.next().toString()));
                     client.setName(clientIterator.next().toString());
                     client.setSurname(clientIterator.next().toString());
                     client.setAge(Integer.parseInt(clientIterator.next().toString()));
 
                     if (clientIterator.hasNext() && clientIterator.next().toString().equals(BILL_SEPARATION_SIGN)) {
                         do {
-                            String currentBillElement = clientIterator.next().toString();
-                            billMarker = !currentBillElement.equals(CLIENT_SEPARATION_SIGN);
-                            if (billMarker) {
-                                billsIds.add(Long.parseLong(currentBillElement));
+                            if (!clientIterator.hasNext()) {
+                                break;
                             }
-                        } while (billMarker && clientIterator.hasNext());
 
-                        break;
+                            currentElement = clientIterator.next().toString();
+                            billMarker = !currentElement.equals(CLIENT_SEPARATION_SIGN);
+                            if (billMarker) {
+                                billsIds.add(Long.parseLong(currentElement));
+                            }
+                        } while (billMarker);
+
+                        client.setBillIds(billsIds);
+                        clients.add(client);
                     }
                 }
             }
 
-            if (client.getId() == 0) {
-                throw new DaoException(String.format(INCORRECT_ID_MESSAGE, id));
-            }
-
-            client.setBillIds(billsIds);
-
-            return client;
+            this.clients = clients;
         } catch (IOException e) {
             throw new DaoException(e.getMessage());
         }
