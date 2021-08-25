@@ -5,6 +5,7 @@ import by.lashkevich.bills.controller.command.impl.*;
 import java.util.Arrays;
 
 public enum CommandType {
+    FIND_BILLS_BY_BALANCE_IN_RANGE(new FindBillsByBalanceInRangeCommand(), -9),
     BILL_ASCENDING_SORT(new BillsBalanceAscendingSortCommand(), -8),
     BILL_BALANCE_DESCENDING_SORT(new BillsBalanceDescendingSortCommand(), -7),
     FIND_BILL_BY_ID(new FindBillByIdCommand(), -6),

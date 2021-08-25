@@ -11,6 +11,8 @@ public class BillReporter {
             ".descending.sort.result.message";
     private static final String BALANCE_ASCENDING_SORT_RESULT_MESSAGE_KEY = "reporter.bill.balance" +
             ".ascending.sort.result.message";
+    private static final String BALANCE_RANGE_SEARCH_RESULT_MESSAGE_KEY = "reporter.bill.balance" +
+            ".range.sort.result.message";
     private static final String NEW_LINE_BREAK = "\n";
     private final LocaleReader localeReader;
 
@@ -34,5 +36,11 @@ public class BillReporter {
     private void reportBillsSortResult(List<Bill> bills, String messageKey) {
         System.out.println(localeReader.readMessageFromBundle(messageKey)
                 + NEW_LINE_BREAK + bills + NEW_LINE_BREAK);
+    }
+
+    public void reportBillsBalanceRangeSearchInfo(List<Bill> bills,
+                                                  String firstRangeElement, String secondRangeElement) {
+        System.out.println(String.format(localeReader.readMessageFromBundle(BALANCE_RANGE_SEARCH_RESULT_MESSAGE_KEY),
+                        firstRangeElement, secondRangeElement) + bills + NEW_LINE_BREAK);
     }
 }

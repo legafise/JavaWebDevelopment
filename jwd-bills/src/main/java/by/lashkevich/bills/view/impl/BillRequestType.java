@@ -50,7 +50,7 @@ public enum BillRequestType {
             return request;
         }
     },
-    FIND_BILLS_IN_RANGE(4) {
+    FIND_BILLS_BY_BALANCE_IN_RANGE(4) {
         @Override
         Request createRequest(ViewConsoleReader consoleReader, LocaleReader localeReader) {
             Request request = new Request();
@@ -59,7 +59,7 @@ public enum BillRequestType {
             rangeValues.add(consoleReader.readRangeValue());
             System.out.println(localeReader.readMessageFromBundle(INTRODUCE_SECOND_RANGE_VALUE_MESSAGE_KEY));
             rangeValues.add(consoleReader.readRangeValue());
-            request.putParameter(RequestConstant.COMMAND_NUMBER, FIND_BILLS_IN_RANGE_COMMAND_NUMBER);
+            request.putParameter(RequestConstant.COMMAND_NUMBER, FIND_BILLS_BY_BALANCE_IN_RANGE_COMMAND_NUMBER);
             request.putParameter(RequestConstant.DATA_NAME, rangeValues);
             return request;
         }
@@ -70,7 +70,7 @@ public enum BillRequestType {
     private static final String INTRODUCE_FIRST_RANGE_VALUE_MESSAGE_KEY = "view.introduce.first.range.value.message";
     private static final String INTRODUCE_SECOND_RANGE_VALUE_MESSAGE_KEY = "view.introduce.second.range.value.message";
     private static final int BILL_VIEW_COMMAND_NUMBER = 3;
-    private static final int FIND_BILLS_IN_RANGE_COMMAND_NUMBER = -9;
+    private static final int FIND_BILLS_BY_BALANCE_IN_RANGE_COMMAND_NUMBER = -9;
     private static final int BALANCE_ASCENDING_SORT_COMMAND_NUMBER = -8;
     private static final int BALANCE_DESCENDING_SORT_COMMAND_NUMBER = -7;
     private static final int FIND_BILL_BY_ID_COMMAND_NUMBER = -6;

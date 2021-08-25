@@ -10,4 +10,6 @@ public interface BillService {
     List<Bill> balanceDescendingOrderSort() throws ServiceException;
 
     List<Bill> balanceAscendingOrderSort() throws ServiceException;
+
+    List<Bill> billsBalanceRangeSearch(String firstRangeElement, String secondRangeElement) throws ServiceException;
 }

@@ -6,10 +6,13 @@ import by.lashkevich.bills.entity.Bill;
 import by.lashkevich.bills.service.BillService;
 import by.lashkevich.bills.service.ServiceException;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class BillsBillService implements BillService {
+    private static final String INCORRECT_RANGE_ERROR_MESSAGE = "Incorrect range vas entered";
+
     @Override
     public Bill findBillById(String id) throws ServiceException {
         try {
@@ -34,6 +37,26 @@ public class BillsBillService implements BillService {
     public List<Bill> balanceAscendingOrderSort() throws ServiceException {
         try {
             return DaoFactory.getInstance().getBillDao().findAllBills().stream()
+                    .sorted((firstBill, secondBill) -> firstBill.getBalance().compareTo(secondBill.getBalance()))
+                    .collect(Collectors.toList());
+        } catch (DaoException e) {
+            throw new ServiceException(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<Bill> billsBalanceRangeSearch(String firstRangeElement,
+                                              String secondRangeElement) throws ServiceException {
+        try {
+            BigDecimal bigDecimalFirstRangeElement = new BigDecimal(firstRangeElement);
+            BigDecimal bigDecimalSecondRangeElement = new BigDecimal(secondRangeElement);
+            if (bigDecimalFirstRangeElement.compareTo(bigDecimalSecondRangeElement) > 0) {
+                throw new ServiceException(INCORRECT_RANGE_ERROR_MESSAGE);
+            }
+
+            return DaoFactory.getInstance().getBillDao().findAllBills().stream()
+                    .filter(bill -> bill.getBalance().compareTo(bigDecimalFirstRangeElement) > 0
+                            && bill.getBalance().compareTo(bigDecimalSecondRangeElement) < 0)
                     .sorted((firstBill, secondBill) -> firstBill.getBalance().compareTo(secondBill.getBalance()))
                     .collect(Collectors.toList());
         } catch (DaoException e) {
