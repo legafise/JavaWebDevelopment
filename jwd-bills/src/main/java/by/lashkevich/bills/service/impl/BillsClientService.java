@@ -8,7 +8,6 @@ import by.lashkevich.bills.service.ClientService;
 import by.lashkevich.bills.service.ServiceException;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

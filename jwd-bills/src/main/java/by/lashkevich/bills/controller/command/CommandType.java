@@ -5,6 +5,10 @@ import by.lashkevich.bills.controller.command.impl.*;
 import java.util.Arrays;
 
 public enum CommandType {
+//    FIND_BILLS_IN_RANGE(new FindBillsInRangeCommand(), -9),
+//    BILL_ASCENDING_SORT(new BillsBalanceAscendingSortCommand(), -8),
+    BILL_BALANCE_DESCENDING_SORT(new BillsBalanceDescendingSortCommand(), -7),
+    FIND_BILL_BY_ID(new FindBillByIdCommand(), -6),
     CALCULATE_CLIENT_TOTAL_NEGATIVE_BILLS_AMOUNT(new CalculateClientTotalNegativeBillsAmountCommand(), -5),
     CALCULATE_CLIENT_TOTAL_POSITIVE_BILLS_AMOUNT(new CalculateClientTotalPositiveBillsAmountCommand(), -4),
     CALCULATE_CLIENT_TOTAL_BILLS_AMOUNT(new CalculateClientTotalBillsAmountCommand(), -3),
@@ -12,7 +16,8 @@ public enum CommandType {
     MAIN_FORWARD(new MainForwardCommand(), -1),
     MENU_EXIT(new MenuExitCommand(), 0),
     CHOOSE_LOCALE(new ChooseLocaleCommand(), 1),
-    CLIENT_VIEW_FORWARD(new ClientViewForwardCommand(), 2);
+    CLIENT_VIEW_FORWARD(new ClientViewForwardCommand(), 2),
+    BILL_VIEW_FORWARD(new BillViewForwardCommand(), 3);
 
     private static final String INVALID_COMMAND_WAS_CHOSEN_ERROR_MESSAGE = "Invalid command was chosen";
     private final Command command;

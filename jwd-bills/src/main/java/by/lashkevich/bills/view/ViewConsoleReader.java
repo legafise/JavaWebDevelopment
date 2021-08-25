@@ -24,4 +24,12 @@ public class ViewConsoleReader {
     public String readClientId() {
         return scanner.next();
     }
+
+    public String readBillId() {
+        return scanner.next();
+    }
+
+    public String readRangeValue() {
+        return scanner.next();
+    }
 }
