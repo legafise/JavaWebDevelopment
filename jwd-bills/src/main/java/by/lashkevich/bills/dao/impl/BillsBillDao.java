@@ -39,6 +39,18 @@ public class BillsBillDao implements BillDao {
         return bills;
     }
 
+    @Override
+    public boolean update(Bill bill) {
+        for (int i = 0; i < bills.size(); i++) {
+            if (bills.get(i).getId() == bill.getId()) {
+                bills.set(i, bill);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     private void readBillsData() throws DaoException {
         try {
             List<Bill> bills = new ArrayList<>();

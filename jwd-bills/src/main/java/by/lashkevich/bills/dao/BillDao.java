@@ -8,4 +8,6 @@ public interface BillDao {
     Bill findBillById(long id) throws DaoException;
 
     List<Bill> findAllBills() throws DaoException;
+
+    boolean update(Bill bill);
 }

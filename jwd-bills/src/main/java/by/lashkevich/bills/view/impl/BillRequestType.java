@@ -63,6 +63,26 @@ public enum BillRequestType {
             request.putParameter(RequestConstant.DATA_NAME, rangeValues);
             return request;
         }
+    },
+    BLOCK_BILL_BY_ID_REQUEST(5) {
+        @Override
+        Request createRequest(ViewConsoleReader consoleReader, LocaleReader localeReader) {
+            Request request = new Request();
+            System.out.println(localeReader.readMessageFromBundle(INTRODUCE_BILL_ID_MESSAGE_KEY));
+            request.putParameter(RequestConstant.DATA_NAME, consoleReader.readBillId());
+            request.putParameter(RequestConstant.COMMAND_NUMBER, BLOCK_BILL_BY_ID_REQUEST_COMMAND_NUMBER);
+            return request;
+        }
+    },
+    UNBLOCK_BILL_BY_ID_REQUEST(6) {
+        @Override
+        Request createRequest(ViewConsoleReader consoleReader, LocaleReader localeReader) {
+            Request request = new Request();
+            System.out.println(localeReader.readMessageFromBundle(INTRODUCE_BILL_ID_MESSAGE_KEY));
+            request.putParameter(RequestConstant.DATA_NAME, consoleReader.readBillId());
+            request.putParameter(RequestConstant.COMMAND_NUMBER, UNBLOCK_BILL_BY_ID_REQUEST_COMMAND_NUMBER);
+            return request;
+        }
     };
 
     private static final String INVALID_OPERATION_MESSAGE_KEY = "view.invalid.operation.message";
@@ -70,6 +90,8 @@ public enum BillRequestType {
     private static final String INTRODUCE_FIRST_RANGE_VALUE_MESSAGE_KEY = "view.introduce.first.range.value.message";
     private static final String INTRODUCE_SECOND_RANGE_VALUE_MESSAGE_KEY = "view.introduce.second.range.value.message";
     private static final int BILL_VIEW_COMMAND_NUMBER = 3;
+    private static final int UNBLOCK_BILL_BY_ID_REQUEST_COMMAND_NUMBER = -11;
+    private static final int BLOCK_BILL_BY_ID_REQUEST_COMMAND_NUMBER = -10;
     private static final int FIND_BILLS_BY_BALANCE_IN_RANGE_COMMAND_NUMBER = -9;
     private static final int BALANCE_ASCENDING_SORT_COMMAND_NUMBER = -8;
     private static final int BALANCE_DESCENDING_SORT_COMMAND_NUMBER = -7;

@@ -63,4 +63,28 @@ public class BillsBillService implements BillService {
             throw new ServiceException(e.getMessage());
         }
     }
+
+    @Override
+    public boolean blockBillById(String id) throws ServiceException {
+        try {
+            Bill bill = DaoFactory.getInstance().getBillDao().findBillById(Long.parseLong(id));
+            bill.setBlocked(true);
+            return DaoFactory.getInstance().getBillDao().update(bill);
+        } catch (DaoException | NumberFormatException e) {
+            throw new ServiceException(e.getMessage());
+        }
+    }
+
+    @Override
+    public boolean unblockBillById(String id) throws ServiceException {
+        try {
+            Bill bill = DaoFactory.getInstance().getBillDao().findBillById(Long.parseLong(id));
+            bill.setBlocked(false);
+            return DaoFactory.getInstance().getBillDao().update(bill);
+        } catch (NumberFormatException e) {
+            throw new ServiceException(e.getMessage());
+        } catch (DaoException e) {
+            return false;
+        }
+    }
 }

@@ -12,4 +12,8 @@ public interface BillService {
     List<Bill> balanceAscendingOrderSort() throws ServiceException;
 
     List<Bill> billsBalanceRangeSearch(String firstRangeElement, String secondRangeElement) throws ServiceException;
+
+    boolean blockBillById(String id) throws ServiceException;
+
+    boolean unblockBillById(String id) throws ServiceException;
 }
