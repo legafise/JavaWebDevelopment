@@ -15,8 +15,8 @@ public class BillReporter {
             ".range.sort.result.message";
     private static final String BLOCKING_RESULT_MESSAGE_KEY = "reporter.bill.blocking.result.info.message";
     private static final String UNBLOCKING_RESULT_MESSAGE_KEY = "reporter.bill.unblocking.result.info.message";
-    private static final String POSITIVE_BLOCKING_RESULT_MESSAGE_KEY = "reporter.positive.bill.changing.result.message";
-    private static final String NEGATIVE_BLOCKING_RESULT_MESSAGE_KEY = "reporter.negative.bill.changing.result.message";
+    private static final String POSITIVE_RESULT_MESSAGE_KEY = "reporter.positive.result.message";
+    private static final String NEGATIVE_RESULT_MESSAGE_KEY = "reporter.negative.result.message";
     private static final String NEW_LINE_BREAK = "\n";
     private final LocaleReader localeReader;
 
@@ -57,8 +57,8 @@ public class BillReporter {
     }
 
     private void reportBillChangingResult(boolean result, String messageKey) {
-        String resultMessage = result ? localeReader.readMessageFromBundle(POSITIVE_BLOCKING_RESULT_MESSAGE_KEY)
-                : localeReader.readMessageFromBundle(NEGATIVE_BLOCKING_RESULT_MESSAGE_KEY);
+        String resultMessage = result ? localeReader.readMessageFromBundle(POSITIVE_RESULT_MESSAGE_KEY)
+                : localeReader.readMessageFromBundle(NEGATIVE_RESULT_MESSAGE_KEY);
         System.out.println(localeReader.readMessageFromBundle(messageKey) + resultMessage);
     }
 }

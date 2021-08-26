@@ -1,5 +1,6 @@
 package by.lashkevich.bills.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -8,9 +9,25 @@ public class Client {
     private String name;
     private String surname;
     private int age;
-    private List<Long> billIds;
+    private List<Bill> bills;
 
     public Client() {
+    }
+
+    public Client(long id, String name, String surname, int age, List<Bill> bills) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+        this.bills = bills;
+    }
+
+    public Client(long id, String name, String surname, int age) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+        this.bills = new ArrayList<>();
     }
 
     public long getId() {
@@ -45,12 +62,12 @@ public class Client {
         this.age = age;
     }
 
-    public List<Long> getBillIds() {
-        return billIds;
+    public List<Bill> getBills() {
+        return bills;
     }
 
-    public void setBillIds(List<Long> billIds) {
-        this.billIds = billIds;
+    public void setBills(List<Bill> bills) {
+        this.bills = bills;
     }
 
     @Override
@@ -62,12 +79,12 @@ public class Client {
                 age == client.age &&
                 Objects.equals(name, client.name) &&
                 Objects.equals(surname, client.surname) &&
-                Objects.equals(billIds, client.billIds);
+                Objects.equals(bills, client.bills);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, surname, age, billIds);
+        return Objects.hash(id, name, surname, age, bills);
     }
 
     @Override
@@ -77,7 +94,7 @@ public class Client {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", age=" + age +
-                ", billIds=" + billIds +
+                ", bills=" + bills +
                 '}';
     }
 }

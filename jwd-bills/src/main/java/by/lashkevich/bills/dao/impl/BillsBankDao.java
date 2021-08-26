@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class BillsBankDao implements BankDao {
@@ -30,6 +31,19 @@ public class BillsBankDao implements BankDao {
     @Override
     public Bank findBank() {
         return bank;
+    }
+
+    @Override
+    public boolean addClient(Client client) throws DaoException {
+        return bank.getClients().add(client);
+    }
+
+    @Override
+    public boolean removeClient(long clientId) throws DaoException {
+        Optional<Client> removingClientOptional = bank.getClients().stream()
+                .filter(client -> client.getId() == clientId)
+                .findAny();
+        return removingClientOptional.isPresent() && bank.getClients().remove(removingClientOptional.get());
     }
 
     private void readBankData() throws DaoException {

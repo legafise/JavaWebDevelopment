@@ -2,7 +2,9 @@ package by.lashkevich.bills.dao.impl;
 
 import by.lashkevich.bills.dao.ClientDao;
 import by.lashkevich.bills.dao.DaoException;
+import by.lashkevich.bills.dao.DaoFactory;
 import by.lashkevich.bills.dao.FilePathFinder;
+import by.lashkevich.bills.entity.Bill;
 import by.lashkevich.bills.entity.Client;
 
 import java.io.IOException;
@@ -11,6 +13,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class BillsClientDao implements ClientDao {
@@ -34,6 +37,24 @@ public class BillsClientDao implements ClientDao {
                 .orElseThrow(() -> new DaoException(String.format(INCORRECT_ID_MESSAGE, id)));
     }
 
+    @Override
+    public List<Client> findAllClients() throws DaoException {
+        return clients;
+    }
+
+    @Override
+    public boolean addClient(Client client) throws DaoException {
+        return clients.add(client);
+    }
+
+    @Override
+    public boolean removeClient(long id) throws DaoException {
+        Optional<Client> removingClientOptional = clients.stream()
+                .filter(client -> client.getId() == id)
+                .findAny();
+        return removingClientOptional.isPresent() && clients.remove(removingClientOptional.get());
+    }
+
     public void readClientsData() throws DaoException {
         try {
             List<Client> clients = new ArrayList<>();
@@ -45,7 +66,7 @@ public class BillsClientDao implements ClientDao {
             while (clientIterator.hasNext()) {
                 boolean billMarker;
                 if (currentElement.equals(CLIENT_SEPARATION_SIGN)) {
-                    List<Long> billsIds = new ArrayList<>();
+                    List<Bill> bills = new ArrayList<>();
                     Client client = new Client();
                     client.setId(Long.parseLong(clientIterator.next().toString()));
                     client.setName(clientIterator.next().toString());
@@ -61,11 +82,12 @@ public class BillsClientDao implements ClientDao {
                             currentElement = clientIterator.next().toString();
                             billMarker = !currentElement.equals(CLIENT_SEPARATION_SIGN);
                             if (billMarker) {
-                                billsIds.add(Long.parseLong(currentElement));
+                                bills.add(DaoFactory.getInstance().getBillDao()
+                                        .findBillById(Long.parseLong(currentElement)));
                             }
                         } while (billMarker);
 
-                        client.setBillIds(billsIds);
+                        client.setBills(bills);
                         clients.add(client);
                     }
                 }

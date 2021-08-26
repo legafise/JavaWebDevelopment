@@ -32,4 +32,16 @@ public class ViewConsoleReader {
     public String readRangeValue() {
         return scanner.next();
     }
+
+    public String readClientName() {
+        return scanner.next();
+    }
+
+    public String readClientSurname() {
+        return scanner.next();
+    }
+
+    public String readClientAge() {
+        return scanner.next();
+    }
 }

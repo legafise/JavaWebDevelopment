@@ -43,7 +43,8 @@ public class BillsBillDao implements BillDao {
     public boolean update(Bill bill) {
         for (int i = 0; i < bills.size(); i++) {
             if (bills.get(i).getId() == bill.getId()) {
-                bills.set(i, bill);
+                bills.get(i).setBalance(bill.getBalance());
+                bills.get(i).setBlocked(bill.isBlocked());
                 return true;
             }
         }
