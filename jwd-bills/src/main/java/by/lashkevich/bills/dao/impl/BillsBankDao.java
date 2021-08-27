@@ -39,11 +39,24 @@ public class BillsBankDao implements BankDao {
     }
 
     @Override
+    public boolean addBill(Bill bill) {
+        return bank.getBills().add(bill);
+    }
+
+    @Override
     public boolean removeClient(long clientId) throws DaoException {
         Optional<Client> removingClientOptional = bank.getClients().stream()
                 .filter(client -> client.getId() == clientId)
                 .findAny();
         return removingClientOptional.isPresent() && bank.getClients().remove(removingClientOptional.get());
+    }
+
+    @Override
+    public boolean removeBill(long billId) throws DaoException {
+        Optional<Bill> removingBillOptional = bank.getBills().stream()
+                .filter(bill -> bill.getId() == billId)
+                .findAny();
+        return removingBillOptional.isPresent() && bank.getBills().remove(removingBillOptional.get());
     }
 
     private void readBankData() throws DaoException {

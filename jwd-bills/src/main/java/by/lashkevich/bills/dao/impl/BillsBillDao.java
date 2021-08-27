@@ -12,6 +12,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class BillsBillDao implements BillDao {
@@ -50,6 +51,19 @@ public class BillsBillDao implements BillDao {
         }
 
         return false;
+    }
+
+    @Override
+    public boolean addBill(Bill bill) {
+        return bills.add(bill);
+    }
+
+    @Override
+    public boolean removeBill(long id) {
+        Optional<Bill> removingBillOptional = bills.stream()
+                .filter(bill -> bill.getId() == id)
+                .findAny();
+        return removingBillOptional.isPresent() && bills.remove(removingBillOptional.get());
     }
 
     private void readBillsData() throws DaoException {

@@ -1,6 +1,7 @@
 package by.lashkevich.bills.service;
 
 import by.lashkevich.bills.dao.DaoFactory;
+import by.lashkevich.bills.entity.Bill;
 import by.lashkevich.bills.entity.Client;
 
 import java.util.Optional;
@@ -13,5 +14,14 @@ public class ServiceDuplicationChecker {
                 .findAny();
 
         return duplicateClient.isPresent();
+    }
+
+    public boolean isDuplicateBill(Bill bill) {
+        Optional<Bill> duplicateBill = DaoFactory.getInstance()
+                .getBillDao().findAllBills().stream()
+                .filter(currentBill -> currentBill.getId() == bill.getId())
+                .findAny();
+
+        return duplicateBill.isPresent();
     }
 }

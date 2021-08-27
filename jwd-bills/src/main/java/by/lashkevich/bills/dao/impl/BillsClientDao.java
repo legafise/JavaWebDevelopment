@@ -55,6 +55,22 @@ public class BillsClientDao implements ClientDao {
         return removingClientOptional.isPresent() && clients.remove(removingClientOptional.get());
     }
 
+    @Override
+    public boolean removeBill(long id) throws DaoException {
+        boolean removingResult = false;
+        for (Client client : clients) {
+            Optional<Bill> removingBillOptional = client.getBills().stream()
+                    .filter(bill -> bill.getId() == id)
+                    .findAny();
+            if (removingBillOptional.isPresent()) {
+                client.getBills().remove(removingBillOptional.get());
+                removingResult = true;
+            }
+        }
+
+        return removingResult;
+    }
+
     public void readClientsData() throws DaoException {
         try {
             List<Client> clients = new ArrayList<>();

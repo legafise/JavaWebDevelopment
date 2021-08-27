@@ -97,6 +97,27 @@ public enum BillRequestType {
             request.putParameter(RequestConstant.COMMAND_NUMBER, CHANGE_BILL_BALANCE_COMMAND_NUMBER);
             return request;
         }
+    },
+    CREATE_NEW_BILL(8) {
+        @Override
+        Request createRequest(ViewConsoleReader consoleReader, LocaleReader localeReader) {
+            Request request = new Request();
+            System.out.println(localeReader.readMessageFromBundle(INTRODUCE_BILL_DATA_MESSAGE_KEY));
+            System.out.println(localeReader.readMessageFromBundle(INTRODUCE_BILL_ID_MESSAGE_KEY));
+            request.putParameter(RequestConstant.DATA_NAME, consoleReader.readBillId());
+            request.putParameter(RequestConstant.COMMAND_NUMBER, CREATE_NEW_BILL_COMMAND_NUMBER);
+            return request;
+        }
+    },
+    REMOVE_BILL_BY_ID_REQUEST(9) {
+        @Override
+        Request createRequest(ViewConsoleReader consoleReader, LocaleReader localeReader) {
+            Request request = new Request();
+            System.out.println(localeReader.readMessageFromBundle(INTRODUCE_BILL_ID_MESSAGE_KEY));
+            request.putParameter(RequestConstant.DATA_NAME, consoleReader.readBillId());
+            request.putParameter(RequestConstant.COMMAND_NUMBER, REMOVE_BILL_BY_ID_COMMAND_NUMBER);
+            return request;
+        }
     };
 
     private static final String INVALID_OPERATION_MESSAGE_KEY = "view.invalid.operation.message";
@@ -104,7 +125,10 @@ public enum BillRequestType {
     private static final String INTRODUCE_FIRST_RANGE_VALUE_MESSAGE_KEY = "view.introduce.first.range.value.message";
     private static final String INTRODUCE_SECOND_RANGE_VALUE_MESSAGE_KEY = "view.introduce.second.range.value.message";
     private static final String INTRODUCE_BILL_BALANCE_MESSAGE_KEY = "view.introduce.bill.balance.message";
+    private static final String INTRODUCE_BILL_DATA_MESSAGE_KEY = "view.introduce.bill.data.message";
     private static final int BILL_VIEW_COMMAND_NUMBER = 3;
+    private static final int REMOVE_BILL_BY_ID_COMMAND_NUMBER = -16;
+    private static final int CREATE_NEW_BILL_COMMAND_NUMBER = -15;
     private static final int CHANGE_BILL_BALANCE_COMMAND_NUMBER = -14;
     private static final int UNBLOCK_BILL_BY_ID_REQUEST_COMMAND_NUMBER = -11;
     private static final int BLOCK_BILL_BY_ID_REQUEST_COMMAND_NUMBER = -10;

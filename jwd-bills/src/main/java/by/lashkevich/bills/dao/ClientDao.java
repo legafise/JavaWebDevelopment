@@ -12,4 +12,6 @@ public interface ClientDao {
     boolean addClient(Client client) throws DaoException;
 
     boolean removeClient(long id) throws DaoException;
+
+    boolean removeBill(long id) throws DaoException;
 }

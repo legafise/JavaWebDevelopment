@@ -11,6 +11,12 @@ public class Bill {
     public Bill() {
     }
 
+    public Bill(long id) {
+        this.id = id;
+        this.balance = new BigDecimal("0.0");
+        this.isBlocked = false;
+    }
+
     public Bill(long id, BigDecimal balance, boolean isBlocked) {
         this.id = id;
         this.balance = balance;

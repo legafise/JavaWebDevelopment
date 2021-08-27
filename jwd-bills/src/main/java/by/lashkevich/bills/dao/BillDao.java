@@ -10,4 +10,8 @@ public interface BillDao {
     List<Bill> findAllBills() throws DaoException;
 
     boolean update(Bill bill);
+
+    boolean addBill(Bill bill);
+
+    boolean removeBill(long id);
 }

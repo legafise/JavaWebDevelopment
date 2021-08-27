@@ -14,9 +14,13 @@ public class BillReporter {
     private static final String BALANCE_RANGE_SEARCH_RESULT_MESSAGE_KEY = "reporter.bill.balance" +
             ".range.sort.result.message";
     private static final String BLOCKING_RESULT_MESSAGE_KEY = "reporter.bill.blocking.result.info.message";
+    private static final String BALANCE_CHANGING_RESULT_MESSAGE_KEY = "reporter.bill.balance.changing" +
+            ".result.info.message";
     private static final String UNBLOCKING_RESULT_MESSAGE_KEY = "reporter.bill.unblocking.result.info.message";
     private static final String POSITIVE_RESULT_MESSAGE_KEY = "reporter.positive.result.message";
     private static final String NEGATIVE_RESULT_MESSAGE_KEY = "reporter.negative.result.message";
+    private static final String BILL_CREATING_RESULT_MESSAGE_KEY = "reporter.bill.creating.result.message";
+    private static final String BILL_REMOOVING_RESULT_MESSAGE_KEY = "reporter.bill.removing.result.message";
     private static final String NEW_LINE_BREAK = "\n";
     private final LocaleReader localeReader;
 
@@ -49,6 +53,18 @@ public class BillReporter {
 
     public void reportBillUnblockingResult(boolean result) {
         reportBillChangingResult(result, UNBLOCKING_RESULT_MESSAGE_KEY);
+    }
+
+    public void reportBillBalanceChangingResult(boolean result) {
+        reportBillChangingResult(result, BALANCE_CHANGING_RESULT_MESSAGE_KEY);
+    }
+
+    public void reportBillCreatingResult(boolean result) {
+        reportBillChangingResult(result, BILL_CREATING_RESULT_MESSAGE_KEY);
+    }
+
+    public void reportBillRemovingResult(boolean result) {
+        reportBillChangingResult(result, BILL_REMOOVING_RESULT_MESSAGE_KEY);
     }
 
     private void reportBillsSortResult(List<Bill> bills, String messageKey) {

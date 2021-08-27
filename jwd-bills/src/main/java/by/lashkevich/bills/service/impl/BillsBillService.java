@@ -4,6 +4,7 @@ import by.lashkevich.bills.dao.DaoException;
 import by.lashkevich.bills.dao.DaoFactory;
 import by.lashkevich.bills.entity.Bill;
 import by.lashkevich.bills.service.BillService;
+import by.lashkevich.bills.service.ServiceDuplicationChecker;
 import by.lashkevich.bills.service.ServiceException;
 
 import java.math.BigDecimal;
@@ -12,6 +13,11 @@ import java.util.stream.Collectors;
 
 public class BillsBillService implements BillService {
     private static final String INCORRECT_RANGE_ERROR_MESSAGE = "Incorrect range vas entered";
+    private final ServiceDuplicationChecker serviceDuplicationChecker;
+
+    public BillsBillService() {
+        serviceDuplicationChecker = new ServiceDuplicationChecker();
+    }
 
     @Override
     public Bill findBillById(String id) throws ServiceException {
@@ -81,10 +87,8 @@ public class BillsBillService implements BillService {
             Bill bill = DaoFactory.getInstance().getBillDao().findBillById(Long.parseLong(id));
             bill.setBlocked(false);
             return DaoFactory.getInstance().getBillDao().update(bill);
-        } catch (NumberFormatException e) {
+        } catch (DaoException | NumberFormatException e) {
             throw new ServiceException(e.getMessage());
-        } catch (DaoException e) {
-            return false;
         }
     }
 
@@ -94,10 +98,40 @@ public class BillsBillService implements BillService {
             Bill bill = DaoFactory.getInstance().getBillDao().findBillById(Long.parseLong(id));
             bill.setBalance(new BigDecimal(balance));
             return DaoFactory.getInstance().getBillDao().update(bill);
-        } catch (NumberFormatException e) {
+        } catch (DaoException | NumberFormatException e) {
             throw new ServiceException(e.getMessage());
-        } catch (DaoException e) {
+        }
+    }
+
+    @Override
+    public boolean createBill(String id) throws ServiceException {
+        try {
+            Bill bill = new Bill(Long.parseLong(id));
+            if (serviceDuplicationChecker.isDuplicateBill(bill)) {
+                return false;
+            }
+
+            if (DaoFactory.getInstance().getBillDao().addBill(bill)
+                    && DaoFactory.getInstance().getBankDao().addBill(bill)) {
+                return true;
+            }
+
+            removeBill(id);
             return false;
+        } catch (DaoException | NumberFormatException e) {
+            throw new ServiceException(e.getMessage());
+        }
+    }
+
+    @Override
+    public boolean removeBill(String id) throws ServiceException {
+        try {
+            boolean bankDaoRemovingResult = DaoFactory.getInstance().getBankDao().removeBill(Long.parseLong(id));
+            boolean clientDaoRemovingResult = DaoFactory.getInstance().getClientDao().removeBill(Long.parseLong(id));
+            boolean billDaoRemovingResult = DaoFactory.getInstance().getBillDao().removeBill(Long.parseLong(id));
+            return bankDaoRemovingResult || clientDaoRemovingResult || billDaoRemovingResult;
+        } catch (DaoException | NumberFormatException e) {
+            throw new ServiceException(e.getMessage());
         }
     }
 }
