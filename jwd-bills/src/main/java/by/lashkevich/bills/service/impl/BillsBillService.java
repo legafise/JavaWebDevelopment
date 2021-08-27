@@ -87,4 +87,17 @@ public class BillsBillService implements BillService {
             return false;
         }
     }
+
+    @Override
+    public boolean changeBalance(String id, String balance) throws ServiceException {
+        try {
+            Bill bill = DaoFactory.getInstance().getBillDao().findBillById(Long.parseLong(id));
+            bill.setBalance(new BigDecimal(balance));
+            return DaoFactory.getInstance().getBillDao().update(bill);
+        } catch (NumberFormatException e) {
+            throw new ServiceException(e.getMessage());
+        } catch (DaoException e) {
+            return false;
+        }
+    }
 }

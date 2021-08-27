@@ -83,13 +83,29 @@ public enum BillRequestType {
             request.putParameter(RequestConstant.COMMAND_NUMBER, UNBLOCK_BILL_BY_ID_REQUEST_COMMAND_NUMBER);
             return request;
         }
+    },
+    CHANGE_BALANCE_REQUEST(7) {
+        @Override
+        Request createRequest(ViewConsoleReader consoleReader, LocaleReader localeReader) {
+            Request request = new Request();
+            List<String> billBalanceData = new ArrayList<>();
+            System.out.println(localeReader.readMessageFromBundle(INTRODUCE_BILL_ID_MESSAGE_KEY));
+            billBalanceData.add(consoleReader.readBillId());
+            System.out.println(localeReader.readMessageFromBundle(INTRODUCE_BILL_BALANCE_MESSAGE_KEY));
+            billBalanceData.add(consoleReader.readBillBalance());
+            request.putParameter(RequestConstant.DATA_NAME, billBalanceData);
+            request.putParameter(RequestConstant.COMMAND_NUMBER, CHANGE_BILL_BALANCE_COMMAND_NUMBER);
+            return request;
+        }
     };
 
     private static final String INVALID_OPERATION_MESSAGE_KEY = "view.invalid.operation.message";
     private static final String INTRODUCE_BILL_ID_MESSAGE_KEY = "view.introduce.bill.id.message";
     private static final String INTRODUCE_FIRST_RANGE_VALUE_MESSAGE_KEY = "view.introduce.first.range.value.message";
     private static final String INTRODUCE_SECOND_RANGE_VALUE_MESSAGE_KEY = "view.introduce.second.range.value.message";
+    private static final String INTRODUCE_BILL_BALANCE_MESSAGE_KEY = "view.introduce.bill.balance.message";
     private static final int BILL_VIEW_COMMAND_NUMBER = 3;
+    private static final int CHANGE_BILL_BALANCE_COMMAND_NUMBER = -14;
     private static final int UNBLOCK_BILL_BY_ID_REQUEST_COMMAND_NUMBER = -11;
     private static final int BLOCK_BILL_BY_ID_REQUEST_COMMAND_NUMBER = -10;
     private static final int FIND_BILLS_BY_BALANCE_IN_RANGE_COMMAND_NUMBER = -9;

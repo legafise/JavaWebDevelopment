@@ -1,6 +1,7 @@
 package by.lashkevich.bills.controller.command;
 
 import by.lashkevich.bills.controller.request.Request;
+import by.lashkevich.bills.service.ServiceException;
 import by.lashkevich.bills.view.View;
 
 /**

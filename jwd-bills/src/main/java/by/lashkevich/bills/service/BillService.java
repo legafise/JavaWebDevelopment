@@ -16,4 +16,6 @@ public interface BillService {
     boolean blockBillById(String id) throws ServiceException;
 
     boolean unblockBillById(String id) throws ServiceException;
+
+    boolean changeBalance(String id, String balance) throws ServiceException;
 }

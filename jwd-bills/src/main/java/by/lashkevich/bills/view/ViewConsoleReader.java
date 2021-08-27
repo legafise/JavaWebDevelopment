@@ -44,4 +44,8 @@ public class ViewConsoleReader {
     public String readClientAge() {
         return scanner.next();
     }
+
+    public String readBillBalance() {
+        return scanner.next();
+    }
 }
