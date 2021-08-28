@@ -2,10 +2,13 @@ package by.lashkevich.bills.dao.impl;
 
 import by.lashkevich.bills.dao.BillDao;
 import by.lashkevich.bills.dao.DaoException;
-import by.lashkevich.bills.dao.FilePathFinder;
+import by.lashkevich.bills.dao.FileFinder;
 import by.lashkevich.bills.entity.Bill;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -16,18 +19,20 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
- * @see BillDao
  * @author Roman Lashkevich
+ * @see BillDao
  */
 public class BillsBillDao implements BillDao {
     private static final String BILL_INFO_FILE_NAME = "BillsInfo.txt";
     private static final String BILL_SEPARATION_SIGN = "BillInfo";
     private static final String INCORRECT_ID_MESSAGE = "Incorrect bill id(%d) was entered";
-    private final FilePathFinder filePathFinder;
+    private static final String SAVING_BILL_INFO_FILE_PATH = "jwd-bills/src/main/resources/info/BillsInfo.txt";
+    private static final String NEW_LINE_BREAK = "\n";
+    private final FileFinder fileFinder;
     private List<Bill> bills;
 
     public BillsBillDao() throws DaoException {
-        filePathFinder = new FilePathFinder();
+        fileFinder = new FileFinder();
         readBillsData();
     }
 
@@ -70,10 +75,26 @@ public class BillsBillDao implements BillDao {
         return removingBillOptional.isPresent() && bills.remove(removingBillOptional.get());
     }
 
+    @Override
+    public void writeBillsData() throws DaoException {
+        File billsInfoFile = new File(SAVING_BILL_INFO_FILE_PATH);
+
+        try (PrintWriter printWriter = new PrintWriter(billsInfoFile)) {
+            for (Bill bill : bills) {
+                printWriter.write("BillInfo" + NEW_LINE_BREAK);
+                printWriter.write(bill.getId() + NEW_LINE_BREAK);
+                printWriter.write(bill.getBalance() + NEW_LINE_BREAK);
+                printWriter.write(bill.isBlocked() + NEW_LINE_BREAK);
+            }
+        } catch (FileNotFoundException e) {
+            throw new DaoException(e);
+        }
+    }
+
     private void readBillsData() throws DaoException {
         try {
             List<Bill> bills = new ArrayList<>();
-            List<String> billData = Files.lines(Paths.get(filePathFinder.findInfoFilePath(BILL_INFO_FILE_NAME)))
+            List<String> billData = Files.lines(Paths.get(fileFinder.findInfoFilePath(BILL_INFO_FILE_NAME)))
                     .collect(Collectors.toList());
             Iterator billIterator = billData.iterator();
             while (billIterator.hasNext()) {

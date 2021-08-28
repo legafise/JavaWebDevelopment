@@ -13,8 +13,8 @@ import java.math.BigDecimal;
 import java.util.Optional;
 
 /**
- * @see ClientService
  * @author Roman Lashkevich
+ * @see ClientService
  */
 public class BillsClientService implements ClientService {
     private final ServiceValidator serviceValidator;

@@ -24,6 +24,7 @@ public class MainView implements View {
     private static final String THE_SECOND_TASK_INFORMATION_KEY = "view.second.task.info.message";
     private static final String THE_THIRD_TASK_INFORMATION_KEY = "view.third.task.info.message";
     private static final String THE_FOURTH_TASK_INFORMATION_KEY = "view.fourth.task.info.message";
+    private static final String THE_FIFTH_TASK_INFORMATION_KEY = "view.fifth.task.info.message";
     private static final int MAIN_VIEW_COMMAND_NUMBER = -1;
     private static final int CHOSE_LOCALE_COMMAND_NUMBER = 1;
     private final ViewConsoleReader consoleReader;
@@ -61,13 +62,15 @@ public class MainView implements View {
                 + NEW_LINE_BREAK
                 + localeReader.readMessageFromBundle(THE_THIRD_TASK_INFORMATION_KEY)
                 + NEW_LINE_BREAK
-                + localeReader.readMessageFromBundle(THE_FOURTH_TASK_INFORMATION_KEY));
+                + localeReader.readMessageFromBundle(THE_FOURTH_TASK_INFORMATION_KEY)
+                + NEW_LINE_BREAK
+                + localeReader.readMessageFromBundle(THE_FIFTH_TASK_INFORMATION_KEY));
         int commandNumber = consoleReader.readCommandNumber();
         if (commandNumber == 1) {
             chooseLocale();
         }
 
-        boolean isValidCommandNumber = commandNumber > -1 && commandNumber < 5;
+        boolean isValidCommandNumber = commandNumber > -1 && commandNumber < 6;
         if (isValidCommandNumber) {
             request.putParameter(RequestConstant.COMMAND_NUMBER, commandNumber);
         }

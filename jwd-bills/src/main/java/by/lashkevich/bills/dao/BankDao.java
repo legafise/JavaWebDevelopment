@@ -18,4 +18,6 @@ public interface BankDao {
     boolean removeClient(long clientId) throws DaoException;
 
     boolean removeBill(long billId) throws DaoException;
+
+    void writeBankData() throws DaoException;
 }

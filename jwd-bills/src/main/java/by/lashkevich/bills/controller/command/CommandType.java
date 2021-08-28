@@ -27,7 +27,8 @@ public enum CommandType {
     CHOOSE_LOCALE(new ChooseLocaleCommand(), 1),
     CLIENT_VIEW_FORWARD(new ClientViewForwardCommand(), 2),
     BILL_VIEW_FORWARD(new BillViewForwardCommand(), 3),
-    BANK_INFORMATION(new ShowBankInformationCommand(), 4);
+    BANK_INFORMATION(new ShowBankInformationCommand(), 4),
+    SAVE_DATA(new SaveDataCommand(), 5);
 
     private static final String INVALID_COMMAND_WAS_CHOSEN_ERROR_MESSAGE = "Invalid command was chosen";
     private final Command command;

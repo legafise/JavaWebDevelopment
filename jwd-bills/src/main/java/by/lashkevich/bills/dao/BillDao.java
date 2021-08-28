@@ -18,4 +18,6 @@ public interface BillDao {
     boolean addBill(Bill bill);
 
     boolean removeBill(long id);
+
+    void writeBillsData() throws DaoException;
 }

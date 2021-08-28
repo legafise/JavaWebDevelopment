@@ -4,7 +4,10 @@ import by.lashkevich.bills.dao.*;
 import by.lashkevich.bills.entity.Bill;
 import by.lashkevich.bills.entity.Client;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -14,19 +17,21 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
- * @see ClientDao
  * @author Roman Lashkevich
+ * @see ClientDao
  */
 public class BillsClientDao implements ClientDao {
     private static final String CLIENT_INFO_FILE_NAME = "ClientsInfo.txt";
     private static final String CLIENT_SEPARATION_SIGN = "ClientInfo";
     private static final String BILL_SEPARATION_SIGN = "BillsInfo";
     private static final String INCORRECT_ID_MESSAGE = "Incorrect client id(%d) was entered";
-    private final FilePathFinder filePathFinder;
+    private static final String SAVING_CLIENT_INFO_FILE_PATH = "jwd-bills/src/main/resources/info/ClientsInfo.txt";
+    private static final String NEW_LINE_BREAK = "\n";
+    private final FileFinder fileFinder;
     private List<Client> clients;
 
     public BillsClientDao() throws DaoException {
-        filePathFinder = new FilePathFinder();
+        fileFinder = new FileFinder();
         readClientsData();
     }
 
@@ -72,10 +77,32 @@ public class BillsClientDao implements ClientDao {
         return removingResult;
     }
 
+    @Override
+    public void writeClientsData() throws DaoException {
+        File clientsInfoFile = new File(SAVING_CLIENT_INFO_FILE_PATH);
+
+        try (PrintWriter printWriter = new PrintWriter(clientsInfoFile)) {
+            for (Client client : clients) {
+                printWriter.write(CLIENT_SEPARATION_SIGN + NEW_LINE_BREAK);
+                printWriter.write(client.getId() + NEW_LINE_BREAK);
+                printWriter.write(client.getName() + NEW_LINE_BREAK);
+                printWriter.write(client.getSurname() + NEW_LINE_BREAK);
+                printWriter.write(client.getAge() + NEW_LINE_BREAK);
+                printWriter.write(BILL_SEPARATION_SIGN + NEW_LINE_BREAK);
+
+                for (Bill bill : client.getBills()) {
+                    printWriter.write(bill.getId() + NEW_LINE_BREAK);
+                }
+            }
+        } catch (FileNotFoundException e) {
+            throw new DaoException(e);
+        }
+    }
+
     public void readClientsData() throws DaoException {
         try {
             List<Client> clients = new ArrayList<>();
-            List<String> clientData = Files.lines(Paths.get(filePathFinder.findInfoFilePath(CLIENT_INFO_FILE_NAME)))
+            List<String> clientData = Files.lines(Paths.get(fileFinder.findInfoFilePath(CLIENT_INFO_FILE_NAME)))
                     .collect(Collectors.toList());
             Iterator clientIterator = clientData.iterator();
             String currentElement = clientIterator.next().toString();

@@ -5,7 +5,9 @@ import by.lashkevich.bills.entity.Bank;
 import by.lashkevich.bills.entity.Bill;
 import by.lashkevich.bills.entity.Client;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -15,20 +17,22 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
- * @see BankDao
  * @author Roman Lashkevich
+ * @see BankDao
  */
 public class BillsBankDao implements BankDao {
     private static final String BANK_INFO_FILE_NAME = "BankInfo.txt";
     private static final String BANK_SEPARATION_SIGN = "BankInfo";
     private static final String BILL_SEPARATION_SIGN = "BillsInfo";
     private static final String CLIENT_SEPARATION_SIGN = "ClientsInfo";
+    private static final String SAVING_BANK_INFO_FILE_PATH = "jwd-bills/src/main/resources/info/BankInfo.txt";
+    private static final String NEW_LINE_BREAK = "\n";
     private static final String SEPARATION_SIGN = "";
-    private final FilePathFinder filePathFinder;
+    private final FileFinder fileFinder;
     private Bank bank;
 
     public BillsBankDao() throws DaoException {
-        filePathFinder = new FilePathFinder();
+        fileFinder = new FileFinder();
         readBankData();
     }
 
@@ -63,13 +67,36 @@ public class BillsBankDao implements BankDao {
         return removingBillOptional.isPresent() && bank.getBills().remove(removingBillOptional.get());
     }
 
+    @Override
+    public void writeBankData() throws DaoException {
+        File bankInfoFile = new File(SAVING_BANK_INFO_FILE_PATH);
+
+        try (PrintWriter printWriter = new PrintWriter(bankInfoFile)) {
+            printWriter.write(BANK_SEPARATION_SIGN + NEW_LINE_BREAK);
+            printWriter.write(bank.getId() + NEW_LINE_BREAK);
+            printWriter.write(bank.getName() + NEW_LINE_BREAK);
+
+            printWriter.write(BILL_SEPARATION_SIGN + NEW_LINE_BREAK);
+            for (Bill bill : bank.getBills()) {
+                printWriter.write(bill.getId() + NEW_LINE_BREAK);
+            }
+
+            printWriter.write(CLIENT_SEPARATION_SIGN + NEW_LINE_BREAK);
+            for (Client client : bank.getClients()) {
+                printWriter.write(client.getId() + NEW_LINE_BREAK);
+            }
+        } catch (IOException e) {
+            throw new DaoException(e.getMessage());
+        }
+    }
+
     private void readBankData() throws DaoException {
         try {
             long id = 1;
             Bank bank = new Bank();
             List<Bill> bills = new ArrayList<>();
             List<Client> clients = new ArrayList<>();
-            List<String> banksData = Files.lines(Paths.get(filePathFinder.findInfoFilePath(BANK_INFO_FILE_NAME)))
+            List<String> banksData = Files.lines(Paths.get(fileFinder.findInfoFilePath(BANK_INFO_FILE_NAME)))
                     .collect(Collectors.toList());
             Iterator bankIterator = banksData.iterator();
             boolean billsMarker;
