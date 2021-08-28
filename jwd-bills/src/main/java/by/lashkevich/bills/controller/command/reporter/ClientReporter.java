@@ -17,6 +17,10 @@ public class ClientReporter {
     private static final String NEGATIVE_RESULT_MESSAGE_KEY = "reporter.negative.result.message";
     private static final String CLIENT_ADDING_RESULT_MESSAGE_KEY = "reporter.client.adding.result.message";
     private static final String CLIENT_REMOVING_RESULT_MESSAGE_KEY = "reporter.client.removing.result.message";
+    private static final String CLIENT_BILL_REMOVING_RESULT_MESSAGE_KEY = "reporter.client.bill" +
+            ".removing.result.message";
+    private static final String CLIENT_BILL_ASSIGNING_RESULT_MESSAGE_KEY = "reporter.client.bill" +
+            ".assigning.result.message";
     private static final String NEW_LINE_BREAK = "\n";
     private final LocaleReader localeReader;
 
@@ -52,6 +56,14 @@ public class ClientReporter {
 
     public void reportClientRemovingResult(boolean result) {
         reportResult(result, CLIENT_REMOVING_RESULT_MESSAGE_KEY);
+    }
+
+    public void reportClientBillRemovingResult(boolean result) {
+        reportResult(result, CLIENT_BILL_REMOVING_RESULT_MESSAGE_KEY);
+    }
+
+    public void reportClientBillAssigningResult(boolean result) {
+        reportResult(result, CLIENT_BILL_ASSIGNING_RESULT_MESSAGE_KEY);
     }
 
     private void reportResult(boolean result, String messageKey) {

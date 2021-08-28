@@ -1,5 +1,7 @@
-package by.lashkevich.bills.controller.command;
+package by.lashkevich.bills.controller.command.impl;
 
+import by.lashkevich.bills.controller.command.Command;
+import by.lashkevich.bills.controller.command.CommandException;
 import by.lashkevich.bills.controller.command.reporter.ClientReporter;
 import by.lashkevich.bills.controller.request.Request;
 import by.lashkevich.bills.controller.request.RequestConstant;
@@ -13,7 +15,7 @@ public class RemoveClientByIdCommand implements Command {
     public View execute(Request request) throws CommandException {
         try {
             ClientReporter clientReporter = new ClientReporter();
-            long clientId = Long.parseLong((String) request.getParameter(RequestConstant.DATA_NAME));
+            String clientId = (String) request.getParameter(RequestConstant.DATA_NAME);
             boolean result = ServiceFactory.getInstance().getClientService().removeClient(clientId);
             clientReporter.reportClientRemovingResult(result);
             return ViewType.MAIN_VIEW.getView();

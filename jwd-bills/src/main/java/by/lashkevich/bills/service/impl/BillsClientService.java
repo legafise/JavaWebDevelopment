@@ -10,6 +10,7 @@ import by.lashkevich.bills.service.ServiceException;
 import by.lashkevich.bills.service.ServiceValidator;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 public class BillsClientService implements ClientService {
     private final ServiceValidator serviceValidator;
@@ -79,9 +80,9 @@ public class BillsClientService implements ClientService {
     }
 
     @Override
-    public boolean createClient(long id, String name, String surname, int age) throws ServiceException {
+    public boolean createClient(String id, String name, String surname, String age) throws ServiceException {
         try {
-            Client client = new Client(id, name, surname, age);
+            Client client = new Client(Long.parseLong(id), name, surname, Integer.parseInt(age));
             if (!serviceValidator.isValidClient(client) || serviceDuplicationChecker.isDuplicateClient(client)) {
                 return false;
             }
@@ -93,18 +94,48 @@ public class BillsClientService implements ClientService {
 
             removeClient(id);
             return false;
-        } catch (DaoException e) {
+        } catch (DaoException | NumberFormatException e) {
             throw new ServiceException(e.getMessage());
         }
     }
 
     @Override
-    public boolean removeClient(long id) throws ServiceException {
+    public boolean removeClient(String id) throws ServiceException {
         try {
-            boolean bankDaoRemovingResult = DaoFactory.getInstance().getBankDao().removeClient(id);
-            boolean clientDaoRemovingResult = DaoFactory.getInstance().getClientDao().removeClient(id);
+            boolean bankDaoRemovingResult = DaoFactory.getInstance().getBankDao().removeClient(Long.parseLong(id));
+            boolean clientDaoRemovingResult = DaoFactory.getInstance().getClientDao().removeClient(Long.parseLong(id));
             return bankDaoRemovingResult || clientDaoRemovingResult;
-        } catch (DaoException e) {
+        } catch (DaoException | NumberFormatException e) {
+            throw new ServiceException(e.getMessage());
+        }
+    }
+
+    @Override
+    public boolean assignBill(String clientId, String billId) throws ServiceException {
+        try {
+            Optional<Bill> isExistBill = DaoFactory.getInstance().getClientDao()
+                    .findClientById(Long.parseLong(clientId)).getBills().stream()
+                    .filter(bill -> bill.getId() == Long.parseLong(billId)).findAny();
+
+            if (isExistBill.isPresent()) {
+                return false;
+            }
+
+            return DaoFactory.getInstance().getClientDao()
+                    .findClientById(Long.parseLong(clientId)).getBills().add(DaoFactory.getInstance()
+                            .getBillDao().findBillById(Long.parseLong(billId)));
+        } catch (DaoException | NumberFormatException e) {
+            throw new ServiceException(e.getMessage());
+        }
+    }
+
+    @Override
+    public boolean removeClientBill(String clientId, String billId) throws ServiceException {
+        try {
+            return DaoFactory.getInstance().getClientDao()
+                    .findClientById(Long.parseLong(clientId)).getBills().remove(DaoFactory.getInstance()
+                            .getBillDao().findBillById(Long.parseLong(billId)));
+        } catch (DaoException | NumberFormatException e) {
             throw new ServiceException(e.getMessage());
         }
     }

@@ -5,6 +5,8 @@ import by.lashkevich.bills.controller.command.impl.*;
 import java.util.Arrays;
 
 public enum CommandType {
+    REMOVE_CLIENT_BILL(new RemoveClientBillCommand(), -18),
+    ASSIGN_BILL_TO_CLIENT(new AssignBillToClientCommand(), -17),
     REMOVE_BILL_BY_ID(new RemoveBillByIdCommand(), -16),
     CREATE_NEW_BILL(new CreateNewBillCommand(), -15),
     CHANGE_BILL_BALANCE(new ChangeBillBalanceCommand(), -14),

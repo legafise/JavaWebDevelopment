@@ -13,7 +13,11 @@ public interface ClientService {
 
     BigDecimal calculateTotalClientNegativeBillsAmount(String id) throws ServiceException;
 
-    boolean createClient(long id, String name, String surname, int age) throws ServiceException;
+    boolean createClient(String id, String name, String surname, String age) throws ServiceException;
 
-    boolean removeClient(long id) throws ServiceException;
+    boolean removeClient(String id) throws ServiceException;
+
+    boolean assignBill(String userId, String billId) throws ServiceException;
+
+    boolean removeClientBill(String clientId, String billId) throws ServiceException;
 }

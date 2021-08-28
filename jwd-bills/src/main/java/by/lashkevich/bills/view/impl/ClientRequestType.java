@@ -94,6 +94,20 @@ public enum ClientRequestType {
             request.putParameter(RequestConstant.COMMAND_NUMBER, REMOVE_CLIENT_BY_ID_COMMAND_NUMBER);
             return request;
         }
+    },
+    ASSIGN_BILL_TO_CLIENT(7) {
+        @Override
+        Request createRequest(ViewConsoleReader consoleReader, LocaleReader localeReader) {
+            return ClientRequestType.assignOrRemoveBill(consoleReader, localeReader,
+                    ASSIGN_BILL_TO_CLIENT_COMMAND_NUMBER);
+        }
+    },
+    REMOVE_CLIENT_BILL(8) {
+        @Override
+        Request createRequest(ViewConsoleReader consoleReader, LocaleReader localeReader) {
+            return ClientRequestType.assignOrRemoveBill(consoleReader, localeReader,
+                    REMOVE_CLIENT_BILL_COMMAND_NUMBER);
+        }
     };
 
     private static final String INVALID_OPERATION_MESSAGE_KEY = "view.invalid.operation.message";
@@ -102,6 +116,7 @@ public enum ClientRequestType {
     private static final String INTRODUCE_CLIENT_NAME_MESSAGE_KEY = "view.introduce.client.name.message";
     private static final String INTRODUCE_CLIENT_SURNAME_MESSAGE_KEY = "view.introduce.client.surname.message";
     private static final String INTRODUCE_CLIENT_AGE_MESSAGE_KEY = "view.introduce.client.age.message";
+    private static final String INTRODUCE_BILL_ID_MESSAGE_KEY = "view.introduce.bill.id.message";
     private static final int CLIENT_VIEW_COMMAND_NUMBER = 2;
     private static final int CALCULATE_TOTAL_BILLS_AMOUNT_NUMBER = -3;
     private static final int CALCULATE_TOTAL_POSITIVE_BILLS_AMOUNT_NUMBER = -4;
@@ -109,6 +124,8 @@ public enum ClientRequestType {
     private static final int FIND_CLIENT_BY_ID_COMMAND_NUMBER = -2;
     private static final int CREATE_NEW_CLIENT_COMMAND_NUMBER = -12;
     private static final int REMOVE_CLIENT_BY_ID_COMMAND_NUMBER = -13;
+    private static final int ASSIGN_BILL_TO_CLIENT_COMMAND_NUMBER = -17;
+    private static final int REMOVE_CLIENT_BILL_COMMAND_NUMBER = -18;
     private static final Logger LOGGER = LogManager.getRootLogger();
     private final int requestNumber;
 
@@ -127,5 +144,18 @@ public enum ClientRequestType {
                 .filter(requestTypeNumber -> requestNumber == requestTypeNumber.getRequestNumber())
                 .findAny()
                 .orElse(STANDARD_REQUEST);
+    }
+
+    private static Request assignOrRemoveBill(ViewConsoleReader consoleReader, LocaleReader localeReader,
+                                              int commandNumber) {
+        Request request = new Request();
+        List<String> assigningOrRemovingBillData = new ArrayList<>();
+        System.out.println(localeReader.readMessageFromBundle(INTRODUCE_CLIENT_ID_MESSAGE_KEY));
+        assigningOrRemovingBillData.add(consoleReader.readClientId());
+        System.out.println(localeReader.readMessageFromBundle(INTRODUCE_BILL_ID_MESSAGE_KEY));
+        assigningOrRemovingBillData.add(consoleReader.readBillId());
+        request.putParameter(RequestConstant.DATA_NAME, assigningOrRemovingBillData);
+        request.putParameter(RequestConstant.COMMAND_NUMBER, commandNumber);
+        return request;
     }
 }
