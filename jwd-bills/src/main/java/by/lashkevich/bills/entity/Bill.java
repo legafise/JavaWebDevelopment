@@ -3,6 +3,10 @@ package by.lashkevich.bills.entity;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+/**
+ * Class created to work within a job with bills
+ * @author RomalLashkevich
+ */
 public class Bill {
     private long id;
     private BigDecimal balance;

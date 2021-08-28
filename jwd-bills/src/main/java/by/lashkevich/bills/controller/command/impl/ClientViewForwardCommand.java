@@ -5,6 +5,10 @@ import by.lashkevich.bills.controller.request.Request;
 import by.lashkevich.bills.view.View;
 import by.lashkevich.bills.view.impl.ViewType;
 
+/**
+ * @author Roman Lashkevich
+ * @see Command
+ */
 public class ClientViewForwardCommand implements Command {
     @Override
     public View execute(Request request) {

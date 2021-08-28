@@ -6,6 +6,11 @@ import by.lashkevich.bills.entity.Client;
 
 import java.util.Optional;
 
+/**
+ * Class that checks processing objects for
+ * duplicates in data store
+ * @author RomalLashkevich
+ */
 public class ServiceDuplicationChecker {
     public boolean isDuplicateClient(Client client) {
         Optional<Client> duplicateClient = DaoFactory.getInstance()

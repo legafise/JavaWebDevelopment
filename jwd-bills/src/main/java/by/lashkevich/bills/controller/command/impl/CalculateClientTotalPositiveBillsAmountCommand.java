@@ -12,6 +12,10 @@ import by.lashkevich.bills.view.impl.ViewType;
 
 import java.math.BigDecimal;
 
+/**
+ * @author Roman Lashkevich
+ * @see Command
+ */
 public class CalculateClientTotalPositiveBillsAmountCommand implements Command {
     @Override
     public View execute(Request request) throws CommandException {

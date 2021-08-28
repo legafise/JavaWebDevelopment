@@ -11,6 +11,10 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @see BillService
+ * @author Roman Lashkevich
+ */
 public class BillsBillService implements BillService {
     private static final String INCORRECT_RANGE_ERROR_MESSAGE = "Incorrect range vas entered";
     private final ServiceDuplicationChecker serviceDuplicationChecker;

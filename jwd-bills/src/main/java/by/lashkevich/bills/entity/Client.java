@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Class created to work within a job with clients
+ * @author RomalLashkevich
+ */
 public class Client {
     private long id;
     private String name;

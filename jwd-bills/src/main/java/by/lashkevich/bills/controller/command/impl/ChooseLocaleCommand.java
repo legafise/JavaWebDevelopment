@@ -7,6 +7,10 @@ import by.lashkevich.bills.view.View;
 import by.lashkevich.bills.view.impl.ViewType;
 import by.lashkevich.bills.view.locale.LocaleReader;
 
+/**
+ * @author Roman Lashkevich
+ * @see Command
+ */
 public class ChooseLocaleCommand implements Command {
     @Override
     public View execute(Request request) {

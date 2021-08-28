@@ -14,6 +14,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * @see BankDao
+ * @author Roman Lashkevich
+ */
 public class BillsBankDao implements BankDao {
     private static final String BANK_INFO_FILE_NAME = "BankInfo.txt";
     private static final String BANK_SEPARATION_SIGN = "BankInfo";

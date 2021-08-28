@@ -10,6 +10,10 @@ import by.lashkevich.bills.service.ServiceFactory;
 import by.lashkevich.bills.view.View;
 import by.lashkevich.bills.view.impl.ViewType;
 
+/**
+ * @author Roman Lashkevich
+ * @see Command
+ */
 public class RemoveBillByIdCommand implements Command {
     @Override
     public View execute(Request request) throws CommandException {

@@ -2,6 +2,10 @@ package by.lashkevich.bills.service;
 
 import by.lashkevich.bills.entity.Client;
 
+/**
+ * Class that validates objects
+ * @author RomalLashkevich
+ */
 public class ServiceValidator {
     public boolean isValidClient(Client client) {
         return client != null && isValidId(client.getId()) && isValidName(client.getName())

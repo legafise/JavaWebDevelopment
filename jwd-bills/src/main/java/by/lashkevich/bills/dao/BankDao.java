@@ -4,6 +4,10 @@ import by.lashkevich.bills.entity.Bank;
 import by.lashkevich.bills.entity.Bill;
 import by.lashkevich.bills.entity.Client;
 
+/**
+ * Interface for management bank data
+ * @author Roman Lashkevich
+ */
 public interface BankDao {
     Bank findBank() throws DaoException;
 

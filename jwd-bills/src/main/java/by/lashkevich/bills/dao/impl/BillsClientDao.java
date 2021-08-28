@@ -1,9 +1,6 @@
 package by.lashkevich.bills.dao.impl;
 
-import by.lashkevich.bills.dao.ClientDao;
-import by.lashkevich.bills.dao.DaoException;
-import by.lashkevich.bills.dao.DaoFactory;
-import by.lashkevich.bills.dao.FilePathFinder;
+import by.lashkevich.bills.dao.*;
 import by.lashkevich.bills.entity.Bill;
 import by.lashkevich.bills.entity.Client;
 
@@ -16,6 +13,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * @see ClientDao
+ * @author Roman Lashkevich
+ */
 public class BillsClientDao implements ClientDao {
     private static final String CLIENT_INFO_FILE_NAME = "ClientsInfo.txt";
     private static final String CLIENT_SEPARATION_SIGN = "ClientInfo";

@@ -3,6 +3,10 @@ package by.lashkevich.bills.controller;
 import by.lashkevich.bills.controller.request.Request;
 import by.lashkevich.bills.controller.request.RequestConstant;
 
+/**
+ * Class that start program
+ * @author Roman Lashkevich
+ */
 public class BillsRunner {
     private static final int MAIN_FORWARD_COMMAND_NUMBER = -1;
 

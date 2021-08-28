@@ -13,6 +13,10 @@ import by.lashkevich.bills.view.impl.ViewType;
 
 import java.util.List;
 
+/**
+ * @author Roman Lashkevich
+ * @see Command
+ */
 public class RemoveClientBillCommand implements Command {
     @Override
     public View execute(Request request) throws CommandException {

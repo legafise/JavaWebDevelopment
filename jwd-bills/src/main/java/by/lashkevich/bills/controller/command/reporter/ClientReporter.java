@@ -5,6 +5,11 @@ import by.lashkevich.bills.view.locale.LocaleReader;
 
 import java.math.BigDecimal;
 
+/**
+ * Class that report information about
+ * operations with clients
+ * @author Roman Lashkevich
+ */
 public class ClientReporter {
     private static final String CLIENT_INFO_MESSAGE_KEY = "reporter.client.info.message";
     private static final String CLIENT_TOTAL_BILLS_AMOUNT_INFO_MESSAGE_KEY = "reporter.client.total" +

@@ -6,6 +6,10 @@ import by.lashkevich.bills.entity.Bank;
 import by.lashkevich.bills.service.BankService;
 import by.lashkevich.bills.service.ServiceException;
 
+/**
+ * @see BankService
+ * @author Roman Lashkevich
+ */
 public class BillsBankService implements BankService {
     @Override
     public Bank findBank() throws ServiceException {

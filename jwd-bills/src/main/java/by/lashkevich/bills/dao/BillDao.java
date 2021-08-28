@@ -4,6 +4,10 @@ import by.lashkevich.bills.entity.Bill;
 
 import java.util.List;
 
+/**
+ * Interface for management bills data
+ * @author Roman Lashkevich
+ */
 public interface BillDao {
     Bill findBillById(long id) throws DaoException;
 

@@ -4,6 +4,10 @@ import by.lashkevich.bills.entity.Bill;
 
 import java.util.List;
 
+/**
+ * Interface that performs actions on things related to bills
+ * @author Roman Lashkevich
+ */
 public interface BillService {
     Bill findBillById(String id) throws ServiceException;
 

@@ -15,6 +15,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * @see BillDao
+ * @author Roman Lashkevich
+ */
 public class BillsBillDao implements BillDao {
     private static final String BILL_INFO_FILE_NAME = "BillsInfo.txt";
     private static final String BILL_SEPARATION_SIGN = "BillInfo";

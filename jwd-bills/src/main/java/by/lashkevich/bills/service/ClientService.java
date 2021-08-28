@@ -4,6 +4,10 @@ import by.lashkevich.bills.entity.Client;
 
 import java.math.BigDecimal;
 
+/**
+ * Interface that performs actions on things related to clients
+ * @author Roman Lashkevich
+ */
 public interface ClientService {
     Client findClientById(String id) throws ServiceException;
 

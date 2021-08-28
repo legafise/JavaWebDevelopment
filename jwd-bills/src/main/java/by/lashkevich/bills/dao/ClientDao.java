@@ -4,6 +4,10 @@ import by.lashkevich.bills.entity.Client;
 
 import java.util.List;
 
+/**
+ * Interface for management client data
+ * @author Roman Lashkevich
+ */
 public interface ClientDao {
     Client findClientById(long id) throws DaoException;
 

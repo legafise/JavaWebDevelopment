@@ -12,6 +12,10 @@ import by.lashkevich.bills.service.ServiceValidator;
 import java.math.BigDecimal;
 import java.util.Optional;
 
+/**
+ * @see ClientService
+ * @author Roman Lashkevich
+ */
 public class BillsClientService implements ClientService {
     private final ServiceValidator serviceValidator;
     private final ServiceDuplicationChecker serviceDuplicationChecker;

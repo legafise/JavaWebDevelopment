@@ -5,6 +5,11 @@ import by.lashkevich.bills.view.locale.LocaleReader;
 
 import java.util.List;
 
+/**
+ * Class that report information about
+ * operations with bills
+ * @author Roman Lashkevich
+ */
 public class BillReporter {
     private static final String BILL_INFO_MESSAGE_KEY = "reporter.bill.info.message";
     private static final String BALANCE_DESCENDING_SORT_RESULT_MESSAGE_KEY = "reporter.bill.balance" +

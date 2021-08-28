@@ -3,6 +3,10 @@ package by.lashkevich.bills.entity;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Class created to work within a job with banks
+ * @author RomalLashkevich
+ */
 public class Bank {
     private long id;
     private String name;
