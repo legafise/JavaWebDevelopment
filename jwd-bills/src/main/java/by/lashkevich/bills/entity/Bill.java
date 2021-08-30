@@ -8,6 +8,7 @@ import java.util.Objects;
  * @author RomalLashkevich
  */
 public class Bill {
+    private static final String STANDARD_BILL_BALANCE = "0.0";
     private long id;
     private BigDecimal balance;
     private boolean isBlocked;
@@ -17,7 +18,7 @@ public class Bill {
 
     public Bill(long id) {
         this.id = id;
-        this.balance = new BigDecimal("0.0");
+        this.balance = new BigDecimal(STANDARD_BILL_BALANCE);
         this.isBlocked = false;
     }
 
