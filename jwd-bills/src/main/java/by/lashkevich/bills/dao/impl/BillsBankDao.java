@@ -14,7 +14,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author Roman Lashkevich
@@ -53,16 +56,18 @@ public class BillsBankDao implements BankDao {
 
     @Override
     public boolean removeClient(long clientId) throws DaoException {
+        Predicate<Client> clientPredicate = client -> client.getId() == clientId;
         Optional<Client> removingClientOptional = bank.getClients().stream()
-                .filter(client -> client.getId() == clientId)
+                .filter(clientPredicate)
                 .findAny();
         return removingClientOptional.isPresent() && bank.getClients().remove(removingClientOptional.get());
     }
 
     @Override
     public boolean removeBill(long billId) throws DaoException {
+        Predicate<Bill> billPredicate = bill -> bill.getId() == billId;
         Optional<Bill> removingBillOptional = bank.getBills().stream()
-                .filter(bill -> bill.getId() == billId)
+                .filter(billPredicate)
                 .findAny();
         return removingBillOptional.isPresent() && bank.getBills().remove(removingBillOptional.get());
     }

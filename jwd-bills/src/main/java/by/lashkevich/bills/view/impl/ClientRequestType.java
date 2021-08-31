@@ -11,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 
 public enum ClientRequestType {
     STANDARD_REQUEST(0) {
@@ -140,8 +141,10 @@ public enum ClientRequestType {
     }
 
     public static ClientRequestType findRequestType(int requestNumber) {
+        Predicate<ClientRequestType> clientRequestTypePredicate = requestType -> requestNumber == requestType
+                .getRequestNumber();
         return Arrays.stream(ClientRequestType.values())
-                .filter(requestTypeNumber -> requestNumber == requestTypeNumber.getRequestNumber())
+                .filter(clientRequestTypePredicate)
                 .findAny()
                 .orElse(STANDARD_REQUEST);
     }

@@ -8,7 +8,9 @@ import by.lashkevich.bills.service.ServiceDuplicationChecker;
 import by.lashkevich.bills.service.ServiceException;
 
 import java.math.BigDecimal;
+import java.util.Comparator;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
@@ -35,8 +37,10 @@ public class BillsBillService implements BillService {
     @Override
     public List<Bill> balanceDescendingOrderSort() throws ServiceException {
         try {
+            Comparator<Bill> billComparator = (firstBill, secondBill) -> -1 * firstBill.getBalance()
+                    .compareTo(secondBill.getBalance());
             return DaoFactory.getInstance().getBillDao().findAllBills().stream()
-                    .sorted((firstBill, secondBill) -> -1 * firstBill.getBalance().compareTo(secondBill.getBalance()))
+                    .sorted(billComparator)
                     .collect(Collectors.toList());
         } catch (DaoException e) {
             throw new ServiceException(e.getMessage());
@@ -46,8 +50,9 @@ public class BillsBillService implements BillService {
     @Override
     public List<Bill> balanceAscendingOrderSort() throws ServiceException {
         try {
+            Comparator<Bill> billComparator = Comparator.comparing(Bill::getBalance);
             return DaoFactory.getInstance().getBillDao().findAllBills().stream()
-                    .sorted((firstBill, secondBill) -> firstBill.getBalance().compareTo(secondBill.getBalance()))
+                    .sorted(billComparator)
                     .collect(Collectors.toList());
         } catch (DaoException e) {
             throw new ServiceException(e.getMessage());
@@ -64,10 +69,12 @@ public class BillsBillService implements BillService {
                 throw new ServiceException(INCORRECT_RANGE_ERROR_MESSAGE);
             }
 
+            Predicate<Bill> billPredicate = (bill -> bill.getBalance().compareTo(bigDecimalFirstRangeElement) > 0
+                    && bill.getBalance().compareTo(bigDecimalSecondRangeElement) < 0);
+            Comparator<Bill> billComparator = Comparator.comparing(Bill::getBalance);
             return DaoFactory.getInstance().getBillDao().findAllBills().stream()
-                    .filter(bill -> bill.getBalance().compareTo(bigDecimalFirstRangeElement) > 0
-                            && bill.getBalance().compareTo(bigDecimalSecondRangeElement) < 0)
-                    .sorted((firstBill, secondBill) -> firstBill.getBalance().compareTo(secondBill.getBalance()))
+                    .filter(billPredicate)
+                    .sorted(billComparator)
                     .collect(Collectors.toList());
         } catch (DaoException e) {
             throw new ServiceException(e.getMessage());

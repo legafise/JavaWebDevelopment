@@ -11,12 +11,16 @@ import by.lashkevich.bills.service.ServiceValidator;
 
 import java.math.BigDecimal;
 import java.util.Optional;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 /**
  * @author Roman Lashkevich
  * @see ClientService
  */
 public class BillsClientService implements ClientService {
+    private static final String STANDARD_BALANCE_VALUE = "0.0";
     private final ServiceValidator serviceValidator;
     private final ServiceDuplicationChecker serviceDuplicationChecker;
 
@@ -38,7 +42,7 @@ public class BillsClientService implements ClientService {
     public BigDecimal calculateTotalClientBillsAmount(String id) throws ServiceException {
         try {
             Client client = DaoFactory.getInstance().getClientDao().findClientById(Long.parseLong(id));
-            BigDecimal totalBalance = new BigDecimal("0");
+            BigDecimal totalBalance = new BigDecimal(STANDARD_BALANCE_VALUE);
             for (Bill bill : client.getBills()) {
                 totalBalance = totalBalance.add(bill.getBalance());
             }
@@ -53,9 +57,9 @@ public class BillsClientService implements ClientService {
     public BigDecimal calculateTotalClientPositiveBillsAmount(String id) throws ServiceException {
         try {
             Client client = DaoFactory.getInstance().getClientDao().findClientById(Long.parseLong(id));
-            BigDecimal totalPositiveBalance = new BigDecimal("0");
+            BigDecimal totalPositiveBalance = new BigDecimal(STANDARD_BALANCE_VALUE);
             for (Bill bill : client.getBills()) {
-                if (bill.getBalance().compareTo(new BigDecimal("0")) > 0) {
+                if (bill.getBalance().compareTo(new BigDecimal(STANDARD_BALANCE_VALUE)) > 0) {
                     totalPositiveBalance = totalPositiveBalance.add(bill.getBalance());
                 }
             }
@@ -70,9 +74,9 @@ public class BillsClientService implements ClientService {
     public BigDecimal calculateTotalClientNegativeBillsAmount(String id) throws ServiceException {
         try {
             Client client = DaoFactory.getInstance().getClientDao().findClientById(Long.parseLong(id));
-            BigDecimal totalPositiveBalance = new BigDecimal("0");
+            BigDecimal totalPositiveBalance = new BigDecimal(STANDARD_BALANCE_VALUE);
             for (Bill bill : client.getBills()) {
-                if (bill.getBalance().compareTo(new BigDecimal("0")) < 0) {
+                if (bill.getBalance().compareTo(new BigDecimal(STANDARD_BALANCE_VALUE)) < 0) {
                     totalPositiveBalance = totalPositiveBalance.add(bill.getBalance());
                 }
             }
@@ -117,9 +121,10 @@ public class BillsClientService implements ClientService {
     @Override
     public boolean assignBill(String clientId, String billId) throws ServiceException {
         try {
+            Predicate<Bill> billPredicate = bill -> bill.getId() == Long.parseLong(billId);
             Optional<Bill> isExistBill = DaoFactory.getInstance().getClientDao()
                     .findClientById(Long.parseLong(clientId)).getBills().stream()
-                    .filter(bill -> bill.getId() == Long.parseLong(billId)).findAny();
+                    .filter(billPredicate).findAny();
 
             if (isExistBill.isPresent()) {
                 return false;

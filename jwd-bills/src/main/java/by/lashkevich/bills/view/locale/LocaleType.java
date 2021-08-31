@@ -2,6 +2,7 @@ package by.lashkevich.bills.view.locale;
 
 import java.util.Arrays;
 import java.util.Locale;
+import java.util.function.Predicate;
 
 /**
  * Enum with fast access to locale types
@@ -38,8 +39,9 @@ public enum LocaleType {
     }
 
     public static LocaleType findLocaleType(int localeNumber) {
+        Predicate<LocaleType> localeTypePredicate = localeType -> localeNumber == localeType.getLocaleNumber();
         return Arrays.stream(LocaleType.values())
-                .filter(localeType -> localeNumber == localeType.getLocaleNumber())
+                .filter(localeTypePredicate)
                 .findAny().orElse(USA_LOCALE);
     }
 }

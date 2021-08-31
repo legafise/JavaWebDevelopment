@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
@@ -38,8 +39,9 @@ public class BillsBillDao implements BillDao {
 
     @Override
     public Bill findBillById(long id) throws DaoException {
+        Predicate<Bill> billPredicate = bill -> bill.getId() == id;
         return bills.stream()
-                .filter(bill -> bill.getId() == id)
+                .filter(billPredicate)
                 .findFirst()
                 .orElseThrow(() -> new DaoException(String.format(INCORRECT_ID_MESSAGE, id)));
     }
@@ -69,8 +71,9 @@ public class BillsBillDao implements BillDao {
 
     @Override
     public boolean removeBill(long id) {
+        Predicate<Bill> billPredicate = bill -> bill.getId() == id;
         Optional<Bill> removingBillOptional = bills.stream()
-                .filter(bill -> bill.getId() == id)
+                .filter(billPredicate)
                 .findAny();
         return removingBillOptional.isPresent() && bills.remove(removingBillOptional.get());
     }

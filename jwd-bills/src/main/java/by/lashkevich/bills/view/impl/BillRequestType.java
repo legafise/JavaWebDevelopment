@@ -11,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 
 public enum BillRequestType {
     STANDARD_REQUEST(0) {
@@ -150,8 +151,10 @@ public enum BillRequestType {
     }
 
     public static BillRequestType findRequestType(int requestNumber) {
+        Predicate<BillRequestType> billRequestTypePredicate = requestType -> requestNumber == requestType
+                .getRequestNumber();
         return Arrays.stream(BillRequestType.values())
-                .filter(requestTypeNumber -> requestNumber == requestTypeNumber.getRequestNumber())
+                .filter(billRequestTypePredicate)
                 .findAny()
                 .orElse(STANDARD_REQUEST);
     }

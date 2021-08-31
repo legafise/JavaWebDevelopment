@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
@@ -37,8 +38,9 @@ public class BillsClientDao implements ClientDao {
 
     @Override
     public Client findClientById(long id) throws DaoException {
+        Predicate<Client> clientPredicate = client -> client.getId() == id;
         return clients.stream()
-                .filter(client -> client.getId() == id)
+                .filter(clientPredicate)
                 .findFirst()
                 .orElseThrow(() -> new DaoException(String.format(INCORRECT_ID_MESSAGE, id)));
     }
@@ -55,8 +57,9 @@ public class BillsClientDao implements ClientDao {
 
     @Override
     public boolean removeClient(long id) throws DaoException {
+        Predicate<Client> clientPredicate = client -> client.getId() == id;
         Optional<Client> removingClientOptional = clients.stream()
-                .filter(client -> client.getId() == id)
+                .filter(clientPredicate)
                 .findAny();
         return removingClientOptional.isPresent() && clients.remove(removingClientOptional.get());
     }
@@ -64,9 +67,10 @@ public class BillsClientDao implements ClientDao {
     @Override
     public boolean removeBill(long id) throws DaoException {
         boolean removingResult = false;
+        Predicate<Bill> billPredicate = bill -> bill.getId() == id;
         for (Client client : clients) {
             Optional<Bill> removingBillOptional = client.getBills().stream()
-                    .filter(bill -> bill.getId() == id)
+                    .filter(billPredicate)
                     .findAny();
             if (removingBillOptional.isPresent()) {
                 client.getBills().remove(removingBillOptional.get());
