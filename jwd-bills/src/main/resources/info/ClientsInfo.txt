@@ -1,7 +1,7 @@
 ClientInfo
 1
 Roman
-L
+Lash
 18
 BillsInfo
 1
