@@ -84,7 +84,7 @@ public class BillsBillDao implements BillDao {
 
         try (PrintWriter printWriter = new PrintWriter(billsInfoFile)) {
             for (Bill bill : bills) {
-                printWriter.write("BillInfo" + NEW_LINE_BREAK);
+                printWriter.write(BILL_SEPARATION_SIGN + NEW_LINE_BREAK);
                 printWriter.write(bill.getId() + NEW_LINE_BREAK);
                 printWriter.write(bill.getBalance() + NEW_LINE_BREAK);
                 printWriter.write(bill.isBlocked() + NEW_LINE_BREAK);
@@ -96,23 +96,30 @@ public class BillsBillDao implements BillDao {
 
     private void readBillsData() throws DaoException {
         try {
-            List<Bill> bills = new ArrayList<>();
             List<String> billData = Files.lines(Paths.get(fileFinder.findInfoFilePath(BILL_INFO_FILE_NAME)))
                     .collect(Collectors.toList());
-            Iterator billIterator = billData.iterator();
-            while (billIterator.hasNext()) {
-                if (billIterator.next().toString().equals(BILL_SEPARATION_SIGN)) {
-                    Bill bill = new Bill();
-                    bill.setId(Long.parseLong(billIterator.next().toString()));
-                    bill.setBalance(new BigDecimal(billIterator.next().toString()));
-                    bill.setBlocked(Boolean.parseBoolean(billIterator.next().toString()));
-                    bills.add(bill);
-                }
-            }
+            Iterator<String> billIterator = billData.iterator();
 
-            this.bills = bills;
+
+            this.bills = mapBills(billIterator);
         } catch (IOException e) {
             throw new DaoException(e.getMessage());
         }
+    }
+
+    private List<Bill> mapBills(Iterator<String> billIterator) {
+        List<Bill> billList = new ArrayList<>();
+
+        while (billIterator.hasNext()) {
+            if (billIterator.next().equals(BILL_SEPARATION_SIGN)) {
+                Bill bill = new Bill();
+                bill.setId(Long.parseLong(billIterator.next()));
+                bill.setBalance(new BigDecimal(billIterator.next()));
+                bill.setBlocked(Boolean.parseBoolean(billIterator.next()));
+                billList.add(bill);
+            }
+        }
+
+        return billList;
     }
 }

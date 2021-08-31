@@ -30,6 +30,7 @@ public class BillsClientDao implements ClientDao {
     private static final String NEW_LINE_BREAK = "\n";
     private final FileFinder fileFinder;
     private List<Client> clients;
+    private String currentElement;
 
     public BillsClientDao() throws DaoException {
         fileFinder = new FileFinder();
@@ -108,36 +109,14 @@ public class BillsClientDao implements ClientDao {
             List<Client> clients = new ArrayList<>();
             List<String> clientData = Files.lines(Paths.get(fileFinder.findInfoFilePath(CLIENT_INFO_FILE_NAME)))
                     .collect(Collectors.toList());
-            Iterator clientIterator = clientData.iterator();
-            String currentElement = clientIterator.next().toString();
+            Iterator<String> clientIterator = clientData.iterator();
+            currentElement = clientIterator.next();
 
             while (clientIterator.hasNext()) {
-                boolean billMarker;
                 if (currentElement.equals(CLIENT_SEPARATION_SIGN)) {
-                    List<Bill> bills = new ArrayList<>();
-                    Client client = new Client();
-                    client.setId(Long.parseLong(clientIterator.next().toString()));
-                    client.setName(clientIterator.next().toString());
-                    client.setSurname(clientIterator.next().toString());
-                    client.setAge(Integer.parseInt(clientIterator.next().toString()));
-
-                    if (clientIterator.hasNext() && clientIterator.next().toString().equals(BILL_SEPARATION_SIGN)) {
-                        do {
-                            if (!clientIterator.hasNext()) {
-                                break;
-                            }
-
-                            currentElement = clientIterator.next().toString();
-                            billMarker = !currentElement.equals(CLIENT_SEPARATION_SIGN);
-                            if (billMarker) {
-                                bills.add(DaoFactory.getInstance().getBillDao()
-                                        .findBillById(Long.parseLong(currentElement)));
-                            }
-                        } while (billMarker);
-
-                        client.setBills(bills);
-                        clients.add(client);
-                    }
+                    Client client = mapClient(clientIterator);
+                    client.setBills(mapBills(clientIterator));
+                    clients.add(client);
                 }
             }
 
@@ -145,5 +124,34 @@ public class BillsClientDao implements ClientDao {
         } catch (IOException e) {
             throw new DaoException(e.getMessage());
         }
+    }
+
+    private List<Bill> mapBills(Iterator<String> clientIterator) {
+        List<Bill> bills = new ArrayList<>();
+        boolean billMarker = false;
+        if (clientIterator.hasNext() && clientIterator.next().equals(BILL_SEPARATION_SIGN)) {
+            do {
+                if (clientIterator.hasNext()) {
+                    currentElement = clientIterator.next();
+                    billMarker = !currentElement.equals(CLIENT_SEPARATION_SIGN);
+                    if (billMarker) {
+                        bills.add(DaoFactory.getInstance().getBillDao()
+                                .findBillById(Long.parseLong(currentElement)));
+                    }
+                }
+            } while (billMarker);
+        }
+
+        return bills;
+    }
+
+    private Client mapClient(Iterator<String> clientIterator) {
+        Client client = new Client();
+        client.setId(Long.parseLong(clientIterator.next()));
+        client.setName(clientIterator.next());
+        client.setSurname(clientIterator.next());
+        client.setAge(Integer.parseInt(clientIterator.next()));
+
+        return client;
     }
 }

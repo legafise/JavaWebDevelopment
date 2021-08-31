@@ -15,9 +15,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * @author Roman Lashkevich
@@ -99,47 +97,56 @@ public class BillsBankDao implements BankDao {
         try {
             long id = 1;
             Bank bank = new Bank();
-            List<Bill> bills = new ArrayList<>();
-            List<Client> clients = new ArrayList<>();
             List<String> banksData = Files.lines(Paths.get(fileFinder.findInfoFilePath(BANK_INFO_FILE_NAME)))
                     .collect(Collectors.toList());
-            Iterator bankIterator = banksData.iterator();
-            boolean billsMarker;
-            boolean clientMarker;
-            while (bankIterator.hasNext()) {
-                if (bankIterator.next().toString().equals(BANK_SEPARATION_SIGN)
-                        && bankIterator.next().toString().equals(String.valueOf(id))) {
-                    bank.setId(id);
-                    bank.setName(bankIterator.next().toString());
-                }
+            Iterator<String> bankIterator = banksData.iterator();
 
-                if (bankIterator.hasNext() && bankIterator.next().toString().equals(BILL_SEPARATION_SIGN)) {
-                    do {
-                        String currentBillElement = bankIterator.next().toString();
-                        billsMarker = !currentBillElement.equals(CLIENT_SEPARATION_SIGN);
-                        if (billsMarker) {
-                            bills.add(DaoFactory.getInstance()
-                                    .getBillDao().findBillById(Long.parseLong(currentBillElement)));
-                        }
-                    } while (billsMarker);
-                }
-
-                do {
-                    String currentBillElement = bankIterator.next().toString();
-                    clientMarker = !currentBillElement.equals(SEPARATION_SIGN);
-                    if (clientMarker) {
-                        clients.add(DaoFactory.getInstance()
-                                .getClientDao().findClientById(Long.parseLong(currentBillElement)));
-                    }
-                } while (clientMarker && bankIterator.hasNext());
+            if (bankIterator.next().equals(BANK_SEPARATION_SIGN)
+                    && bankIterator.next().equals(String.valueOf(id))) {
+                bank.setId(id);
+                bank.setName(bankIterator.next());
             }
 
-            bank.setBills(bills);
-            bank.setClients(clients);
+            bank.setBills(mapBills(bankIterator));
+            bank.setClients(mapClients(bankIterator));
 
             this.bank = bank;
         } catch (IOException e) {
             throw new DaoException(e.getMessage());
         }
+    }
+
+    private List<Bill> mapBills(Iterator<String> bankIterator) {
+        List<Bill> bills = new ArrayList<>();
+        boolean billsMarker;
+
+        if (bankIterator.hasNext() && bankIterator.next().equals(BILL_SEPARATION_SIGN)) {
+            do {
+                String currentBillElement = bankIterator.next();
+                billsMarker = !currentBillElement.equals(CLIENT_SEPARATION_SIGN);
+                if (billsMarker) {
+                    bills.add(DaoFactory.getInstance()
+                            .getBillDao().findBillById(Long.parseLong(currentBillElement)));
+                }
+            } while (billsMarker);
+        }
+
+        return bills;
+    }
+
+    private List<Client> mapClients(Iterator<String> bankIterator) {
+        List<Client> clients = new ArrayList<>();
+        boolean clientMarker;
+
+        do {
+            String currentBillElement = bankIterator.next();
+            clientMarker = !currentBillElement.equals(SEPARATION_SIGN);
+            if (clientMarker) {
+                clients.add(DaoFactory.getInstance()
+                        .getClientDao().findClientById(Long.parseLong(currentBillElement)));
+            }
+        } while (clientMarker && bankIterator.hasNext());
+
+        return clients;
     }
 }
