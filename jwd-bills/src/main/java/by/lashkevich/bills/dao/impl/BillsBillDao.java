@@ -100,7 +100,6 @@ public class BillsBillDao implements BillDao {
                     .collect(Collectors.toList());
             Iterator<String> billIterator = billData.iterator();
 
-
             this.bills = mapBills(billIterator);
         } catch (IOException e) {
             throw new DaoException(e.getMessage());
