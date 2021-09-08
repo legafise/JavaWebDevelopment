@@ -17,11 +17,13 @@ public class LockProducerConsumerApp {
 class LockStore {
     private int product = 0;
     ReentrantLock locker;
-    Condition condition;
+    Condition notFull;
+    Condition notNull;
 
     LockStore() {
         locker = new ReentrantLock(); // создаем блокировку
-        condition = locker.newCondition(); // получаем условие, связанное с блокировкой
+        notFull = locker.newCondition(); // получаем условие, связанное с блокировкой
+        notNull = locker.newCondition(); // получаем условие, связанное с блокировкой
     }
 
     public void get() {
@@ -29,7 +31,7 @@ class LockStore {
         try {
             // пока нет доступных товаров на складе, ожидаем
             while (product < 1) {
-                condition.await();
+                notNull.await();
             }
 
             product--;
@@ -37,7 +39,7 @@ class LockStore {
             System.out.println("Товаров на складе: " + product);
 
             // сигнализируем
-            condition.signalAll();
+            notFull.signal();
         } catch (InterruptedException e) {
             System.out.println(e.getMessage());
         } finally {
@@ -50,14 +52,14 @@ class LockStore {
         try {
             // пока на складе 3 товара, ждем освобождения места
             while (product >= 3) {
-                condition.await();
+                notFull.await();
             }
 
             product++;
             System.out.println("Производитель добавил 1 товар");
             System.out.println("Товаров на складе: " + product);
             // сигнализируем
-            condition.signalAll();
+            notNull.signal();
         } catch (InterruptedException e) {
             System.out.println(e.getMessage());
         } finally {
