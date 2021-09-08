@@ -15,6 +15,7 @@
         <module>jwd-loopsandbranching</module>
         <module>jwd-arrays</module>
         <module>jwd-bills</module>
+        <module>jwd-multithreading</module>
     </modules>
 
     <properties>
