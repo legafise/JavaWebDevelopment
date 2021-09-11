@@ -8,12 +8,13 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class LockMainMatrixDiagonalElementAggregate implements Runnable {
+public class LockMainMatrixDiagonalElementAggregator implements Runnable {
     private static final Lock locker = new ReentrantLock();
+    private static int i = 0;
     private final MatrixService matrixService = ServiceFactory.getInstance().getMatrixService();
     private int finalElement;
 
-    public LockMainMatrixDiagonalElementAggregate(int finalElement) {
+    public LockMainMatrixDiagonalElementAggregator(int finalElement) {
         this.finalElement = finalElement;
     }
 
@@ -28,16 +29,18 @@ public class LockMainMatrixDiagonalElementAggregate implements Runnable {
     @Override
     public void run() {
         try {
-            for (int i = 0; i < matrixService.findMatrix().getHorizontalSize(); i++) {
+            while (i < matrixService.findMatrix().getHorizontalSize()) {
                 locker.lock();
-                if (matrixService.getElement(i, i) == 0) {
+                if (i < matrixService.findMatrix().getHorizontalSize()) {
                     matrixService.setElement(i, i, finalElement);
+                    i++;
                 }
                 locker.unlock();
                 TimeUnit.MILLISECONDS.sleep(50);
             }
+
+            i = 0;
         } catch (InterruptedException e) {
-            locker.unlock();
             throw new ServiceException(e.getMessage());
         }
     }
