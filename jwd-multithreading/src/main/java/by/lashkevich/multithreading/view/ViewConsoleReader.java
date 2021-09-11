@@ -16,4 +16,12 @@ public class ViewConsoleReader {
     public int readLocaleNumber() {
         return scanner.nextInt();
     }
+
+    public int readDataEntryNumber() {
+        return scanner.nextInt();
+    }
+
+    public int readRequestNumber() {
+        return scanner.nextInt();
+    }
 }
