@@ -1,4 +1,4 @@
-package by.lashkevich.multithreading.service.aggregate;
+package by.lashkevich.multithreading.service.aggregator;
 
 import by.lashkevich.multithreading.service.MatrixService;
 import by.lashkevich.multithreading.service.ServiceException;
@@ -8,38 +8,33 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class LockMainMatrixDiagonalElementAggregator implements Runnable {
-    private static final Lock locker = new ReentrantLock();
+public class LockMainMatrixDiagonalElementAggregator extends MatrixDiagonalElementAggregator {
+    private static final Lock LOCKER = new ReentrantLock();
     private static int i = 0;
     private final MatrixService matrixService = ServiceFactory.getInstance().getMatrixService();
-    private int finalElement;
 
     public LockMainMatrixDiagonalElementAggregator(int finalElement) {
-        this.finalElement = finalElement;
+        super(finalElement);
     }
 
-    public int getFinalElement() {
-        return finalElement;
-    }
-
-    public void setFinalElement(int finalElement) {
-        this.finalElement = finalElement;
+    public static void resetCounter() {
+        i = 0;
     }
 
     @Override
     public void run() {
         try {
+            TimeUnit.MILLISECONDS.sleep(50);
+
             while (i < matrixService.findMatrix().getHorizontalSize()) {
-                locker.lock();
+                LOCKER.lock();
                 if (i < matrixService.findMatrix().getHorizontalSize()) {
-                    matrixService.setElement(i, i, finalElement);
+                    matrixService.setElement(i, i, super.getFinalElement());
                     i++;
                 }
-                locker.unlock();
+                LOCKER.unlock();
                 TimeUnit.MILLISECONDS.sleep(50);
             }
-
-            i = 0;
         } catch (InterruptedException e) {
             throw new ServiceException(e.getMessage());
         }
