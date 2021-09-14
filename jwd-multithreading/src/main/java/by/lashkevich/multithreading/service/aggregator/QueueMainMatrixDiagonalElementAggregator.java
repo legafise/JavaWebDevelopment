@@ -17,6 +17,7 @@ public class QueueMainMatrixDiagonalElementAggregator extends MatrixDiagonalElem
     private static final Lock LOCKER = new ReentrantLock();
     private static ArrayDeque<Integer> indexes = findReplaceableIndexes();
     private final MatrixService matrixService = ServiceFactory.getInstance().getMatrixService();
+    public static int addCounter;
 
     public QueueMainMatrixDiagonalElementAggregator(int finalElement) {
         super(finalElement);
@@ -31,6 +32,7 @@ public class QueueMainMatrixDiagonalElementAggregator extends MatrixDiagonalElem
                 if (!indexes.isEmpty()) {
                     int index = indexes.poll();
                     matrixService.setElement(index, index, super.getFinalElement());
+                    addCounter++;
                 }
                 LOCKER.unlock();
                 TimeUnit.MILLISECONDS.sleep(50);

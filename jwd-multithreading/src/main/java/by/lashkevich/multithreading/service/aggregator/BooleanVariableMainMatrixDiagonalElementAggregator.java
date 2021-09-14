@@ -13,16 +13,12 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 public class BooleanVariableMainMatrixDiagonalElementAggregator extends MatrixDiagonalElementAggregator {
     private static final AtomicBoolean isBlocked = new AtomicBoolean(false);
-    private static int i = 0;
+    private static int addCounter = 0;
     private static boolean isDiagonalFilled = false;
     private final MatrixService matrixService = ServiceFactory.getInstance().getMatrixService();
 
     public BooleanVariableMainMatrixDiagonalElementAggregator(int finalElement) {
         super(finalElement);
-    }
-
-    public static void resetCounter() {
-        i = 0;
     }
 
     @Override
@@ -31,9 +27,9 @@ public class BooleanVariableMainMatrixDiagonalElementAggregator extends MatrixDi
             while (!isDiagonalFilled) {
                 if (!isBlocked.get()) {
                     isBlocked.set(true);
-                    if (i < matrixService.findMatrix().getHorizontalSize()) {
-                        matrixService.setElement(i, i, super.getFinalElement());
-                        i++;
+                    if (addCounter < matrixService.findMatrix().getHorizontalSize()) {
+                        matrixService.setElement(addCounter, addCounter, super.getFinalElement());
+                        addCounter++;
                         isBlocked.set(false);
                         TimeUnit.MILLISECONDS.sleep(50);
                     } else {
@@ -44,5 +40,9 @@ public class BooleanVariableMainMatrixDiagonalElementAggregator extends MatrixDi
         } catch (InterruptedException e) {
             throw new ServiceException(e.getMessage());
         }
+    }
+
+    public static void resetCounter() {
+        addCounter = 0;
     }
 }

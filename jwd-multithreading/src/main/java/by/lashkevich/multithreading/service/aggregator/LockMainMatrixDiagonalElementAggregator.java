@@ -14,15 +14,11 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class LockMainMatrixDiagonalElementAggregator extends MatrixDiagonalElementAggregator {
     private static final Lock LOCKER = new ReentrantLock();
-    private static int i = 0;
+    private static int addCounter = 0;
     private final MatrixService matrixService = ServiceFactory.getInstance().getMatrixService();
 
     public LockMainMatrixDiagonalElementAggregator(int finalElement) {
         super(finalElement);
-    }
-
-    public static void resetCounter() {
-        i = 0;
     }
 
     @Override
@@ -30,11 +26,11 @@ public class LockMainMatrixDiagonalElementAggregator extends MatrixDiagonalEleme
         try {
             TimeUnit.MILLISECONDS.sleep(50);
 
-            while (i < matrixService.findMatrix().getHorizontalSize()) {
+            while (addCounter < matrixService.findMatrix().getHorizontalSize()) {
                 LOCKER.lock();
-                if (i < matrixService.findMatrix().getHorizontalSize()) {
-                    matrixService.setElement(i, i, super.getFinalElement());
-                    i++;
+                if (addCounter < matrixService.findMatrix().getHorizontalSize()) {
+                    matrixService.setElement(addCounter, addCounter, super.getFinalElement());
+                    addCounter++;
                 }
                 LOCKER.unlock();
                 TimeUnit.MILLISECONDS.sleep(50);
@@ -42,5 +38,9 @@ public class LockMainMatrixDiagonalElementAggregator extends MatrixDiagonalEleme
         } catch (InterruptedException e) {
             throw new ServiceException(e.getMessage());
         }
+    }
+
+    public static void resetCounter() {
+        addCounter = 0;
     }
 }

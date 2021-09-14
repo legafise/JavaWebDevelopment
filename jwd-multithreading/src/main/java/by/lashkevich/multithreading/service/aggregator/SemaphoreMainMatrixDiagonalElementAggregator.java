@@ -13,12 +13,8 @@ import java.util.concurrent.TimeUnit;
  */
 public class SemaphoreMainMatrixDiagonalElementAggregator extends MatrixDiagonalElementAggregator {
     private static final Semaphore SEMAPHORE = new Semaphore(1);
-    private static int i = 0;
+    private static int addCounter = 0;
     private final MatrixService matrixService = ServiceFactory.getInstance().getMatrixService();
-
-    public static void resetCounter() {
-        i = 0;
-    }
 
     public SemaphoreMainMatrixDiagonalElementAggregator(int finalElement) {
         super(finalElement);
@@ -29,11 +25,11 @@ public class SemaphoreMainMatrixDiagonalElementAggregator extends MatrixDiagonal
         try {
             TimeUnit.MILLISECONDS.sleep(50);
 
-            while (i < matrixService.findMatrix().getHorizontalSize()) {
+            while (addCounter < matrixService.findMatrix().getHorizontalSize()) {
                 SEMAPHORE.acquire();
-                if (i < matrixService.findMatrix().getHorizontalSize()) {
-                    matrixService.setElement(i, i, super.getFinalElement());
-                    i++;
+                if (addCounter < matrixService.findMatrix().getHorizontalSize()) {
+                    matrixService.setElement(addCounter, addCounter, super.getFinalElement());
+                    addCounter++;
                 }
                 SEMAPHORE.release();
                 TimeUnit.MILLISECONDS.sleep(50);
@@ -41,5 +37,9 @@ public class SemaphoreMainMatrixDiagonalElementAggregator extends MatrixDiagonal
         } catch (InterruptedException e) {
             throw new ServiceException(e.getMessage());
         }
+    }
+
+    public static void resetCounter() {
+        addCounter = 0;
     }
 }

@@ -43,11 +43,6 @@ public class SetMainMatrixDiagonalElementAggregator extends MatrixDiagonalElemen
         }
     }
 
-    public static void resetIndexes() {
-        indexes = findReplaceableIndexes();
-        addCounter = 0;
-    }
-
     private static Set<Integer> findReplaceableIndexes() {
         Set<Integer> replaceableIndexes = new HashSet<>();
         for (int i = 0; i < ServiceFactory.getInstance().getMatrixService().findMatrix().getHorizontalSize(); i++) {
@@ -55,5 +50,10 @@ public class SetMainMatrixDiagonalElementAggregator extends MatrixDiagonalElemen
         }
 
         return replaceableIndexes;
+    }
+
+    public static void resetIndexes() {
+        indexes = findReplaceableIndexes();
+        addCounter = 0;
     }
 }
