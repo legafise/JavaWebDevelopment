@@ -3,7 +3,8 @@ package by.lashkevich.multithreading.view.impl;
 import by.lashkevich.multithreading.view.View;
 
 public enum ViewType {
-    MAIN_VIEW(new MainView());
+    MAIN_VIEW(new MainView()),
+    MATRIX_VIEW(new MatrixView());
 
     private final View view;
 

@@ -18,7 +18,7 @@ import java.util.Arrays;
 public enum MatrixRequestType {
     STANDARD_REQUEST(0) {
         @Override
-        Request createRequest(ViewConsoleReader consoleReader, LocaleReader localeReader) {
+        Request createRequest(LocaleReader localeReader) {
             String invalidOperationMessage = localeReader.readMessageFromBundle(INVALID_OPERATION_MESSAGE_KEY);
             System.out.println(invalidOperationMessage);
             LOGGER.log(Level.INFO, invalidOperationMessage);
@@ -26,11 +26,41 @@ public enum MatrixRequestType {
             request.putParameter(RequestConstant.COMMAND_NUMBER, MATRIX_VIEW_COMMAND_NUMBER);
             return request;
         }
+    },
+    FILL_MATRIX_DIAGONAL_WITH_LOCK(1) {
+        @Override
+        Request createRequest(LocaleReader localeReader) {
+            Request request = new Request();
+            request.putParameter(RequestConstant.COMMAND_NUMBER, FILL_MATRIX_DIAGONAL_WITH_LOCK_COMMAND_NUMBER);
+            request.putParameter(RequestConstant.DATA_NAME, 1);
+            return request;
+        }
+    },
+    FILL_MATRIX_DIAGONAL_WITH_QUEUE(2) {
+        @Override
+        Request createRequest(LocaleReader localeReader) {
+            Request request = new Request();
+            request.putParameter(RequestConstant.COMMAND_NUMBER, FILL_MATRIX_DIAGONAL_WITH_QUEUE_COMMAND_NUMBER);
+            request.putParameter(RequestConstant.DATA_NAME, 2);
+            return request;
+        }
+    },
+    FILL_MATRIX_DIAGONAL_WITH_SEMAPHORE(3) {
+        @Override
+        Request createRequest(LocaleReader localeReader) {
+            Request request = new Request();
+            request.putParameter(RequestConstant.COMMAND_NUMBER, FILL_MATRIX_DIAGONAL_WITH_SEMAPHORE_COMMAND_NUMBER);
+            request.putParameter(RequestConstant.DATA_NAME, 3);
+            return request;
+        }
     };
 
     private static final Logger LOGGER = LogManager.getRootLogger();
     private static final String INVALID_OPERATION_MESSAGE_KEY = "view.invalid.operation.message";
     private static final int MATRIX_VIEW_COMMAND_NUMBER = 2;
+    private static final int FILL_MATRIX_DIAGONAL_WITH_LOCK_COMMAND_NUMBER = -2;
+    private static final int FILL_MATRIX_DIAGONAL_WITH_QUEUE_COMMAND_NUMBER = -3;
+    private static final int FILL_MATRIX_DIAGONAL_WITH_SEMAPHORE_COMMAND_NUMBER = -4;
 
     private final int requestNumber;
 
@@ -38,7 +68,7 @@ public enum MatrixRequestType {
         this.requestNumber = requestNumber;
     }
 
-    abstract Request createRequest(ViewConsoleReader consoleReader, LocaleReader localeReader);
+    abstract Request createRequest(LocaleReader localeReader);
 
     public int getRequestNumber() {
         return requestNumber;
