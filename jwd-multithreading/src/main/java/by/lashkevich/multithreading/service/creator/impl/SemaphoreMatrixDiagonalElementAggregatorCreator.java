@@ -7,6 +7,10 @@ import by.lashkevich.multithreading.service.creator.MatrixDiagonalElementAggrega
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @author Roman Lashkevich
+ * @see MatrixDiagonalElementAggregatorCreator
+ */
 public class SemaphoreMatrixDiagonalElementAggregatorCreator implements MatrixDiagonalElementAggregatorCreator {
     @Override
     public List<MatrixDiagonalElementAggregator> create(List<Integer> aggregatorsData) {

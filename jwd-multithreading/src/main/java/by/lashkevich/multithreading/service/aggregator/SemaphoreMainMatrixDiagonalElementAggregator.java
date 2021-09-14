@@ -7,6 +7,10 @@ import by.lashkevich.multithreading.service.ServiceFactory;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @author Roman Lashkevich
+ * @see MatrixDiagonalElementAggregator
+ */
 public class SemaphoreMainMatrixDiagonalElementAggregator extends MatrixDiagonalElementAggregator {
     private static final Semaphore SEMAPHORE = new Semaphore(1);
     private static int i = 0;

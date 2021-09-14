@@ -8,6 +8,10 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * @author Roman Lashkevich
+ * @see MatrixDiagonalElementAggregator
+ */
 public class LockMainMatrixDiagonalElementAggregator extends MatrixDiagonalElementAggregator {
     private static final Lock LOCKER = new ReentrantLock();
     private static int i = 0;

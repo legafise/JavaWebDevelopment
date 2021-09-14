@@ -7,6 +7,10 @@ import by.lashkevich.multithreading.service.ServiceFactory;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+/**
+ * @author Roman Lashkevich
+ * @see MatrixDiagonalElementAggregator
+ */
 public class BooleanVariableMainMatrixDiagonalElementAggregator extends MatrixDiagonalElementAggregator {
     private static final AtomicBoolean isBlocked = new AtomicBoolean(false);
     private static int i = 0;

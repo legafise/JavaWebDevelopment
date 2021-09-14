@@ -8,6 +8,10 @@ import by.lashkevich.multithreading.service.validator.MatrixServiceValidator;
 
 import java.util.List;
 
+/**
+ * @author Romal Lashkevich
+ * @see MatrixService
+ */
 public class MatrixServiceImpl implements MatrixService {
     private static final String INCORRECT_MATRIX_RANGE_MESSAGE = "You are out of range of the matrix";
     private static final String INCORRECT_MATRIX_READ_MESSAGE = "Incorrect matrix was read";

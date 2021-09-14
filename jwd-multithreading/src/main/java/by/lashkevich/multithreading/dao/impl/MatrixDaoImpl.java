@@ -14,6 +14,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * @author Roman Lashkevich
+ * @see MatrixDao
+ */
 public class MatrixDaoImpl implements MatrixDao {
     private static final String MATRIX_INFO_FILE_NAME = "SquareMatrixInfo.txt";
     private static final String MATRIX_ELEMENTS_SEPARATION_SIGN = " ";

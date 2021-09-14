@@ -5,7 +5,6 @@ import java.util.Arrays;
 
 /**
  * Class created to work with matrices
- *
  * @author RomalLashkevich
  */
 public class Matrix {

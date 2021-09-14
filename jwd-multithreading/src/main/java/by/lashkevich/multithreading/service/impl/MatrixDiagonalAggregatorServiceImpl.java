@@ -9,6 +9,10 @@ import by.lashkevich.multithreading.service.validator.AggregatorServiceValidator
 
 import java.util.List;
 
+/**
+ * @author Romal Lashkevich
+ * @see MatrixDiagonalAggregatorService
+ */
 public class MatrixDiagonalAggregatorServiceImpl implements MatrixDiagonalAggregatorService {
     private static final String INCORRECT_THREADS_RANGE_MESSAGE = "Thread amount out of range";
     private AggregatorServiceValidator aggregatorServiceValidator;

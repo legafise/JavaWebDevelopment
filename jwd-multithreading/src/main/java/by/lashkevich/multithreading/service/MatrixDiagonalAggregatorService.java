@@ -4,6 +4,10 @@ import by.lashkevich.multithreading.service.aggregator.MatrixDiagonalElementAggr
 
 import java.util.List;
 
+/**
+ * Interface that performs actions on aggregators
+ * @author Roman Lashkevich
+ */
 public interface MatrixDiagonalAggregatorService {
     List<MatrixDiagonalElementAggregator> createAggregators(int aggregatorTypeNumber);
 }

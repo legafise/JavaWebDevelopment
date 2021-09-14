@@ -2,6 +2,7 @@ package by.lashkevich.multithreading.dao.impl;
 
 import by.lashkevich.multithreading.dao.DaoException;
 import by.lashkevich.multithreading.dao.FileFinder;
+import by.lashkevich.multithreading.dao.MatrixDao;
 import by.lashkevich.multithreading.dao.MatrixDiagonalElementAggregatorDataDao;
 
 import java.io.IOException;
@@ -14,6 +15,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * @author Roman Lashkevich
+ * @see MatrixDiagonalElementAggregatorDataDao
+ */
 public class MatrixDiagonalElementAggregatorDataDaoImpl implements MatrixDiagonalElementAggregatorDataDao {
     private static final String THREADS_INFO_FILE_NAME = "ThreadsInfo.txt";
     private static final String THREAD_ELEMENTS_SEPARATION_SIGN = " ";
