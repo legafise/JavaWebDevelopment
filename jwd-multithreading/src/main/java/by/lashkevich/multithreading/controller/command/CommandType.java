@@ -1,15 +1,15 @@
 package by.lashkevich.multithreading.controller.command;
 
-import by.lashkevich.multithreading.controller.command.impl.ChooseLocaleCommand;
-import by.lashkevich.multithreading.controller.command.impl.MainForwardCommand;
-import by.lashkevich.multithreading.controller.command.impl.MenuExitCommand;
+import by.lashkevich.multithreading.controller.command.impl.*;
 
 import java.util.Arrays;
 
 public enum CommandType {
+    FILL_MATRIX_DIAGONAL_WITH_LOCKER_COMMAND_NUMBER(new FillMatrixDiagonalWithLockerCommand(), -2),
     MAIN_FORWARD(new MainForwardCommand(), -1),
     MENU_EXIT(new MenuExitCommand(), 0),
-    CHOOSE_LOCALE(new ChooseLocaleCommand(), 1);
+    CHOOSE_LOCALE(new ChooseLocaleCommand(), 1),
+    MATRIX_VIEW_FORWARD(new MatrixViewForwardCommand(), 2);
 
     private static final String INVALID_COMMAND_WAS_CHOSEN_ERROR_MESSAGE = "Invalid command was chosen";
     private final Command command;
