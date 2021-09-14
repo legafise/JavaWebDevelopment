@@ -5,6 +5,7 @@ import by.lashkevich.multithreading.controller.command.impl.*;
 import java.util.Arrays;
 
 public enum CommandType {
+    FILL_MATRIX_DIAGONAL_WITH_SEMAPHORE_COMMAND_NUMBER(new FillMatrixDiagonalWithSemaphoreCommand(), -4),
     FILL_MATRIX_DIAGONAL_WITH_QUEUE_COMMAND_NUMBER(new FillMatrixDiagonalWithQueueCommand(), -3),
     FILL_MATRIX_DIAGONAL_WITH_LOCKER_COMMAND_NUMBER(new FillMatrixDiagonalWithLockerCommand(), -2),
     MAIN_FORWARD(new MainForwardCommand(), -1),
