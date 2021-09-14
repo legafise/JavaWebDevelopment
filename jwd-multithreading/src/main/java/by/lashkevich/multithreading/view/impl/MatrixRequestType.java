@@ -53,6 +53,26 @@ public enum MatrixRequestType {
             request.putParameter(RequestConstant.DATA_NAME, 3);
             return request;
         }
+    },
+    FILL_MATRIX_DIAGONAL_WITH_BOOLEAN_VARIABLE(4) {
+        @Override
+        Request createRequest(LocaleReader localeReader) {
+            Request request = new Request();
+            request.putParameter(RequestConstant.COMMAND_NUMBER,
+                    FILL_MATRIX_DIAGONAL_WITH_BOOLEAN_VARIABLE_COMMAND_NUMBER);
+            request.putParameter(RequestConstant.DATA_NAME, 4);
+            return request;
+        }
+    },
+    FILL_MATRIX_DIAGONAL_WITH_SET(5) {
+        @Override
+        Request createRequest(LocaleReader localeReader) {
+            Request request = new Request();
+            request.putParameter(RequestConstant.COMMAND_NUMBER,
+                    FILL_MATRIX_DIAGONAL_WITH_SET_COMMAND_NUMBER);
+            request.putParameter(RequestConstant.DATA_NAME, 5);
+            return request;
+        }
     };
 
     private static final Logger LOGGER = LogManager.getRootLogger();
@@ -61,6 +81,8 @@ public enum MatrixRequestType {
     private static final int FILL_MATRIX_DIAGONAL_WITH_LOCK_COMMAND_NUMBER = -2;
     private static final int FILL_MATRIX_DIAGONAL_WITH_QUEUE_COMMAND_NUMBER = -3;
     private static final int FILL_MATRIX_DIAGONAL_WITH_SEMAPHORE_COMMAND_NUMBER = -4;
+    private static final int FILL_MATRIX_DIAGONAL_WITH_BOOLEAN_VARIABLE_COMMAND_NUMBER = -5;
+    private static final int FILL_MATRIX_DIAGONAL_WITH_SET_COMMAND_NUMBER = -6;
 
     private final int requestNumber;
 

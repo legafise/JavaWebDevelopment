@@ -4,16 +4,16 @@ import by.lashkevich.multithreading.service.MatrixService;
 import by.lashkevich.multithreading.service.ServiceException;
 import by.lashkevich.multithreading.service.ServiceFactory;
 
-import java.util.concurrent.Phaser;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 
-public class PhaserMainMatrixDiagonalElementAggregator extends MatrixDiagonalElementAggregator {
-    private static final Phaser PHASER = new Phaser();
+public class BooleanVariableMainMatrixDiagonalElementAggregator extends MatrixDiagonalElementAggregator {
+    private static final AtomicBoolean isBlocked = new AtomicBoolean(false);
     private static int i = 0;
     private static boolean isDiagonalFilled = false;
     private final MatrixService matrixService = ServiceFactory.getInstance().getMatrixService();
 
-    public PhaserMainMatrixDiagonalElementAggregator(int finalElement) {
+    public BooleanVariableMainMatrixDiagonalElementAggregator(int finalElement) {
         super(finalElement);
     }
 
@@ -24,14 +24,17 @@ public class PhaserMainMatrixDiagonalElementAggregator extends MatrixDiagonalEle
     @Override
     public void run() {
         try {
-            TimeUnit.MILLISECONDS.sleep(50);
             while (!isDiagonalFilled) {
-                if (i < matrixService.findMatrix().getHorizontalSize()) {
-                    matrixService.setElement(i, i, super.getFinalElement());
-                    i++;
-                    TimeUnit.MILLISECONDS.sleep(50);
-                } else {
-                    isDiagonalFilled = true;
+                if (!isBlocked.get()) {
+                    isBlocked.set(true);
+                    if (i < matrixService.findMatrix().getHorizontalSize()) {
+                        matrixService.setElement(i, i, super.getFinalElement());
+                        i++;
+                        isBlocked.set(false);
+                        TimeUnit.MILLISECONDS.sleep(50);
+                    } else {
+                        isDiagonalFilled = true;
+                    }
                 }
             }
         } catch (InterruptedException e) {

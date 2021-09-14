@@ -59,10 +59,6 @@ public class Matrix {
         return s.toString();
     }
 
-    private boolean checkRange(int i, int j) {
-        return i >= 0 && i < matrix.length && j >= 0 && j < matrix[0].length;
-    }
-
     private boolean compareMatrices(Matrix matrix) {
         for (int i = 0; i < matrix.getHorizontalSize(); i++) {
             for (int j = 0; j < matrix.getVerticalSize(); j++) {

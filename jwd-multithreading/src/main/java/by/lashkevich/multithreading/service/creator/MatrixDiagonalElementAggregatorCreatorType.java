@@ -1,16 +1,16 @@
 package by.lashkevich.multithreading.service.creator;
 
 import by.lashkevich.multithreading.service.ServiceException;
-import by.lashkevich.multithreading.service.creator.impl.LockMatrixDiagonalElementAggregatorCreator;
-import by.lashkevich.multithreading.service.creator.impl.QueueMatrixDiagonalElementAggregatorCreator;
-import by.lashkevich.multithreading.service.creator.impl.SemaphoreMatrixDiagonalElementAggregatorCreator;
+import by.lashkevich.multithreading.service.creator.impl.*;
 
 import java.util.Arrays;
 
 public enum MatrixDiagonalElementAggregatorCreatorType {
     LOCK_DIAGONAL_AGGREGATOR(new LockMatrixDiagonalElementAggregatorCreator(), 1),
     QUEUE_DIAGONAL_AGGREGATOR(new QueueMatrixDiagonalElementAggregatorCreator(), 2),
-    SEMAPHORE_DIAGONAL_AGGREGATOR(new SemaphoreMatrixDiagonalElementAggregatorCreator(), 3);
+    SEMAPHORE_DIAGONAL_AGGREGATOR(new SemaphoreMatrixDiagonalElementAggregatorCreator(), 3),
+    BOOLEAN_VARIABLE_DIAGONAL_AGGREGATOR(new BooleanVariableMatrixDiagonalElementAggregatorCreator(), 4),
+    SET_VARIABLE_DIAGONAL_AGGREGATOR(new SetMatrixDiagonalElementAggregatorCreator(), 5);
 
     private static final String INVALID_CREATOR_NUMBER_MESSAGE = "Invalid creator number was chosen";
     private MatrixDiagonalElementAggregatorCreator matrixDiagonalElementAggregatorCreator;
