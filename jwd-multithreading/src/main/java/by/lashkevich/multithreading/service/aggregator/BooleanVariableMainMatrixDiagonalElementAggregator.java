@@ -6,6 +6,7 @@ import by.lashkevich.multithreading.service.ServiceFactory;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author Roman Lashkevich
@@ -13,7 +14,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 public class BooleanVariableMainMatrixDiagonalElementAggregator extends MatrixDiagonalElementAggregator {
     private static final AtomicBoolean isBlocked = new AtomicBoolean(false);
-    private static int addCounter = 0;
+    private static AtomicInteger addCounter = new AtomicInteger(0);
     private static boolean isDiagonalFilled = false;
     private final MatrixService matrixService = ServiceFactory.getInstance().getMatrixService();
 
@@ -27,9 +28,9 @@ public class BooleanVariableMainMatrixDiagonalElementAggregator extends MatrixDi
             while (!isDiagonalFilled) {
                 if (!isBlocked.get()) {
                     isBlocked.set(true);
-                    if (addCounter < matrixService.findMatrix().getHorizontalSize()) {
-                        matrixService.setElement(addCounter, addCounter, super.getFinalElement());
-                        addCounter++;
+                    if (addCounter.get() < matrixService.findMatrix().getHorizontalSize()) {
+                        matrixService.setElement(addCounter.get(), addCounter.get(), super.getFinalElement());
+                        addCounter.incrementAndGet();
                         isBlocked.set(false);
                         TimeUnit.MILLISECONDS.sleep(50);
                     } else {
@@ -43,6 +44,6 @@ public class BooleanVariableMainMatrixDiagonalElementAggregator extends MatrixDi
     }
 
     public static void resetCounter() {
-        addCounter = 0;
+        addCounter.set(0);
     }
 }

@@ -6,6 +6,7 @@ import by.lashkevich.multithreading.service.ServiceFactory;
 
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author Roman Lashkevich
@@ -13,7 +14,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class SemaphoreMainMatrixDiagonalElementAggregator extends MatrixDiagonalElementAggregator {
     private static final Semaphore SEMAPHORE = new Semaphore(1);
-    private static int addCounter = 0;
+    private static AtomicInteger addCounter = new AtomicInteger(0);
     private final MatrixService matrixService = ServiceFactory.getInstance().getMatrixService();
 
     public SemaphoreMainMatrixDiagonalElementAggregator(int finalElement) {
@@ -25,11 +26,11 @@ public class SemaphoreMainMatrixDiagonalElementAggregator extends MatrixDiagonal
         try {
             TimeUnit.MILLISECONDS.sleep(50);
 
-            while (addCounter < matrixService.findMatrix().getHorizontalSize()) {
+            while (addCounter.get() < matrixService.findMatrix().getHorizontalSize()) {
                 SEMAPHORE.acquire();
-                if (addCounter < matrixService.findMatrix().getHorizontalSize()) {
-                    matrixService.setElement(addCounter, addCounter, super.getFinalElement());
-                    addCounter++;
+                if (addCounter.get() < matrixService.findMatrix().getHorizontalSize()) {
+                    matrixService.setElement(addCounter.get(), addCounter.get(), super.getFinalElement());
+                    addCounter.incrementAndGet();
                 }
                 SEMAPHORE.release();
                 TimeUnit.MILLISECONDS.sleep(50);
@@ -40,6 +41,6 @@ public class SemaphoreMainMatrixDiagonalElementAggregator extends MatrixDiagonal
     }
 
     public static void resetCounter() {
-        addCounter = 0;
+        addCounter.set(0);
     }
 }

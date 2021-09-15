@@ -8,6 +8,7 @@ import java.util.ArrayDeque;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -19,7 +20,7 @@ public class SetMainMatrixDiagonalElementAggregator extends MatrixDiagonalElemen
     private static final Lock LOCKER = new ReentrantLock();
     private final MatrixService matrixService = ServiceFactory.getInstance().getMatrixService();
     private static Set<Integer> indexes = findReplaceableIndexes();
-    public static int addCounter;
+    public static AtomicInteger addCounter = new AtomicInteger(0);
 
     public SetMainMatrixDiagonalElementAggregator(int finalElement) {
         super(finalElement);
@@ -28,13 +29,13 @@ public class SetMainMatrixDiagonalElementAggregator extends MatrixDiagonalElemen
     @Override
     public void run() {
         try {
-            while (addCounter < matrixService.findMatrix().getHorizontalSize() - 1) {
+            while (addCounter.get() < matrixService.findMatrix().getHorizontalSize() - 1) {
                 TimeUnit.MILLISECONDS.sleep(50);
                 LOCKER.lock();
-                if (!indexes.add(addCounter)) {
-                    matrixService.setElement(addCounter, addCounter, super.getFinalElement());
+                if (!indexes.add(addCounter.get())) {
+                    matrixService.setElement(addCounter.get(), addCounter.get(), super.getFinalElement());
                     indexes.remove(addCounter);
-                    addCounter++;
+                    addCounter.incrementAndGet();
                 }
                 LOCKER.unlock();
             }
@@ -54,6 +55,6 @@ public class SetMainMatrixDiagonalElementAggregator extends MatrixDiagonalElemen
 
     public static void resetIndexes() {
         indexes = findReplaceableIndexes();
-        addCounter = 0;
+        addCounter.set(0);
     }
 }

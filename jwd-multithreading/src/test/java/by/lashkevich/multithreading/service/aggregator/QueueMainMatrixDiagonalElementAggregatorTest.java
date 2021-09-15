@@ -30,6 +30,6 @@ public class QueueMainMatrixDiagonalElementAggregatorTest {
         }
 
         TimeUnit.MILLISECONDS.sleep(200);
-        Assert.assertEquals(expectedFillingNumber, SetMainMatrixDiagonalElementAggregator.addCounter);
+        Assert.assertEquals(expectedFillingNumber, SetMainMatrixDiagonalElementAggregator.addCounter.get());
     }
 }

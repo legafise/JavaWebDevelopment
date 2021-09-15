@@ -6,6 +6,7 @@ import by.lashkevich.multithreading.service.ServiceFactory;
 
 import java.util.ArrayDeque;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -17,7 +18,7 @@ public class QueueMainMatrixDiagonalElementAggregator extends MatrixDiagonalElem
     private static final Lock LOCKER = new ReentrantLock();
     private static ArrayDeque<Integer> indexes = findReplaceableIndexes();
     private final MatrixService matrixService = ServiceFactory.getInstance().getMatrixService();
-    public static int addCounter;
+    public static AtomicInteger addCounter = new AtomicInteger(0);
 
     public QueueMainMatrixDiagonalElementAggregator(int finalElement) {
         super(finalElement);
@@ -32,7 +33,7 @@ public class QueueMainMatrixDiagonalElementAggregator extends MatrixDiagonalElem
                 if (!indexes.isEmpty()) {
                     int index = indexes.poll();
                     matrixService.setElement(index, index, super.getFinalElement());
-                    addCounter++;
+                    addCounter.incrementAndGet();
                 }
                 LOCKER.unlock();
                 TimeUnit.MILLISECONDS.sleep(50);
@@ -53,5 +54,6 @@ public class QueueMainMatrixDiagonalElementAggregator extends MatrixDiagonalElem
 
     public static void resetIndexes() {
         indexes = findReplaceableIndexes();
+        addCounter.set(0);
     }
 }
