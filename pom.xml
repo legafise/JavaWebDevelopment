@@ -16,6 +16,7 @@
         <module>jwd-arrays</module>
         <module>jwd-bills</module>
         <module>jwd-multithreading</module>
+        <module>jwd-figures</module>
     </modules>
 
     <properties>
