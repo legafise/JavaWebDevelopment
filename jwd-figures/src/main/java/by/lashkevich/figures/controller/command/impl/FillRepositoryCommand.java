@@ -18,7 +18,7 @@ public class FillRepositoryCommand implements Command {
     @Override
     public View execute(Request request) throws CommandException {
         try {
-            TetrahedronService tetrahedronService = new ServiceFactory().getTetrahedronService();
+            TetrahedronService tetrahedronService = ServiceFactory.getInstance().getTetrahedronService();
             List<Tetrahedron> tetrahedronList = tetrahedronService.readTetrahedronData(TETRAHEDRON_INFO_FILE_NAME);
             tetrahedronList.forEach(tetrahedronService::addTetrahedron);
             return ViewType.MAIN_VIEW.getView();

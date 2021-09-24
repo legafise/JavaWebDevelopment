@@ -1,20 +1,20 @@
 package by.lashkevich.figures.service.impl;
 
 import by.lashkevich.figures.dao.DaoException;
-import by.lashkevich.figures.dao.repository.RepositoryFactory;
-import by.lashkevich.figures.service.DataParser;
 import by.lashkevich.figures.dao.FileFinder;
 import by.lashkevich.figures.dao.FileReader;
+import by.lashkevich.figures.dao.repository.RepositoryFactory;
+import by.lashkevich.figures.dao.repository.specification.findspecification.FindTetrahedronByIdSpecification;
 import by.lashkevich.figures.entity.Tetrahedron;
-import by.lashkevich.figures.service.ServiceException;
-import by.lashkevich.figures.service.ServiceValidator;
-import by.lashkevich.figures.service.TetrahedronService;
+import by.lashkevich.figures.service.*;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.function.ToDoubleFunction;
 
 public class TetrahedronServiceImpl implements TetrahedronService {
-    private ServiceValidator serviceValidator;
+    private static final String INVALID_ID_FORMAT_MESSAGE = "Invalid id format";
+    private final ServiceValidator serviceValidator;
 
     public TetrahedronServiceImpl() {
         serviceValidator = new ServiceValidator();
@@ -41,6 +41,36 @@ public class TetrahedronServiceImpl implements TetrahedronService {
         } else {
             return false;
         }
+    }
+
+    @Override
+    public Tetrahedron findTetrahedronById(String id) {
+        try {
+            return RepositoryFactory.getInstance().getTetrahedronRepository()
+                    .query(new FindTetrahedronByIdSpecification(Long.parseLong(id))).get(0);
+        } catch (NumberFormatException e) {
+            throw new ServiceException(INVALID_ID_FORMAT_MESSAGE);
+        } catch (DaoException e) {
+            throw new ServiceException(e.getMessage());
+        }
+    }
+
+    @Override
+    public double calculateTetrahedronArea(Tetrahedron tetrahedron) {
+        DistanceFinder distanceFinder = new DistanceFinder();
+        ToDoubleFunction<Tetrahedron> areaFunction = machinedTetrahedron -> Math.sqrt(3) * Math.pow(distanceFinder.
+                findDistanceBetweenTwoPoints(machinedTetrahedron.getSecondPoint(),
+                        machinedTetrahedron.getFirstPoint()), 2);
+        return areaFunction.applyAsDouble(tetrahedron);
+    }
+
+    @Override
+    public double calculateTetrahedronVolume(Tetrahedron tetrahedron) {
+        DistanceFinder distanceFinder = new DistanceFinder();
+        ToDoubleFunction<Tetrahedron> volumeFunction = machinedTetrahedron -> (Math.pow(distanceFinder.
+                findDistanceBetweenTwoPoints(machinedTetrahedron.getSecondPoint(),
+                        machinedTetrahedron.getFirstPoint()), 3) * Math.sqrt(2)) / 12;
+        return volumeFunction.applyAsDouble(tetrahedron);
     }
 
     @Override

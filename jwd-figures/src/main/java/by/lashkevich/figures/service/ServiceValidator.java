@@ -20,13 +20,6 @@ public class ServiceValidator {
         double sixthDistance = distanceFinder
                 .findDistanceBetweenTwoPoints(tetrahedron.getSecondPoint(), tetrahedron.getThirdPoint());
 
-//        System.out.println(firstDistance);
-//        System.out.println(secondDistance);
-//        System.out.println(thirdDistance);
-//        System.out.println(fourthDistance);
-//        System.out.println(fifthDistance);
-//        System.out.println(sixthDistance);
-
         return compareDoubleValuesWithAccuracy(firstDistance, secondDistance)
                 && compareDoubleValuesWithAccuracy(firstDistance, thirdDistance)
                 && compareDoubleValuesWithAccuracy(firstDistance, fourthDistance)
