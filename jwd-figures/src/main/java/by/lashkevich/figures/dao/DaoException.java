@@ -1,6 +1,6 @@
 package by.lashkevich.figures.dao;
 
-public class DaoException extends Exception {
+public class DaoException extends RuntimeException {
     public DaoException() {
         super();
     }

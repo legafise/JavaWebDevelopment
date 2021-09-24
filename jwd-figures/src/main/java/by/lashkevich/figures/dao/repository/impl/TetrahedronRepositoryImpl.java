@@ -1,52 +1,73 @@
 package by.lashkevich.figures.dao.repository.impl;
 
+import by.lashkevich.figures.dao.DaoException;
 import by.lashkevich.figures.dao.repository.TetrahedronRepository;
 import by.lashkevich.figures.dao.repository.specification.Specification;
+import by.lashkevich.figures.dao.repository.specification.findspecification.FindSpecification;
+import by.lashkevich.figures.dao.repository.specification.sortspecification.SortSpecification;
 import by.lashkevich.figures.entity.Tetrahedron;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
+import java.util.stream.Collectors;
 
 public class TetrahedronRepositoryImpl implements TetrahedronRepository {
-    private final Map<Long, Tetrahedron> tetrahedrons;
+    private static final String INCORRECT_SPECIFICATION_MESSAGE = "Incorrect specification";
+    private static final String INCORRECT_ID_MESSAGE = "Incorrect id";
+    private final List<Tetrahedron> tetrahedrons;
     private long idCounter;
 
     public TetrahedronRepositoryImpl() {
-        this.tetrahedrons = new HashMap<>();
+        this.tetrahedrons = new ArrayList<>();
     }
 
     @Override
-    public Tetrahedron findById(long id) {
-        return tetrahedrons.get(id);
-    }
-
-    @Override
-    public List<Tetrahedron> findAll() {
-        return new ArrayList<>(tetrahedrons.values());
+    public Collection<Tetrahedron> findAll() {
+        return Collections.unmodifiableList(tetrahedrons);
     }
 
     @Override
     public void addTetrahedron(Tetrahedron tetrahedron) {
         tetrahedron.setId(idCounter++);
-        tetrahedrons.put(tetrahedron.getId(), tetrahedron);
+        tetrahedrons.add(tetrahedron);
     }
 
     @Override
     public void removeTetrahedronById(long id) {
-        tetrahedrons.remove(id);
+        Tetrahedron removingTetrahedron = tetrahedrons.stream()
+                .filter(tetrahedron -> tetrahedron.getId() == id)
+                .findFirst()
+                .orElseThrow(() -> new DaoException(INCORRECT_ID_MESSAGE));
+        tetrahedrons.remove(removingTetrahedron);
     }
 
     @Override
     public void updateTetrahedronById(long id, Tetrahedron tetrahedron) {
-        tetrahedrons.remove(id);
+        removeTetrahedronById(id);
         tetrahedron.setId(id);
-        tetrahedrons.put(id, tetrahedron);
+        tetrahedrons.add(tetrahedron);
     }
 
     @Override
-    public List<Tetrahedron> query(Specification specification) {
-        return null;
+    public List<Tetrahedron> query(Specification specification) throws DaoException {
+        List<Tetrahedron> tetrahedronList;
+
+        if (specification instanceof FindSpecification) {
+            FindSpecification<Tetrahedron> findSpecification = (FindSpecification) specification;
+            tetrahedronList = tetrahedrons.stream()
+                    .filter(findSpecification::isSpecified)
+                    .collect(Collectors.toList());
+        } else if (specification instanceof SortSpecification) {
+            SortSpecification<Tetrahedron> sortSpecification = (SortSpecification) specification;
+            tetrahedronList = tetrahedrons.stream()
+                    .sorted(sortSpecification.getComparator())
+                    .collect(Collectors.toList());
+        } else {
+            throw new DaoException(INCORRECT_SPECIFICATION_MESSAGE);
+        }
+
+        return tetrahedronList;
     }
 }
