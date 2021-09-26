@@ -4,6 +4,7 @@ import by.lashkevich.figures.dao.DaoException;
 import by.lashkevich.figures.dao.FileFinder;
 import by.lashkevich.figures.dao.FileReader;
 import by.lashkevich.figures.dao.repository.RepositoryFactory;
+import by.lashkevich.figures.dao.repository.specification.Specification;
 import by.lashkevich.figures.dao.repository.specification.findspecification.FindTetrahedronByIdSpecification;
 import by.lashkevich.figures.entity.Tetrahedron;
 import by.lashkevich.figures.service.*;
@@ -14,6 +15,7 @@ import java.util.function.ToDoubleFunction;
 
 public class TetrahedronServiceImpl implements TetrahedronService {
     private static final String INVALID_ID_FORMAT_MESSAGE = "Invalid id format";
+    private static final String INVALID_ID_MESSAGE = "Invalid tetrahedron id";
     private final ServiceValidator serviceValidator;
 
     public TetrahedronServiceImpl() {
@@ -46,8 +48,13 @@ public class TetrahedronServiceImpl implements TetrahedronService {
     @Override
     public Tetrahedron findTetrahedronById(String id) {
         try {
-            return RepositoryFactory.getInstance().getTetrahedronRepository()
-                    .query(new FindTetrahedronByIdSpecification(Long.parseLong(id))).get(0);
+            List<Tetrahedron> queryResult = RepositoryFactory.getInstance().getTetrahedronRepository()
+                    .query(new FindTetrahedronByIdSpecification(Long.parseLong(id)));
+
+            if (!queryResult.isEmpty()) {
+                return queryResult.get(0);
+            }
+            throw new ServiceException(INVALID_ID_MESSAGE);
         } catch (NumberFormatException e) {
             throw new ServiceException(INVALID_ID_FORMAT_MESSAGE);
         } catch (DaoException e) {
@@ -76,5 +83,10 @@ public class TetrahedronServiceImpl implements TetrahedronService {
     @Override
     public Collection<Tetrahedron> findAllTetrahedrons() {
         return RepositoryFactory.getInstance().getTetrahedronRepository().findAll();
+    }
+
+    @Override
+    public Collection<Tetrahedron> sendQuery(Specification specification) {
+        return RepositoryFactory.getInstance().getTetrahedronRepository().query(specification);
     }
 }

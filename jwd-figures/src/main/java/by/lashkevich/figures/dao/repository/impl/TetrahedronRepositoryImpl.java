@@ -9,7 +9,6 @@ import by.lashkevich.figures.entity.Tetrahedron;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,7 +24,9 @@ public class TetrahedronRepositoryImpl implements TetrahedronRepository {
 
     @Override
     public Collection<Tetrahedron> findAll() {
-        return Collections.unmodifiableList(tetrahedrons);
+        List<Tetrahedron> copyList = new ArrayList<>();
+        copyList.addAll(tetrahedrons);
+        return copyList;
     }
 
     @Override

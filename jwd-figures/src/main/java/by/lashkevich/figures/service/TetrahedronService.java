@@ -1,5 +1,6 @@
 package by.lashkevich.figures.service;
 
+import by.lashkevich.figures.dao.repository.specification.Specification;
 import by.lashkevich.figures.entity.Tetrahedron;
 
 import java.util.Collection;
@@ -12,4 +13,5 @@ public interface TetrahedronService {
     double calculateTetrahedronArea(Tetrahedron tetrahedron);
     double calculateTetrahedronVolume(Tetrahedron tetrahedron);
     Collection<Tetrahedron> findAllTetrahedrons();
+    Collection<Tetrahedron> sendQuery(Specification specification);
 }
