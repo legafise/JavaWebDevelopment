@@ -22,6 +22,6 @@ public class FindTetrahedronByAreaSpecification implements FindSpecification<Tet
                         machinedTetrahedron.getFirstPoint()), 2);
         double area = areaFunction.applyAsDouble(entity);
 
-        return minArea < area && maxArea < area;
+        return minArea < area && maxArea > area;
     }
 }

@@ -11,7 +11,7 @@ public class FindTetrahedronByYCoordinateSpecification implements FindSpecificat
 
     @Override
     public boolean isSpecified(Tetrahedron entity) {
-        return entity.getFirstPoint().getX() == y || entity.getSecondPoint().getX() == y
-                || entity.getThirdPoint().getX() == y || entity.getFourthPoint().getX() == y;
+        return entity.getFirstPoint().getY() == y || entity.getSecondPoint().getY() == y
+                || entity.getThirdPoint().getY() == y || entity.getFourthPoint().getY() == y;
     }
 }
