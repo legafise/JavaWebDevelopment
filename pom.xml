@@ -17,6 +17,8 @@
         <module>jwd-bills</module>
         <module>jwd-multithreading</module>
         <module>jwd-figures</module>
+        <module>jwd-informationhandling</module>
+        <module>jwd-xml</module>
     </modules>
 
     <properties>
