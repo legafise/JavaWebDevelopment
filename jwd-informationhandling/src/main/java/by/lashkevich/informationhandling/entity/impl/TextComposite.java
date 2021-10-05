@@ -1,7 +1,7 @@
 package by.lashkevich.informationhandling.entity.impl;
 
-import by.lashkevich.informationhandling.entity.TextComponent;
 import by.lashkevich.informationhandling.entity.Composite;
+import by.lashkevich.informationhandling.entity.TextComponent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +43,11 @@ public class TextComposite implements Composite {
     @Override
     public List<TextComponent> getComponents() {
         return new ArrayList<>(components);
+    }
+
+    @Override
+    public void setChild(int index, TextComponent child) {
+        components.set(index, child);
     }
 
     @Override

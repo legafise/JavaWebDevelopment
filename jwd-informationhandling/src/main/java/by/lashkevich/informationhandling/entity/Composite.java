@@ -7,4 +7,5 @@ public interface Composite extends TextComponent {
     void remove(TextComponent component);
     TextComponent getChild(int index);
     List<TextComponent> getComponents();
+    void setChild(int index, TextComponent child);
 }

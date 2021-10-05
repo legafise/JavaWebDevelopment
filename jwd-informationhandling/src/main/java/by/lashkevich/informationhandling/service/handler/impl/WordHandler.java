@@ -2,6 +2,7 @@ package by.lashkevich.informationhandling.service.handler.impl;
 
 import by.lashkevich.informationhandling.entity.TextComponent;
 import by.lashkevich.informationhandling.entity.impl.TextComposite;
+import by.lashkevich.informationhandling.entity.impl.Word;
 import by.lashkevich.informationhandling.service.handler.BaseHandler;
 
 import java.util.regex.Matcher;
@@ -13,7 +14,7 @@ public class WordHandler implements BaseHandler {
     @Override
     public TextComponent parse(String text) {
         Matcher matcher = LETTER_PATTERN.matcher(text);
-        TextComposite wordComposite = new TextComposite();
+        TextComposite wordComposite = new Word();
         LetterHandler letterHandler = new LetterHandler();
         while (matcher.find()) {
             wordComposite.add(letterHandler.parse(matcher.group()));

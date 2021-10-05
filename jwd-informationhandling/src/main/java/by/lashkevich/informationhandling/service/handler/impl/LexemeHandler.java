@@ -1,6 +1,7 @@
 package by.lashkevich.informationhandling.service.handler.impl;
 
 import by.lashkevich.informationhandling.entity.TextComponent;
+import by.lashkevich.informationhandling.entity.impl.Lexeme;
 import by.lashkevich.informationhandling.entity.impl.TextComposite;
 import by.lashkevich.informationhandling.service.handler.BaseHandler;
 
@@ -16,7 +17,7 @@ public class LexemeHandler implements BaseHandler {
         Matcher wordAndPunctuationMatcher = WORD_AND_PUNCTUATION_MARK_PATTERN.matcher(text);
         PunctuationMarkHandler punctuationHandler = new PunctuationMarkHandler();
         WordHandler wordHandler = new WordHandler();
-        TextComposite lexemeComposite = new TextComposite();
+        TextComposite lexemeComposite = new Lexeme();
 
         while (wordAndPunctuationMatcher.find()) {
             Matcher wordMatcher = WORD_PATTERN.matcher(wordAndPunctuationMatcher.group());
