@@ -46,7 +46,7 @@
 
     <complexType name="Analogs">
         <sequence>
-            <element name="analog" type="string" maxOccurs="unbounded"/>
+            <element name="analog-name" type="string" maxOccurs="unbounded"/>
         </sequence>
     </complexType>
 
@@ -68,7 +68,7 @@
     <complexType name="Certificate">
         <sequence>
             <element name="number" type="string"/>
-            <element name="date-of-issue" type="date"/>
+            <element name="issue-date" type="date"/>
             <element name="expiry-date" type="date"/>
             <element name="registration-organisation" type="string"/>
         </sequence>
@@ -99,7 +99,7 @@
             <element name="dose" type="string"/>
         </sequence>
 
-        <attribute name="frequency-of-medication" use="optional" default="By doctor's prescription">
+        <attribute name="medication-frequency" use="optional" default="By doctor's prescription">
             <simpleType>
                 <restriction base="string">
                     <enumeration value="Once a day"/>
