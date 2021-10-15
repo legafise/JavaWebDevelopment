@@ -15,11 +15,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StaxBuilder {
+public class StaxMedicineBuilder extends MedicineBuilder {
     private static final String UNKNOWN_ELEMENT_MESSAGE = "Unknown element";
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-    public List<Medicine> buildMedicineList(String xmlFilePath) {
+    public void buildMedicineList(String xmlFilePath) {
         try {
             XMLInputFactory inputFactory = XMLInputFactory.newInstance();
             InputStream inputStream = new FileInputStream(xmlFilePath);
@@ -39,7 +39,7 @@ public class StaxBuilder {
                 }
             }
 
-            return medicineList;
+            setMedicineList(medicineList);
         } catch (FileNotFoundException | XMLStreamException e) {
             throw new ServiceException(e.getMessage());
         }

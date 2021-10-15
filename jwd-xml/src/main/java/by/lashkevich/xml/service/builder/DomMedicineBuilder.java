@@ -16,13 +16,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DomBuilder {
+public class DomMedicineBuilder extends MedicineBuilder {
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    private List<Medicine> medicines;
     private DocumentBuilder documentBuilder;
 
-    public DomBuilder() {
-        medicines = new ArrayList<>();
+    public DomMedicineBuilder() {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
             documentBuilder = factory.newDocumentBuilder();
@@ -31,12 +29,9 @@ public class DomBuilder {
         }
     }
 
-    public List<Medicine> getMedicines() {
-        return medicines;
-    }
-
     public void buildMedicineList(String filePath) {
         try {
+            List<Medicine> medicines = new ArrayList<>();
             Document document = documentBuilder.parse(filePath);
             Element root = document.getDocumentElement();
             NodeList originalMedicineList = root.getElementsByTagName(MedicineTag.ORIGINAL_MEDICINE.getTagName());
@@ -53,6 +48,8 @@ public class DomBuilder {
                 Medicine analog = buildAnalog(medicineElement);
                 medicines.add(analog);
             }
+
+            setMedicineList(medicines);
         } catch (IOException | org.xml.sax.SAXException e) {
             throw new ServiceException(e.getMessage());
         }
