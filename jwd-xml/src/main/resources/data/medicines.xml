@@ -277,7 +277,7 @@
                 </certificate>
                 <package>
                     <package-type>syrup</package-type>
-                    <amount-in-package>250mд</amount-in-package>
+                    <amount-in-package>250mg</amount-in-package>
                     <price>22.3</price>
                 </package>
                 <dosage medication-frequency="Twice a day">
