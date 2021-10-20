@@ -1,0 +1,44 @@
+table {
+    border-collapse: collapse!important;
+}
+
+th {
+    background: #24b068 !important;
+    color: #f8f9fa;
+}
+
+TH, TD {
+    border: 1px solid black;
+}
+
+body {
+    background: #000 url(../pictures/background.jpg);
+    background-attachment: fixed;
+}
+
+a {
+    text-decoration: none;
+    color: azure;
+}
+
+a:hover {
+    color: #b8c6c6;
+}
+
+.version_table {
+    margin: 3px;
+}
+
+.input-window {
+    width: 35rem;
+    height: 25rem;
+    margin-top: 40%;
+}
+
+.error-message {
+    color: azure;
+}
+
+.table {
+    margin-bottom: 0!important;
+}
