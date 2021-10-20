@@ -34,7 +34,9 @@ public class MedicineSaxHandler extends DefaultHandler {
     }
 
     public List<Medicine> getMedicines() {
-        return medicines;
+        List<Medicine> copyMedicineList = new ArrayList<>(medicines);
+        medicines = new ArrayList<>();
+        return copyMedicineList;
     }
 
     @Override
