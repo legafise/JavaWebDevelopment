@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<medicines xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="http://www.training.by/medicine"
+           xsi:schemaLocation="http://www.training.by/medicine">
+    <original-medicine id="G-563" group="ointment">
+        <name>Mekol</name>
+        <pharm>Aktavis</pharm>
+        <versions>
+            <version>
+                <certificate>
+                    <number>b-423</number>
+                    <issue-date>2021-08-10</issue-date>
+                    <expiry-date>2023-08-10</expiry-date>
+                    <registration-organisation>Minzdrav</registration-organisation>
+                </certificate>
+                <package>
+                    <package-type>tube</package-type>
+                    <amount-in-package>50g</amount-in-package>
+                    <price>4.35</price>
+                </package>
+                <dosage>
+                    <dose>1g</dose>
+                </dosage>
+            </version>
+        </versions>
+        <analogs>
+            <analog-name>Levomekol</analog-name>
+        </analogs>
+    </original-medicine>
+
+    <analog id="G-562" group="ointment" efficiency="90.4">
+        <name>Levomekol</name>
+        <pharm>Aktaves</pharm>
+        <versions>
+            <version>
+                <certificate>
+                    <number>b-422</number>
+                    <issue-date>2021-08-10</issue-date>
+                    <expiry-date>2023-08-10</expiry-date>
+                    <registration-organisation>Minzdrav</registration-organisation>
+                </certificate>
+                <package>
+                    <package-type>tube</package-type>
+                    <amount-in-package>60g</amount-in-package>
+                    <price>5.2</price>
+                </package>
+                <dosage>
+                    <dose>1g</dose>
+                </dosage>
+            </version>
+        </versions>
+        <title-of-original>Mekol</title-of-original>
+    </analog>
+</medicines>
